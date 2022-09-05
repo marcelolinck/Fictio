@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('corpo', 10000);
             $table->unsignedBigInteger('noticia_status_id');
             $table->foreign('noticia_status_id')->references('id')->on('noticia_status');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 
