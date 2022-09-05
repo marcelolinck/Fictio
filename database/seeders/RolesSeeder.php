@@ -24,6 +24,7 @@ class RolesSeeder extends Seeder
             ],
             [
                 'name' => 'Convidado',
+                'guard_name' =>'',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],

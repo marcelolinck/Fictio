@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-
+//use App\Models\Noticias\NoticiasModel;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RolesSeeder;
 
@@ -21,10 +21,12 @@ class DatabaseSeeder extends Seeder
             UserStatusSeeder::class,
             NoticiaStatusSeeder::class,
             RolesSeeder::class,
+            NoticiasSeeder::class,
 
     ]);
         
         \App\Models\User::factory(10)->create();
+       // NoticiasModel::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

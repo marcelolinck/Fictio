@@ -24,13 +24,9 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('corpo');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('corpo', 10000);
             $table->unsignedBigInteger('noticia_status_id');
             $table->foreign('noticia_status_id')->references('id')->on('noticia_status');
-            $table->rememberToken();
             $table->timestamps();
         });
 
