@@ -25,11 +25,11 @@ http://seuip:8080/api/noticias
 ##Requisitos:
 Requisito do Laravel 9 mesmo, php 8 em diante com algumas extensões ativas no php.ini
 
-extension=curl
-extension=fileinfo
-extension=mbstring
-extension=openssl
-extension=pdo_mysql
+extension=curl <br>
+extension=fileinfo  <br>
+extension=mbstring  <br>
+extension=openssl <br>
+extension=pdo_mysql <br>
 
 
 ## License
