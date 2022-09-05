@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    /* overflow-y: hidden; */
+    
+}
+::-webkit-scrollbar{
+    width: 10px;
+    
+}
+::-webkit-scrollbar-track{
+    background: #f1f1f181;
+
+}
+::-webkit-scrollbar-thumb{
+    background: rgb(42, 42, 42);
+    border-radius: 1px;
+}
+.ant-drawer-content-wrapper{
+    min-width: 250px !important;
+}
+
+.ant-drawer-title{
+    color: white !important;
+}
+
+.anticon-close svg{
+    color: white;
+}
+.ant-drawer-content{
+    background: #1f1f1f !important;
+    color: white;
+}
