@@ -15,11 +15,13 @@ class NoticiasModel extends Model
     protected $table = "noticias";
 
    public function user(){
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id')
+        ->select('id','name','email');
    }
    
     public function status(){
-        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id');
+        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id')
+        ->select('id','noticia_status.descricao');
     }
 
     public function comentarios(){

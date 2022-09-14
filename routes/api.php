@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
 });
 
-Route::resource('/noticias', \App\Http\Controllers\Noticias\NoticiasController::class);
+Route::Apiresource('/noticias', \App\Http\Controllers\Noticias\NoticiasController::class);
 
 Route::get('/users', function () {
     return User::all();

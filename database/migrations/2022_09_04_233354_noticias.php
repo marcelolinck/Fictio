@@ -53,7 +53,6 @@ return new class extends Migration
         Schema::create('noticia_comentario_status', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
-            $table->timestamps();
         });
 
         //Criacao da tabela de Comentário
@@ -62,6 +61,8 @@ return new class extends Migration
             $table->string('descricao');
             $table->unsignedBigInteger('noticia_comentario_status_id');
             $table->foreign('noticia_comentario_status_id')->references('id')->on('noticia_comentario_status');
+            $table->unsignedBigInteger('noticia_id');
+            $table->foreign('noticia_id')->references('id')->on('noticias');
             $table->timestamps();
         });
     }
