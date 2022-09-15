@@ -14,16 +14,16 @@ function Raiz(){
     const [drawerState, setDrawerState] = useState(false);
     return(
         <Conteudo>
-            <Drawer aberto={drawerState} setDrawer={setDrawerState}/>
-            <Navbar setDrawer={setDrawerState}/>
-            {/* <div style={{height:'140vh'}}></div> */}
             <BrowserRouter>
-                <Routes>
-                    <Route path='/' exact component={<Home/>}/>
-                </Routes>
+                <Drawer aberto={drawerState} setDrawer={setDrawerState}/>
+                <Navbar setDrawer={setDrawerState}/>
+                {/* <div style={{height:'140vh'}}></div> */}
+                    <Routes>
+                        <Route path='/' exact component={<Home/>}/>
+                    </Routes>
+                <Footer />
             </BrowserRouter>
 
-            <Footer />
             
         </Conteudo>
         
