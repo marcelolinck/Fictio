@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class NoticiasComentariosStatusModel extends Model
 {
+    protected $table = "noticia_comentario_status";
     use HasFactory;
 }

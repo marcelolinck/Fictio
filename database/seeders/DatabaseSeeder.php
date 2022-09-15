@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Noticias\NoticiasComentariosModel;
+use App\Models\Noticias\NoticiasFotosModel;
 use App\Models\Noticias\NoticiasModel;
+use App\Models\Noticias\NoticiasTagsModel;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RolesSeeder;
 
@@ -25,19 +27,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NoticiaStatusSeeder::class,
             RolesSeeder::class,
-            NoticiaComentariosSeeder::class,
+            NoticiaComentariosStatusSeeder::class,
 
         ]);
         NoticiasModel::factory(50)->create();
-        NoticiasComentariosModel::factory(50)->create();
+        NoticiasTagsModel::factory(150)->create();
+        NoticiasComentariosModel::factory(200)->create();
+        NoticiasFotosModel::factory(200)->create();
         
         
         
-       // NoticiasModel::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+       
     }
 }

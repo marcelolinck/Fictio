@@ -16,8 +16,9 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        return NoticiasModel::with('user','status')
+        return NoticiasModel::with('tags','user','status','fotos','comentarios','comentarios.user','comentarios.status')
         ->select('noticias.id', 'noticias.titulo', 'noticias.corpo', 'noticias.user_id','noticias.noticia_status_id')
+        ->take(5)
         ->get();
     }
 

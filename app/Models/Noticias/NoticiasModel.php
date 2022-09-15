@@ -14,17 +14,31 @@ class NoticiasModel extends Model
 
     protected $table = "noticias";
 
-   public function user(){
+    public function tags()
+    {
+        return $this->hasMany(NoticiasTagsModel::class, 'noticia_id', 'id')
+            ->select('noticia_id', 'descricao');
+    }
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'user_id')
-        ->select('id','name','email');
-   }
-   
-    public function status(){
-        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id')
-        ->select('id','noticia_status.descricao');
+            ->select('id', 'name', 'email');
+    }
+    public function fotos()
+    {
+        return $this->hasMany(NoticiasFotosModel::class, 'noticia_id', 'id')
+            ->select('noticia_id', 'noticia_foto_patch');
     }
 
-    public function comentarios(){
-        return $this->hasMany(NoticiasComentariosModel::class, '','');
+    public function status()
+    {
+        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id')
+            ->select('id', 'noticia_status.descricao');
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(NoticiasComentariosModel::class, 'noticia_id', 'id')
+            ->select('id', 'descricao', 'descricao', 'noticia_id', 'noticia_comentario_status_id', 'user_id', 'created_at');
     }
 }

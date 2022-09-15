@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Noticias\NoticiasComentariosModel;
+use App\Models\Noticias\NoticiasComentariosStatusModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class NoticiaComentariosSeeder extends Seeder
+class NoticiaComentariosStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -31,6 +31,6 @@ class NoticiaComentariosSeeder extends Seeder
            
 
         ];
-        NoticiasComentariosModel::insert($data);
+        NoticiasComentariosStatusModel::insert($data);
     }
 }
