@@ -5,9 +5,9 @@ namespace App\Models\Noticias;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NoticiasTagsModel extends Model
+class TagsModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'noticias_tags';
+    protected $table = "tags";
 }
