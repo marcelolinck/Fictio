@@ -12,13 +12,11 @@ class NoticiasController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
-        return NoticiasModel::with('tags','user','status','fotos','comentarios','comentarios.user','comentarios.status')
-        //->select('noticias.id', 'noticias.titulo', 'noticias.corpo', 'noticias.user_id','noticias.noticia_status_id')
-        
+        return NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
         ->take(5)
         ->get();
     }

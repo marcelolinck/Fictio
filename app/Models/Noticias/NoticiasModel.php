@@ -14,6 +14,14 @@ class NoticiasModel extends Model
 
     protected $table = "noticias";
 
+    protected $fillable = ['titulo','corpo','status','tags','user_id'];
+
+    protected $casts = [
+                'tags' => 'array',
+                'status' => 'array',
+                'criador'=> 'array',
+    ];
+
     public function tags()
     {
         return $this->hasMany(NoticiasTagsModel::class, 'noticia_id', 'id');
