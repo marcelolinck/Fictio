@@ -10,4 +10,8 @@ class TagsModel extends Model
     use HasFactory;
 
     protected $table = "tags";
+
+    protected $fillable = [
+        'updated_at'
+    ];
 }

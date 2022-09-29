@@ -8,6 +8,7 @@ use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasFotosModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\Noticias\NoticiasTagsModel;
+use App\Models\Noticias\TagsModel;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RolesSeeder;
 
@@ -31,12 +32,10 @@ class DatabaseSeeder extends Seeder
 
         ]);
         NoticiasModel::factory(50)->create();
-        NoticiasTagsModel::factory(150)->create();
-        NoticiasComentariosModel::factory(200)->create();
-        NoticiasFotosModel::factory(200)->create();
-        
-        
-        
+        TagsModel::factory(50)->create();
+        NoticiasTagsModel::factory(50)->create();
+        NoticiasComentariosModel::factory(50)->create();
+        NoticiasFotosModel::factory(50)->create();
        
     }
 }

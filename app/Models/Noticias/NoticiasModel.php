@@ -16,18 +16,16 @@ class NoticiasModel extends Model
 
     public function tags()
     {
-        return $this->hasMany(NoticiasTagsModel::class, 'noticia_id', 'id')
-            ->select('noticia_id', 'descricao');
+        return $this->hasMany(NoticiasTagsModel::class, 'noticia_id', 'id');
     }
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'user_id')
-            ->select('id', 'name', 'email');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
     public function fotos()
     {
         return $this->hasMany(NoticiasFotosModel::class, 'noticia_id', 'id')
-            ->select('noticia_id', 'noticia_foto_patch');
+        ->select('noticia_id', 'noticia_foto_patch');
     }
 
     public function status()

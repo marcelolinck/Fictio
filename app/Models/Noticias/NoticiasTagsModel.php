@@ -10,4 +10,6 @@ class NoticiasTagsModel extends Model
     use HasFactory;
 
     protected $table = 'noticias_tags';
+    
+    public $timestamps = false;
 }

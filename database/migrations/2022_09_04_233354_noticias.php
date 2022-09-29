@@ -24,7 +24,8 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('corpo', 10000);
+            $table->longText('corpo');
+            $table->json('tags');
             $table->unsignedBigInteger('noticia_status_id');
             $table->foreign('noticia_status_id')->references('id')->on('noticia_status');
             $table->unsignedBigInteger('user_id');
@@ -38,13 +39,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('noticias_tags', function (Blueprint $table) {
-            $table->unsignedBigInteger('noticia_id');
-            $table->foreign('noticia_id')->references('id')->on('noticias');
-            $table->unsignedBigInteger('tag_id');
-            $table->foreign('tag_id')->references('id')->on('tags');
+        // Schema::create('noticias_tags', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('noticia_id');
+        //     $table->foreign('noticia_id')->references('id')->on('noticias');
+        //     $table->unsignedBigInteger('tag_id');
+        //     $table->foreign('tag_id')->references('id')->on('tags');
+           
             
-        });
+        // });
 
         
         Schema::create('noticia_fotos', function (Blueprint $table) {

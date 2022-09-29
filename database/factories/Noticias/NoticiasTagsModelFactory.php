@@ -18,7 +18,7 @@ class NoticiasTagsModelFactory extends Factory
     {
         return [
             'noticia_id' => $this->faker->numberBetween(1, 50),
-            'tag_id' => $this->faker->numberBetween(1, 200),
+            'tag_id' => $this->faker->numberBetween(1, 50),
         ];
     }
 }
