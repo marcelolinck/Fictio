@@ -1,0 +1,11 @@
+{
+    "name": "Admin1525",
+    "alias": "admin1525",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Admin1525\\Providers\\Admin1525ServiceProvider"
+    ],
+    "files": []
+}
