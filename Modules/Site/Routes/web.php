@@ -1,5 +1,7 @@
 <?php
 
+
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,9 @@
 */
 
 Route::prefix('site')->group(function() {
-    Route::get('/', 'SiteController@index');
+     Route::get('/', 'SiteController@index');
+
+   // return "rota";
 });
+
+

@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Deixa de ser curioso e acessa as rotas certinho <br> http://127.0.0.1:8000/api/site/noticias <br> http://127.0.0.1:8000/api/site/noticias/tags";
 });

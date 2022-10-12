@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/site', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/site', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::prefix('site')->group(function() {
+    Route::get('/noticias/tags', function(){return "tags";});
+    Route::get('/noticias',[ Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
+    
 });
