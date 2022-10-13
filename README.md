@@ -20,8 +20,10 @@ php artisan migrate --seed
 php artisan serve
 
 Rotas disponiveis via api:
-/api/site/noticias
-/api/site/noticias/tags
+/api/site/noticias -> Lista todas as noticias ordenadas por data
+/api/site/noticias/tags -> Lista todas as noticias filtradas por tags. Para filtrar basta colocar a palavra e o separador &
+Exemplo:
+api/site/noticias/tags/Lorem&Amet&Dolor
 
 
 ##Requisitos:
