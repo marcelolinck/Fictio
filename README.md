@@ -19,8 +19,10 @@ npm install
 php artisan migrate --seed
 php artisan serve
 
-Feito isso é só acessar as rotas de 
-http://seuip:8080/api/noticias
+Rotas disponiveis via api:
+/api/site/noticias
+/api/site/noticias/tags
+
 
 ##Requisitos:
 Requisito do Laravel 9 mesmo, php 8 em diante com algumas extensões ativas no php.ini
@@ -30,6 +32,8 @@ extension=fileinfo  <br>
 extension=mbstring  <br>
 extension=openssl <br>
 extension=pdo_mysql <br>
+
+Pacotes utulizados no projeto:
 
 
 ## License

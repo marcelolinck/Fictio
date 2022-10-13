@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::prefix('site')->group(function() {
-    Route::get('/noticias/tags', function(){return "tags";});
-    Route::get('/noticias',[ Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
+Route::prefix('site')->group(function () {
+
+    Route::get('/noticias/tags/{tag}',[Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'searchTags']);
+    Route::get('/noticias', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
+    Route::get('/noticias/{id}', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'show']);
     
+
 });
