@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "Deixa de ser curioso e acessa as rotas certinho <br> http://127.0.0.1:8000/api/site/noticias <br> http://127.0.0.1:8000/api/site/noticias/tags";
+    return view('welcome');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
