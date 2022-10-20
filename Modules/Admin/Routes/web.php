@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Modules\Admin\Http\Controllers\DashController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +16,5 @@
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index');
+    Route::resource('/dashboard', DashController::class);
 });
