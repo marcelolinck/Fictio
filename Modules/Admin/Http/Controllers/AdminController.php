@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Admin1525\Http\Controllers;
+namespace Modules\Admin\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class Admin1525Controller extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class Admin1525Controller extends Controller
      */
     public function index()
     {
-        return view('admin1525::index');
+        return view('admin::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class Admin1525Controller extends Controller
      */
     public function create()
     {
-        return view('admin1525::create');
+        return view('admin::create');
     }
 
     /**
@@ -43,7 +43,7 @@ class Admin1525Controller extends Controller
      */
     public function show($id)
     {
-        return view('admin1525::show');
+        return view('admin::show');
     }
 
     /**
@@ -53,7 +53,7 @@ class Admin1525Controller extends Controller
      */
     public function edit($id)
     {
-        return view('admin1525::edit');
+        return view('admin::edit');
     }
 
     /**

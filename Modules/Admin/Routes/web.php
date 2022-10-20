@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('admin1525')->group(function() {
-    Route::get('/', 'Admin1525Controller@index');
+Route::prefix('admin')->group(function() {
+    Route::get('/', 'AdminController@index');
 });

@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/admin1525",
+    "name": "nwidart/admin",
     "description": "",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Admin1525\\": ""
+            "Modules\\Admin\\": ""
         }
     }
 }
