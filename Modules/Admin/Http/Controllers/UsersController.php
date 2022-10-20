@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class DashController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class DashController extends Controller
      */
     public function index()
     {
-       // return "Na area";
-        return view('admin::dashboard\index');
+        return "Usuarios Controller";
     }
 
     /**

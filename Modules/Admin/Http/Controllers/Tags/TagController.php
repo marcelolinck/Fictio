@@ -1,7 +1,8 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers;
+namespace Modules\Admin\Http\Controllers\Tags;
 
+use App\Models\Noticias\TagsModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -12,9 +13,20 @@ class TagController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    public function __construct()
+    {
+        $this->title = 'Fictio';
+        $this->repository = TagsModel::all();
+    }
     public function index()
     {
-        return view('admin::index');
+        $config['title'] = $this->title;
+        $config['namePage'] = "Tags Cadastradas";
+        $config['controller'] = 'tags'; 
+        $tags = $this->repository;
+
+
+        return view('admin::tags\index', compact('config','tags'));
     }
 
     /**
