@@ -152,7 +152,7 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->descricao}}</td>
                                         <td>{{$item->created_at}}</td>
-                                        <td><span class="badge bg-warning">Editar</span> / <span class="badge bg-danger">Excluir</span></td>
+                                        <td class="d-flex flex-row-reverse"><span class="badge bg-warning">Editar</span> / <span class="badge bg-danger">Excluir</span></td>
  
                                     </tr>
                                 @empty

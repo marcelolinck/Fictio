@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/shared/iconly.css') }}">
 
     @if($config['controller'] =='tags')
-        <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/pages/simple-datatables.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
     @endif
 
     
