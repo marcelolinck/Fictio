@@ -3,7 +3,25 @@ import './styles.scss';
 // @ts-ignore
 import imgTeste from './imgteste.jpg';
 import {Container, Child } from 'teapotcss';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
 function Home() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios.get('/api/noticias/tags', 
+        {
+            params: {
+                tags:["Lorem"]
+            }
+        }).then((res)=>{
+            setData(res.data);
+            console.log(res.data);
+        })
+    }, []);
+            
+        
+
+
     return (
         <section className="homeSection">
             <section className="cabecalho">
@@ -18,8 +36,6 @@ function Home() {
                     
                     <div className='noticiaDestaqueTexto'>
                         <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum obcaecati natus vitae voluptates non.</h1>
-                        
-                        {/* <button>Ver mais</button> */}
                     </div>
                     
                 </div>
@@ -32,18 +48,19 @@ function Home() {
                     <Container 
                         columns={'auto'}
                         gap='10px'
-                        className="conteudoDestaque">
-                        {[...Array(5)].map((item, index) =>
+                        className="conteudoDestaque"
+                    >
+                        {data.map((item, index) =>
                             <Child key={index}>
                                 <a className="cardNoticia hoverMargin">
-                                    <img src={imgTeste}></img>
-                                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, repellendus.</h3>
+                                    <img src={item.fotos[0].noticia_foto_patch}></img>
+                                    <h3>{item.titulo}</h3>
                                 </a>
                             </Child>
                         )}
                     </Container>
             </section>
-            <section className='noticiasDestaqueMulti'>
+            {/* <section className='noticiasDestaqueMulti'>
                 <div className='cabecalhoDestaque'>
                     <span role="h3">Lorem</span>
                 </div>
@@ -61,7 +78,7 @@ function Home() {
                             </Child>
                         )}
                     </Container>
-            </section>
+            </section> */}
         </section>
     );
 }
