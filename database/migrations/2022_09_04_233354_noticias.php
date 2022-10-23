@@ -37,14 +37,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-         Schema::create('noticias_tags', function (Blueprint $table) {
-             $table->unsignedBigInteger('noticia_id');
-             $table->foreign('noticia_id')->references('id')->on('noticias');
-             $table->unsignedBigInteger('tag_id');
-             $table->foreign('tag_id')->references('id')->on('tags');
+        //  Schema::create('noticias_tags', function (Blueprint $table) {
+        //      $table->unsignedBigInteger('noticia_id');
+        //      $table->foreign('noticia_id')->references('id')->on('noticias');
+        //      $table->unsignedBigInteger('tag_id');
+        //      $table->foreign('tag_id')->references('id')->on('tags');
 
 
-         });
+        //  });
 
 
         Schema::create('noticia_fotos', function (Blueprint $table) {
@@ -85,7 +85,7 @@ return new class extends Migration
         Schema::dropIfExists('noticia_comentarios');
         Schema::dropIfExists('noticia_comentario_status');
         Schema::dropIfExists('noticia_fotos');
-        Schema::dropIfExists('noticias_tags');
+        // Schema::dropIfExists('noticias_tags');
         Schema::dropIfExists('tags');
         Schema::dropIfExists('noticias');
         Schema::dropIfExists('noticia_status');

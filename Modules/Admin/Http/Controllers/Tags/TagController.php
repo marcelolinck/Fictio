@@ -86,6 +86,12 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tagAtual = $this->repository->where('id', $id)->first();
+        if(!$tagAtual)
+        return redirect()->route('tags.index')->with('danger
+        ', 'Não excluído! Selecione o registro correto para exclusão');
+
+        $tagAtual-> delete();
+        return redirect()->route('tags.index')->with('success', 'Excluído com sucesso');
     }
 }

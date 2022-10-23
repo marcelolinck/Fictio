@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
         NoticiasModel::factory(50)->create();
         TagsModel::factory(50)->create();
-        NoticiasTagsModel::factory(50)->create();
+        //NoticiasTagsModel::factory(50)->create();
         NoticiasComentariosModel::factory(50)->create();
         NoticiasFotosModel::factory(50)->create();
        
