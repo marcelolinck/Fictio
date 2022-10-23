@@ -37,6 +37,7 @@ class NoticiasController extends Controller
         
         return NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
         ->whereJsonContains('tags', $filtro)
+        ->take(5)
         ->get();
     }
 }

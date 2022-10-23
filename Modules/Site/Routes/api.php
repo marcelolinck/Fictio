@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('site')->group(function () {
 
-    Route::get('/noticias/tags/',[Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'searchTags']);
-    Route::get('/noticias', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
-    Route::get('/noticias/{id}', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'show']);
     
-
+    
 });
+Route::get('/noticias/tags',[Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'searchTags']);
+Route::get('/noticias', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
+Route::get('/noticias/{id}', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'show']);
