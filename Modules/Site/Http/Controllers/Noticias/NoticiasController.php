@@ -31,11 +31,10 @@ class NoticiasController extends Controller
         ->orderby('created_at', 'desc')
         ->get();
     }
-    public function searchTags($tag){
+    public function searchTags(Request $request){
 
-         $filtro = explode('&', $tag);
-         $filtro = json_decode(json_encode($filtro));
-
+        $filtro = $request->tags;
+        
         return NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
         ->whereJsonContains('tags', $filtro)
         ->get();
