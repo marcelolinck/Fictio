@@ -132,15 +132,15 @@
         </div>
 
         
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="{{ asset('admin/assets/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
         <!-- Need: Apexcharts -->
-        <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-        <script src="assets/js/pages/dashboard.js"></script>
+        <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
         @if($config['controller'] =='tags')
-            <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-            <script src="assets/js/pages/simple-datatables.js"></script>
+            <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+            <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
         @endif
 
 </body>

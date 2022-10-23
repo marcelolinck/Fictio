@@ -35,7 +35,10 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin::create');
+        $config['title'] = $this->title;
+        $config['namePage'] = "Criar nova Tag";
+        $config['controller'] = 'tags'; 
+        return view('admin::tags\create', compact('config'));
     }
 
     /**
@@ -45,7 +48,18 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descricao' => 'required|min:5|max:50',
+            
+        ]);
+    
+        $data = $request->only('descricao');
+
+        //Nesse momento recebe os dados do formulário e insere diretamente no banco
+        $this->repository->create($data);
+
+        //Somente faz um redirect para o formulario que lista todos os dados inseridos
+      return redirect()->route('tags.index')->with('success', 'Cadastrado com sucesso');
     }
 
     /**
