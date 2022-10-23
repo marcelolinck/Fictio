@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('site')->group(function() {
-     Route::get('/', 'SiteController@index');
-
-   // return "rota";
+Route::get('/', function () {
+  return Inertia::render('Raiz');
 });
-
 
