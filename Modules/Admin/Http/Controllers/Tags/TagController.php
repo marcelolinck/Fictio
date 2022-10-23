@@ -37,8 +37,10 @@ class TagController extends Controller
     {
         $config['title'] = $this->title;
         $config['namePage'] = "Criar nova Tag";
-        $config['controller'] = 'tags'; 
-        return view('admin::tags\create', compact('config'));
+        $config['controller'] = 'tags_create'; 
+        
+       
+        return view('admin::tags.create', compact('config'));
     }
 
     /**
@@ -48,38 +50,48 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'descricao' => 'required|min:5|max:50',
+        // $this->validate($request, [
+        //     'descricao' => 'required|min:5|max:50',
             
-        ]);
-    
+        // ]);
+
         $data = $request->only('descricao');
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
 
         //Nesse momento recebe os dados do formulário e insere diretamente no banco
-        $this->repository->create($data);
+        TagsModel::insert($data);
 
         //Somente faz um redirect para o formulario que lista todos os dados inseridos
       return redirect()->route('tags.index')->with('success', 'Cadastrado com sucesso');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('admin::show');
-    }
+    // /**
+    //  * Show the specified resource.
+    //  * @param int $id
+    //  * @return Renderable
+    //  */
+    // public function show($id)
+    // {
+    //     return view('admin::show');
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  * @param int $id
+    //  * @return Renderable
+    //  */
     public function edit($id)
     {
-        return view('admin::edit');
+
+        $config['title'] = $this->title;
+        $config['namePage'] = "Editar tag";
+        $config['controller'] = 'tags_create'; 
+
+        if(!$tagAtual = $this->repository->find($id))
+            return redirect()-> route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
+   
+        return view('admin::tags.edit', compact('tagAtual','config'));
     }
 
     /**
@@ -90,7 +102,13 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$tagAtual = $this->repository->find($id))
+        return redirect()-> route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
+
+    $data = $request->only('descricao');
+    $data['updated_at'] = now();
+    $tagAtual->update($data);
+    return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');
     }
 
     /**

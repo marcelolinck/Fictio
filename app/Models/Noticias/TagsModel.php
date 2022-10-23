@@ -12,6 +12,6 @@ class TagsModel extends Model
     protected $table = "tags";
 
     protected $fillable = [
-        'updated_at', 'descricao'
+        'id','descricao', 'updated_at', 'created_at' 
     ];
 }

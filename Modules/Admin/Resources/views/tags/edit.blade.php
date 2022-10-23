@@ -40,8 +40,9 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post" action="{{ route('tags.store') }}">
+                                    <form class="form form-horizontal" method="post" action="{{ route('tags.update', $tagAtual->id) }}">
                                         @csrf
+                                        @method("patch")
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-2 pt-1">
@@ -70,7 +71,7 @@
                                                 @endif
                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                     <button type="submit"
-                                                        class="btn btn-primary me-1 mb-1">Cadastrar</button>
+                                                        class="btn btn-primary me-1 mb-1">Atualizar</button>
                                                     <button type="reset"
                                                         class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                                 </div>
