@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Noticias;
 
+use App\Models\Noticias\NoticiasModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -12,11 +13,27 @@ class NoticiasController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+    public function __construct()
+    {
+        $this->title = 'Fictio';
+        $this->repository = NoticiasModel::with('status')->get();
+    }
     public function index()
     {
-        return view('admin::index');
-    }
 
+     //    $data = NoticiasModel::get();
+    //     $obj = json_decode($data);
+
+       //return $data;
+
+        $config['title'] = $this->title;
+        $config['namePage'] = "Noticias Cadastradas";
+        $config['controller'] = 'noticias'; 
+        $noticias = $this->repository;
+       // dd($noticias);
+
+        return view('admin::noticias\index', compact('config','noticias'));
+    }
     /**
      * Show the form for creating a new resource.
      * @return Renderable

@@ -38,8 +38,7 @@ class NoticiasModel extends Model
 
     public function status()
     {
-        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id')
-            ->select('id', 'noticia_status.descricao');
+        return $this->hasOne(NoticiasStatusModel::class, 'id', 'noticia_status_id');
     }
 
     public function comentarios()

@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('titulo');
             $table->longText('corpo');
             $table->json('tags');
-            $table->json('status');
+            $table->unsignedBigInteger('noticia_status_id');
+            $table->foreign('noticia_status_id')->references('id')->on('noticia_status');
             $table->json('criador');
             $table->timestamps();
         });

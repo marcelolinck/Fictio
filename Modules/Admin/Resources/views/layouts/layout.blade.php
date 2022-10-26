@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo/favicon.png" type="image/png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/shared/iconly.css') }}">
 
-    @if($config['controller'] =='tags')
+    @if($config['controller'] =='tags' || $config['controller'] =='noticias')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
     @endif
@@ -72,7 +72,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item active ">
-                            <a href="" class='sidebar-link'>
+                            <a href="{{route('dashboard.index')}}" class='sidebar-link'>
                                 <i class="bi bi-house-door-fill"></i>
                                 <span>Home</span>
                             </a>
@@ -85,10 +85,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="layout-default.html">Todas noticias</a>
+                                    <a href="{{route('noticias.index')}}">Todas noticias</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="/admin/tags">Tags Cadastradas</a>
+                                    <a href="{{route('tags.index')}}">Tags Cadastradas</a>
                                 </li>
 
                             </ul>
@@ -138,7 +138,7 @@
         <!-- Need: Apexcharts -->
         <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
-        @if($config['controller'] =='tags')
+         @if($config['controller'] =='tags' || $config['controller'] =='noticias')
             <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
             <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
         @endif
