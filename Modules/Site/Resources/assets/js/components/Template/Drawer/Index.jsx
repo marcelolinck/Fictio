@@ -24,9 +24,6 @@ const Gaveta = ({aberto, setDrawer}) => {
   const onClose = () => {
     setDrawer(false);
   };
-
-  
-
   return (
     <>
       <Drawer
@@ -36,7 +33,7 @@ const Gaveta = ({aberto, setDrawer}) => {
         onClose={onClose}
         open={aberto}
         key={'left'}
-        width={tela>=400?378:tela-20}
+        width={tela>=400?377:tela-20}
         bodyStyle={{padding:0}}
         /* extra={
           <Button type="primary" onClick={onClose}>
@@ -48,10 +45,6 @@ const Gaveta = ({aberto, setDrawer}) => {
         <Botao nome="Noticias" link="/" />
         <Botao nome="Sobre" link="/" />
         <Botao nome="Noticia unica" link="/noticiaUni" />
-        {/* <p>Conteudo maneiro</p>
-        <p>Conteudo maneiro</p>
-        <p>Conteudo maneiro</p>
-        <p>Conteudo maneiro</p> */}
       </Drawer>
     </>
   );
