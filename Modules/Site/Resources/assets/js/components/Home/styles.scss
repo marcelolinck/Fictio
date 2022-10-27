@@ -40,6 +40,11 @@
         box-sizing: border-box;
         border-radius: 3px;
         position: relative;
+        transition : box-shadow 0.3s;
+        &:hover{
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.12);
+            
+        }
         .noticiaDestaqueImg{
             flex: 1;
             height: 100%;

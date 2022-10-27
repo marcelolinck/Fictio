@@ -42,9 +42,18 @@ class NoticiasController extends Controller
         ->get();
     }
     public function viewNoticia($id){
-        $noticia = $this->show($id);
+        $noticia = NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
+        ->where('id', $id)
+        ->first();
+        $noticiaTratada['id'] = $noticia->id;
+        $noticiaTratada['tags'] = $noticia->tags;
+        $noticiaTratada['titulo'] = $noticia->titulo;
+        $noticiaTratada['texto'] = $noticia->corpo;
+        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
+        $noticiaTratada['comentarios'] = $noticia->comentarios;
+        
         return Inertia::render('components/NoticiaUni/Index', [
-            'noticia' => $noticia
+            'noticia' => $noticiaTratada
         ]);
 
     }

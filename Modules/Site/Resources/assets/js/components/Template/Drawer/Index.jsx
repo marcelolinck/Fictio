@@ -35,11 +35,6 @@ const Gaveta = ({aberto, setDrawer}) => {
         key={'left'}
         width={tela>=400?377:tela-20}
         bodyStyle={{padding:0}}
-        /* extra={
-          <Button type="primary" onClick={onClose}>
-            Fechar
-          </Button>
-        } */
       >
         <Botao nome="Home" link="/" />
         <Botao nome="Noticias" link="/" />

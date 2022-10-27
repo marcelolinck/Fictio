@@ -70,7 +70,7 @@ function NoticiaUni({noticia, ...props}){
     function randimg(){
         return imagens[Math.floor(Math.random() * imagens.length)];
     }
-    console.log(noticia[0])
+    console.log(noticia)
     return(
     <>
         <section className='cabecalho'>
@@ -79,25 +79,25 @@ function NoticiaUni({noticia, ...props}){
         <section className="wrapperNoticiaUni">
             <section className='wrapperNoticiaUniMain'>
                 <section className='tituloWrapper' ref={tituloRef} >
-                    <h1>{noticia[0].titulo}</h1>
+                    <h1>{noticia.titulo}</h1>
                 </section>
                 <section className='conteudoNoticia'>
                     <div className="imgWrapper">
-                        <img src={imgTeste}/>
+                        <img src={noticia.imagem}/>
                     </div>
                     <div className='conteudoTexto'>
-                        <p>{noticia[0].corpo}</p>
+                        <p>{noticia.texto}</p>
                     </div>
 
                     <div className="comentarios">
                         <h2>Comentários</h2>
                         <ul className="listaComentarios">
-                            {[...Array(15)].map((_,i) => 
+                            {noticia.comentarios.map((_:any,i:number) => 
                                 <Comentario
                                     key={i}
                                     cod={i}
-                                    nome={lorem.generateWords(2)}
-                                    texto={lorem.generateSentences(3)}
+                                    nome={_.user.name}
+                                    texto={_.descricao}
                                     likes={Math.floor(Math.random() * 100)}
                                     img={randimg()}
                                     data={randomDate()}

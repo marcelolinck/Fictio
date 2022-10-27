@@ -38,7 +38,7 @@ function Navbar({setDrawer}){
                     <button className='btnAbrirGaveta' onClick={()=>setDrawer(true)}>
                         <MenuOutlined />
                     </button>
-                    <div className='logoTipo' aria-label='logo'>Fictio</div>
+                    <a href="/" className='logoTipo' aria-label='logo'>Fictio</a>
                     <button className='btnPesquisar' onClick={botaoPesquisar}>
                         <SearchOutlined id="btnPesquisar"/>
                     </button>
