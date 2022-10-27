@@ -100,7 +100,7 @@ function NoticiaUni({noticia, ...props}){
                                     texto={_.descricao}
                                     likes={Math.floor(Math.random() * 100)}
                                     img={randimg()}
-                                    data={randomDate()}
+                                    data={moment(_.created_at).format('DD/MM/YYYY')}
                                 />
                             )}
                         </ul>
