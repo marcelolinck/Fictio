@@ -6,6 +6,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: 'Modules/Site/Resources/assets/js/app.jsx',
+            ssr: 'Modules/Site/Resources/assets/js/ssr.jsx',
             //ssr: 'resources/js/ssr.jsx',
             //mexer no SSR depois
             refresh: true,

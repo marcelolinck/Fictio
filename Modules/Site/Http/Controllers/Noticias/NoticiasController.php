@@ -51,7 +51,7 @@ class NoticiasController extends Controller
         $noticiaTratada['texto'] = $noticia->corpo;
         $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
         $noticiaTratada['comentarios'] = $noticia->comentarios;
-        
+        //dd($noticiaTratada);
         return Inertia::render('components/NoticiaUni/Index', [
             'noticia' => $noticiaTratada
         ]);
@@ -68,10 +68,14 @@ class NoticiasController extends Controller
         $noticiaTratada['titulo'] = $noticia->titulo;
         $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
         
-        return Inertia::render('components/Home/Index', [
+        return Inertia::render('components/Home/Index', compact('noticiaTratada'));
+        /* return Inertia::render('components/Home/Index', [
             
             'noticia' => $noticiaTratada
         
-        ]);
+        ]); */
     }
+    
+    
+    
 }

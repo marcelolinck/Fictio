@@ -10,9 +10,9 @@ interface props extends React.HTMLAttributes<HTMLLIElement>{
     nome: string,
     img: string,
     texto: string,
-    likes: number,
+    likes?: number,
     cod: number,
-    data: `${number}/${number}/${number}`,
+    data: string,
 }
 function Comentario({nome, img, texto, likes, cod, data, ...props}:props){
     return(
@@ -32,10 +32,13 @@ function Comentario({nome, img, texto, likes, cod, data, ...props}:props){
                         <WarningOutlined />
                         <span>Denunciar</span>
                     </button>
-                    <button className="btnLike">
-                        <LikeOutlined />
-                        <span>{likes}</span>
-                    </button>
+                    {
+                        likes && 
+                        <button className="btnLike">
+                            <LikeOutlined />
+                            <span>{likes}</span>
+                        </button>
+                    }
                 </div>
             </div>
         </li>

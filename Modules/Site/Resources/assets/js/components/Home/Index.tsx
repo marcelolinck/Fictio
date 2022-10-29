@@ -5,8 +5,9 @@ import imgTeste from './imgteste.jpg';
 import {Container, Child } from 'teapotcss';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-function Home({noticia, ...props}) {    
+function Home({noticiaTratada, ...props}) {    
     const [data, setData] = useState([]);
+    const noticia = noticiaTratada
     useEffect(() => {
         axios.get('/api/noticias/tags', 
         {

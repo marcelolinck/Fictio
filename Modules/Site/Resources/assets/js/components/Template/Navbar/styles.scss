@@ -1,14 +1,9 @@
-import styled from 'styled-components';
-
-function minMax(num, min, max){
-    if(num > min) return min;
-    if(num < max) return max;
-    return num 
-}
-export const Navbarra = styled.header`
+nav.navBar {
+    /* --scroll:2;
     --tamanho: ${props => minMax(props.scroll, 55, 65)}px;
     --corFundo: ${props => props.scroll > 55 ? 'rgba(0,0,0,0.9)' : 'black'};
-    --blur: ${props => props.scroll > 55 ? '0px' : '5px'};
+    --blur: ${props => props.scroll > 55 ? '0px' : '5px'}; */
+
     --tempoAnimacao: 0.2s;
     will-change: backdrop-filter;
     backdrop-filter: blur(var(--blur));
@@ -32,7 +27,8 @@ export const Navbarra = styled.header`
         padding: 10px;
         .logoTipo{
             color: white;
-            font-size: ${props => props.ativo ? "calc(var(--tamanho) - 25px)" : 'calc(var(--tamanho) - 5px)'};
+            font-size: var(--fontSize);
+            //corrigir depois
             transition: font-size var(--tempoAnimacao) ease-in-out;
             margin-left: auto;
             margin-right: auto;
@@ -91,4 +87,4 @@ export const Navbarra = styled.header`
             animation: slideOut var(--tempoAnimacao) forwards;
         }
     }
-    `
+}

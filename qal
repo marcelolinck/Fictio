@@ -1,0 +1,262 @@
+[33mcommit 91ce84152371000761be8b7511cee7d7e7b08855[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Wed Oct 26 21:59:50 2022 -0400
+
+    data ao sistema de comentarios
+
+[33mcommit 8d3d0b1bc62f6c13681ede84f8434124e3b517ff[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Wed Oct 26 21:50:09 2022 -0400
+
+    sistema de comentarios parcial no front
+
+[33mcommit d2d6c0b449f3a5c506099c5318792199982249e5[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Wed Oct 26 19:17:53 2022 -0400
+
+    tirando sistema de SPA
+
+[33mcommit bec81ba2dc6fea2fc440e727fbc44e06ea193b78[m
+Merge: d0b8440 c7816e6
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Wed Oct 26 19:14:16 2022 -0400
+
+    Merge branch 'main' of https://github.com/marcelolinck/Fictio
+
+[33mcommit d0b84409f90cd6d3edd99ac2469bb8d6bd886b92[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Wed Oct 26 19:06:42 2022 -0400
+
+    removendo sistema de SPA
+
+[33mcommit c7816e6aa1369ca51774add629b0e49d4156b359[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Tue Oct 25 22:41:29 2022 -0400
+
+    Em andamento
+
+[33mcommit a56b6805568f049f51f9929a4ee9c153dd6da9e9[m
+Merge: e86939b 32e25b2
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Oct 23 19:49:17 2022 -0400
+
+    Merge branch 'main' of https://github.com/marcelolinck/Fictio
+
+[33mcommit e86939b1aa6e74752134336aa1b9c8abe6ebb73a[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Oct 23 19:49:14 2022 -0400
+
+    Ajustado Controller de Tags com suas views.
+
+[33mcommit 2ee99152c7116df40c3d67951f86fae948b0fd9d[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Oct 23 18:08:02 2022 -0400
+
+    Em andamento
+
+[33mcommit 32e25b2fa628f77c8c9b37d675391dcc7ed57634[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Sun Oct 23 16:03:22 2022 -0400
+
+    re-conectando front e back
+
+[33mcommit 19dcc3d87e4cc3258d4c2b1457bd1d7519eaaf10[m
+Merge: a824a79 1e21922
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sat Oct 22 23:56:41 2022 -0400
+
+    Merge branch 'main' of https://github.com/marcelolinck/Fictio
+
+[33mcommit a824a79a3c43be63eb4d5d8c6481331e21279356[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sat Oct 22 23:56:36 2022 -0400
+
+    Ajustado as tags
+
+[33mcommit 1e21922feb37d8de23a351d1883a603ff7d8c2d4[m
+Author: B00TT3R <79879915+B00TT3R@users.noreply.github.com>
+Date:   Sat Oct 22 22:37:59 2022 -0400
+
+    Update .gitignore
+
+[33mcommit 88c24656160708bf615e61eec4405a3872239688[m
+Merge: a990f1b f5da75d
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sat Oct 22 21:46:40 2022 -0400
+
+    Merge branch 'main' of Fictio
+
+[33mcommit a990f1b06305611d7b33b0e8ebbf73c11a3bce96[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sat Oct 22 21:40:25 2022 -0400
+
+    Ajustado rota dos links
+
+[33mcommit f5da75d7a6a94490669da99136539d67f11008f9[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Sat Oct 22 19:57:24 2022 -0400
+
+    juntando front e back
+
+[33mcommit 4baf60ee4459ea11e220fa0fd40cb84261a53ae6[m
+Author: B00TT3R <boott3r@gmail.com>
+Date:   Sat Oct 22 19:57:04 2022 -0400
+
+    juntando front e back
+
+[33mcommit 873541ab8e225cb48eec5fd7bbd2ff110de1dc79[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sat Oct 22 18:00:15 2022 -0400
+
+    Em andamento
+
+[33mcommit b1a27afed14618a6237adc359bc79274697ebc72[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Thu Oct 20 17:22:37 2022 -0400
+
+    Ajuste da tela de tags
+
+[33mcommit 76a3cdb924441947276d9732e38566aa83936086[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 19 23:48:31 2022 -0400
+
+    Iniciado ajuste do dashboard
+
+[33mcommit b1a20449b62c3b3c7c18ab20a07ca84818c4bef6[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 19 23:12:59 2022 -0400
+
+    Ajustado modulo Admin
+
+[33mcommit d6baa5955bedc702ae9f286790afda63789a3b28[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 19 23:10:06 2022 -0400
+
+    Instalado atualizações do composer
+
+[33mcommit e7344b90723f9310265b90a969256d102e73d308[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 19 16:59:43 2022 -0400
+
+    Instalado o jetstream
+
+[33mcommit 058ea750c05a1ce743189c4d3acf190cc4c13d60[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 12 20:52:15 2022 -0400
+
+    Ajustado o Readme.md
+
+[33mcommit b53abcd34db9354662c19e7b9195be980d0b7346[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 12 20:40:40 2022 -0400
+
+    Criado metodo para puxar noticias de tags selecionadas
+
+[33mcommit 80ec82f1dc11ec1276690aab671287918f4a9871[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Oct 12 13:34:35 2022 -0400
+
+    Ajustado para a rota site carregar as noticias
+
+[33mcommit ccf361bc506f6b7c0606bb638a5f2e609c6ef8b4[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Mon Oct 10 17:26:03 2022 -0400
+
+    Criado modulos de Site e Admin
+
+[33mcommit 3405c408e5ac10f899d616410caed1ff57833e79[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Thu Oct 6 21:18:54 2022 -0400
+
+    Ajustado Factory
+
+[33mcommit 5485d0c2fc2b28ee32d83a33d8354c1cff156b04[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Thu Sep 29 18:58:13 2022 -0400
+
+    Em andamento
+
+[33mcommit afa5cd0f4806f4f749d21f8ff0fa5c6e2527fbf5[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Thu Sep 29 06:26:47 2022 -0400
+
+    Em andamento o json para salvar tags
+
+[33mcommit 8d466d7f571671dfd3f73cd271c1a8bada7f6d2a[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Fri Sep 23 18:09:47 2022 -0400
+
+    Ajustado
+
+[33mcommit 511cb4ea401327669db479eda052229ab0f7f17a[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Sep 14 21:41:32 2022 -0400
+
+    Carregando todos os dados da noticia
+
+[33mcommit e510a67815d26077fb348b3f9b26cc99ca6c91c5[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Wed Sep 14 06:42:14 2022 -0400
+
+    Em andamento
+
+[33mcommit a2d56e6d08c58af3dd9e58c8b04b2da1b64b1c52[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Mon Sep 5 17:17:26 2022 -0400
+
+    Ajustado model para pegar relacionamentos
+
+[33mcommit ffcc6d5cc1d5102f6667125f5b65ee8086565c0f[m
+Merge: 512558e 0fdfedf
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Mon Sep 5 10:56:01 2022 -0400
+
+    Merge branch 'main' of https://github.com/marcelolinck/Fictio
+
+[33mcommit 512558e6b110984328017522481e42ee1cf090ef[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Mon Sep 5 10:55:58 2022 -0400
+
+    Ajustado status da noticia via api
+
+[33mcommit 0fdfedf47e491f0bfb327e6af76d230e7846d0dd[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 23:34:19 2022 -0400
+
+    Ajuste do readme
+
+[33mcommit fa149d9cb3b61ceedaad82b587d8729c11a048cd[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 23:33:01 2022 -0400
+
+    Ajuste do Readme.
+
+[33mcommit 009e759ea9f6fce4d1630a3fc1bb8813072f9c44[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 23:24:49 2022 -0400
+
+    Update README.md
+
+[33mcommit ab2d1a3ad405464d565c02543dc166b09a1eaa27[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 23:10:33 2022 -0400
+
+    Criada as tabelas e o seed tambem
+
+[33mcommit c34b022087c46eaf48f35497327aff4184e32400[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 21:23:17 2022 -0400
+
+    Em andamento
+
+[33mcommit 06e46b3eea061d2b02025df38eb3c464de4bcbae[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 15:39:17 2022 -0400
+
+    First Commit
+
+[33mcommit 2660ae37c299e92830fdcc452a11de4153ee5c31[m
+Author: marcelolinck <40663647+marcelolinck@users.noreply.github.com>
+Date:   Sun Sep 4 15:24:51 2022 -0400
+
+    Initial commit

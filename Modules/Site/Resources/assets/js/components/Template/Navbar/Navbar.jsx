@@ -1,7 +1,8 @@
-import { Navbarra } from './Styles.js';
+//import { Navbarra } from './Styles.js';
 import { useState, useEffect } from 'react';
 import { SearchOutlined, MenuOutlined} from '@ant-design/icons';
 import { Input } from 'antd';
+import './styles.scss'
 function Navbar({setDrawer}){
     const [scroll, setScroll] = useState(0);
     useEffect(() => {
@@ -26,14 +27,34 @@ function Navbar({setDrawer}){
         if(!areaPesquisa){
             setAreaPesquisa(true);
         }
-        /* else, wait for animation to end, then set it to false */
         else{
             matarPesquisa()
         }
     }
+    function minMax(num, min, max){
+        if(num > min) return min;
+        if(num < max) return max;
+        return num 
+    }
+
+    const styles = {
+        "--scroll": scroll,
+        "--tamanho": minMax(scroll, 55, 65)+"px",
+        "--blur": scroll > 55 ? '0px' : '5px',
+        "--corFundo": scroll > 55 ? 'rgba(0,0,0,0.9)' : 'black',
+        "--fontSize": "calc(var(--tamanho) - 5px)"
+
+    }
+        
+    
+/*     const styles2 = {
+        "--scroll": scroll,
+        "--tamanho": minMax(scroll, 55, 65)}+"px"
+        
+        
+    } */
     return(
-        <>
-            <Navbarra scroll={scroll}>
+            <nav scroll={scroll} className="navBar" style={styles} >
                 <nav>
                     <button className='btnAbrirGaveta' onClick={()=>setDrawer(true)}>
                         <MenuOutlined />
@@ -48,8 +69,7 @@ function Navbar({setDrawer}){
                         </div>
                     }
                 </nav>
-            </Navbarra>
-        </>
+            </nav>
     )
 }
 export default Navbar;

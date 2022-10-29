@@ -67,6 +67,10 @@
             
             gap: 20px;
             background-color: rgba(255, 255, 255, 0.648);
+            transition: background-color 0.3s;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.685);
+            }
             p{
                 margin-bottom: 0;
                 font-size: 1.1rem;
@@ -120,16 +124,24 @@
         
         .cabecalhoDestaque{
             font-size: 1.5rem;
+            cursor: pointer;
+            
+            &:hover{
+                &:after{
+                    margin-left: 15px;
+                }
+            }
             &:after{
                 content: '';
-                font-family: 'Roboto', sans-serif;
-                display: block;
+                //font-family: 'Roboto', sans-serif;
+                //display: block;
                 border: solid black;
                 border-width: 0 3px 3px 0;
                 display: inline-block;
                 padding: 3px;
                 transform: rotate(-45deg);
                 margin-left: 10px;
+                transition: all 0.2s;
                 
             }
         }
