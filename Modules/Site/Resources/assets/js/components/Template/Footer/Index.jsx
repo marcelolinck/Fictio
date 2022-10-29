@@ -1,9 +1,9 @@
-import { FooterWrapper } from './Styles.js';
+//import { FooterWrapper } from './Styles.js';
 function Footer(){
     return(
-        <FooterWrapper>
+        <footer className='footerWrapper'>
             <span>Todos os direitos reservados, 2022 Fictio</span>
-        </FooterWrapper>
+        </footer>
     )
 }
 export default Footer;

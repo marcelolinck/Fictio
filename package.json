@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build && vite build --ssr"
+        "build": "vite build && vite build --ssr",
+        "server": "node bootstrap/ssr/ssr.mjs",
+        "build-server": "npm run build && npm run server"
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
@@ -29,7 +31,6 @@
         "moment": "^2.29.4",
         "react-router-dom": "^6.4.2",
         "sass": "^1.55.0",
-        "styled-components": "^5.3.6",
         "teapotcss": "^0.1.51"
     }
 }

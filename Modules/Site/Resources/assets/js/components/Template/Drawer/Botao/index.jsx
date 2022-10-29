@@ -1,13 +1,14 @@
 /* import link from router */
-import {Link} from 'react-router-dom';
-import { BotaoWrapper } from './Styles.ts';
+//import {Link} from 'react-router-dom';
+//import { BotaoWrapper } from './Styles.ts';
+import './styles.scss'
 function Botao({nome, link}){
     return(
-        <BotaoWrapper>
+        <button className="btnWrapper">
             <a href={link}>
                 {nome}
             </a>
-        </BotaoWrapper>
+        </button>
     )
 }
 export default Botao;
