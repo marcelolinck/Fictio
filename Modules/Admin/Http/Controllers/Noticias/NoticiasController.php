@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Noticias;
 
+use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -16,23 +17,23 @@ class NoticiasController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = NoticiasModel::with('status')->get();
+        $this->repository = NoticiasModel::with('status','comentarios')->get();
     }
     public function index()
     {
 
-     //    $data = NoticiasModel::get();
-    //     $obj = json_decode($data);
+        //    $data = NoticiasModel::get();
+        //     $obj = json_decode($data);
 
-       //return $data;
+        //return $data;
 
         $config['title'] = $this->title;
         $config['namePage'] = "Noticias Cadastradas";
-        $config['controller'] = 'noticias'; 
+        $config['controller'] = 'noticias';
         $noticias = $this->repository;
-       // dd($noticias);
+        // dd($noticias);
 
-        return view('admin::noticias\index', compact('config','noticias'));
+        return view('admin::noticias.index', compact('config', 'noticias'));
     }
     /**
      * Show the form for creating a new resource.
@@ -70,7 +71,13 @@ class NoticiasController extends Controller
      */
     public function edit($id)
     {
-        return view('admin::edit');
+        $config['title'] = $this->title;
+        $config['namePage'] = "Edição Notícia";
+        $config['controller'] = 'noticias_edit';
+
+        if (!$noticiaAtual = $this->repository->find($id))
+            return redirect()->route('admin::noticias.index')->with('danger', 'Noticia não encontrada! Tente novamente');
+        return view('admin::noticias.edit', compact('noticiaAtual','config'));
     }
 
     /**
@@ -91,6 +98,15 @@ class NoticiasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $noticiaAtual = $this->repository->where('id', $id)->first();
+        if (!$noticiaAtual)
+            return redirect()->route('admin::noticias.index')->with('danger', 'Não excluído! Selecione o registro correto para exclusão');
+
+        $noticiasComentarios = NoticiasComentariosModel::where('noticia_id', $id)->select('id')->get();
+        //dd($noticiasComentarios);
+        dd($noticiasComentarios::delete());
+        $noticiaAtual->delete();
+
+        return redirect()->route('admin::noticias.index')->with('success', 'Notícia Excluída com sucesso');
     }
 }

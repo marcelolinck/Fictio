@@ -21,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
-    
+    Route::get('/users', function () {
+        return User::all();
+    });
 });
 
-Route::get('/users', function () {
-    return User::all();
-});

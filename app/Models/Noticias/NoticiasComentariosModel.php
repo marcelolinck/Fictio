@@ -11,6 +11,8 @@ class NoticiasComentariosModel extends Model
     use HasFactory;
     
     protected $table = 'noticia_comentarios';
+    
+    protected $fillable = ['noticia_id'];
 
     public function status(){
         

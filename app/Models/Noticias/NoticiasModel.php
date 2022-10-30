@@ -14,11 +14,10 @@ class NoticiasModel extends Model
 
     protected $table = "noticias";
 
-    protected $fillable = ['titulo','corpo','status','tags','user_id'];
+    protected $fillable = ['titulo','corpo','tags','user_id','noticia_status_id'];
 
     protected $casts = [
                 'tags' => 'array',
-                'status' => 'array',
                 'criador'=> 'array',
     ];
 

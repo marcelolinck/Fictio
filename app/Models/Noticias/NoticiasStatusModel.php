@@ -10,4 +10,6 @@ class NoticiasStatusModel extends Model
     use HasFactory;
 
     protected $table = "noticia_status";
+
+    protected $fillable = ['id','descricao'];
 }

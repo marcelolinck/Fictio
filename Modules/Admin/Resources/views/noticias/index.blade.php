@@ -74,14 +74,14 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->titulo }}</td>
                                         <td>{{ $item->criador }}</td>
-                                        <td>@dd($item->status)</td>
+                                        <td>{{$item->status->descricao}}</td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('tags.destroy', $item->id) }}" method="post">
+                                            <form action="{{ route('noticias.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <a class="btn btn-secondary btn-sm"
-                                                    href="{{ route('tags.edit', $item->id) }}" data-bs-toggle="tooltip"
+                                                    href="{{ route('noticias.edit', $item->id) }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Editar"><i
                                                         class="icon dripicons-document-edit"></i>Editar</a>
                                                 <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"

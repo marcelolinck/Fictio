@@ -12,12 +12,12 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo/favicon.png" type="image/png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/shared/iconly.css') }}">
 
-    @if($config['controller'] =='tags' || $config['controller'] =='noticias')
+    @if ($config['controller'] == 'tags' || $config['controller'] == 'noticias')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
     @endif
 
-    
+
 
 </head>
 
@@ -28,8 +28,8 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="{{route('dashboard.index')}}">
-                                <h1>{{config('app.name')}}</h1>
+                            <a href="{{ route('dashboard.index') }}">
+                                <h1>{{ $config['title'] }}</h1>
                             </a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -72,7 +72,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item active ">
-                            <a href="{{route('dashboard.index')}}" class='sidebar-link'>
+                            <a href="{{ route('dashboard.index') }}" class='sidebar-link'>
                                 <i class="bi bi-house-door-fill"></i>
                                 <span>Home</span>
                             </a>
@@ -85,10 +85,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{route('noticias.index')}}">Todas noticias</a>
+                                    <a href="{{ route('noticias.index') }}">Todas noticias</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="{{route('tags.index')}}">Tags Cadastradas</a>
+                                    <a href="{{ route('tags.index') }}">Tags Cadastradas</a>
                                 </li>
 
                             </ul>
@@ -119,30 +119,32 @@
         @yield('content')
 
         <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>{{date('Y')}} &copy; {{config('app.name')}}</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Template  <span class="text-danger"></span> do <a
-                                href="https://saugi.me">Saugi</a></p>
-                    </div>
+            <div class="footer clearfix mb-0 text-muted">
+                <div class="float-start">
+                    <p>{{ date('Y') }} &copy; {{ config('app.name') }}</p>
                 </div>
-            </footer>
-        </div>
+                <div class="float-end">
+                    <p>Template <span class="text-danger"></span> do <a href="https://saugi.me">Saugi</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
-        
-        <script src="{{ asset('admin/assets/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
-        <!-- Need: Apexcharts -->
-        <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
-         @if($config['controller'] =='tags' || $config['controller'] =='noticias')
-            <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
-            <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
-        @endif
+    <script src="{{ asset('admin/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
+    <!-- Need: Apexcharts -->
+    <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
+    @if ($config['controller'] == 'tags' || $config['controller'] == 'noticias')
+        <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
+    @endif
+    @if ($config['controller'] == 'noticias_edit')
+        <script src="{{ asset('admin/assets/extensions/tinymce/tinymce.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/pages/tinymce.js') }}"></script>
+    @endif
 </body>
 
 </html>
