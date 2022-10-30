@@ -15,6 +15,10 @@
     @if ($config['controller'] == 'tags' || $config['controller'] == 'noticias')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
+
+    @endif
+    @if ($config['controller'] == 'noticias_edit')
+        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
     @endif
 
 
@@ -144,7 +148,12 @@
     @if ($config['controller'] == 'noticias_edit')
         <script src="{{ asset('admin/assets/extensions/tinymce/tinymce.min.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/tinymce.js') }}"></script>
+    
+    {{-- Para o selectbox --}}
+        <script src="{{ asset('admin/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/pages/form-element-select.js') }}"></script>
     @endif
+    
 </body>
 
 </html>

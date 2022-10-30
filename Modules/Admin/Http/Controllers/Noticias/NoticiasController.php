@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Noticias;
 
 use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
+use App\Models\Noticias\TagsModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -74,10 +75,13 @@ class NoticiasController extends Controller
         $config['title'] = $this->title;
         $config['namePage'] = "Edição Notícia";
         $config['controller'] = 'noticias_edit';
+        $tags = TagsModel::all();
 
         if (!$noticiaAtual = $this->repository->find($id))
             return redirect()->route('admin::noticias.index')->with('danger', 'Noticia não encontrada! Tente novamente');
-        return view('admin::noticias.edit', compact('noticiaAtual','config'));
+       
+       //dd($noticiaAtual->tags);
+            return view('admin::noticias.edit', compact('noticiaAtual','config','tags'));
     }
 
     /**
