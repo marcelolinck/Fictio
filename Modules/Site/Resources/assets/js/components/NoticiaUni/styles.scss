@@ -124,10 +124,10 @@ $width: clamp(230px, 100%, 800px);
 .cardsAbaixoResponsivo{
     justify-content: center;
     --gap:10px;
-    display: none;
+    display: none !important;
     padding: 15px 0;
     @media(max-width: 576px){
-        display: flex;
+        display: flex !important;
     }
     .cardNoticiaSugestao{
         width: clamp(310px, 95%, 450px);
@@ -148,6 +148,22 @@ $width: clamp(230px, 100%, 800px);
         list-style: none;
         gap: 15px;
         padding: 0;
-        
+    }
+    .adicionarComentario{
+        display: flex;
+        flex-direction: column;
+        h3{
+            margin-bottom: 0;
+        }
+    }
+    textarea{
+        width: 100%;
+        height: 150px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1rem;
+        resize: none;
+        margin-bottom: 10px;
     }
 }
