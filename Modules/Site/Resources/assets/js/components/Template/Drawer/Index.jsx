@@ -40,13 +40,11 @@ const Gaveta = ({aberto, setDrawer}) => {
         bodyStyle={{padding:0, backgroundColor:'rgb(25, 25, 25)'}}
         headerStyle={{backgroundColor:'rgb(25, 25, 25)', color:'white'}}
         className='gaveta'
-        
-        
       >
         <Botao nome="Home" link="/" />
         <Botao nome="Noticias" link="/" />
-        <Botao nome="Sobre" link="/" />
-        <Botao nome="Noticia unica" link="/noticiaUni" />
+        <Botao nome="Sobre" link="/sobre" />
+        {/* <Botao nome="Noticia unica" link="/noticiaUni" /> */}
       </Drawer>
     </ConfigProvider>
   );

@@ -1,4 +1,4 @@
-//import { FooterWrapper } from './Styles.js';
+import './styles.scss'
 function Footer(){
     return(
         <footer className='footerWrapper'>

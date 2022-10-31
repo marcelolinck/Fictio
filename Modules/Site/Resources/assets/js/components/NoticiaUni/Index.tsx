@@ -20,10 +20,9 @@ import shadow from './imgsPlaceholder/shadow.png';
 
 import './styles.scss';
 import {Container, Child} from 'teapotcss';
-import { LoremIpsum } from "lorem-ipsum";
 import Comentario from './Template/Comentario/Comentario';
 import moment from 'moment';
-
+import axios from 'axios';
 function NoticiaUni({noticia, ...props}){
     const tituloRef = useRef<HTMLDivElement>(null);
     const sugestoesRef = useRef<HTMLHeadingElement>(null);
@@ -45,23 +44,7 @@ function NoticiaUni({noticia, ...props}){
         /* data is a constant with a random moment() date */
         
     },[])
-    function randomDate(){
-        const data = moment().subtract(Math.floor(Math.random()*100), 'days');
-        const dataFormatada = data.format('DD/MM/YYYY') as `${number}/${number}/${number}`;
-        return dataFormatada;
-        
-
-    }
-    const lorem = new LoremIpsum({
-        sentencesPerParagraph: {
-          max: 8,
-          min: 4
-        },
-        wordsPerSentence: {
-          max: 16,
-          min: 4
-        }
-      });
+   
     const styleCards:CSSvars = {
         "--tituloTopo": tituloHeight + "px",
         "--sugestoesTopo": sugestoesHeight + "px"
@@ -70,11 +53,22 @@ function NoticiaUni({noticia, ...props}){
     function randimg(){
         return imagens[Math.floor(Math.random() * imagens.length)];
     }
-    console.log(noticia)
+    async function criarComentario(e){
+        e.preventDefault();
+        const form = e.target;
+        const data:any = new FormData(form);
+        //const logar = Object.fromEntries(data);
+        //console.log(logar);
+        axios.post('/api/newComentario', data).then((res)=>{
+
+        })
+
+        form.reset();
+    }
     return(
     <>
         <section className='cabecalho'>
-            <h1>Categoria</h1>
+            <h1>Noticia</h1>
         </section>
         <section className="wrapperNoticiaUni">
             <section className='wrapperNoticiaUniMain'>
@@ -91,6 +85,11 @@ function NoticiaUni({noticia, ...props}){
 
                     <div className="comentarios">
                         <h2>Comentários</h2>
+                        <form className="adicionarComentario" onSubmit={criarComentario}>
+                            <h3>Adicionar Comentario</h3>
+                            <textarea name='texto'></textarea>
+                            <button>Enviar</button>
+                        </form>
                         <ul className="listaComentarios">
                             {noticia.comentarios.map((_:any,i:number) => 
                                 <Comentario
@@ -108,10 +107,10 @@ function NoticiaUni({noticia, ...props}){
 
 
                     <Container columns={'auto'} className="cardsAbaixoResponsivo">
-                        {[...Array(3)].map((e, i) => 
-                            <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao">
-                                <img src={imgTeste}></img>
-                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, repellendus.</h3>
+                        {noticia.sugestoes.map((e, i) => 
+                            <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
+                                <img src={e.fotos[0].noticia_foto_patch}></img>
+                                <h3>{e.titulo}</h3>
                             </a>
                         )}
                     </Container>
@@ -120,10 +119,11 @@ function NoticiaUni({noticia, ...props}){
             <section className='sugestoesNoticia' style={styleCards}>
                 <h2 ref={sugestoesRef}>Sugestões</h2>
                 <div className='sugestoesNoticiaConjunto'>           
-                    {[...Array(3)].map((e, i) => 
-                        <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao">
-                            <img src={imgTeste}></img>
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, repellendus.</h3>
+                    {noticia.sugestoes.map((e, i) => 
+                        <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
+                            <img src={e.fotos[0].noticia_foto_patch}></img>
+                            <h3>{e.titulo}</h3>
+                            
                         </a>
                     )}
                 </div>

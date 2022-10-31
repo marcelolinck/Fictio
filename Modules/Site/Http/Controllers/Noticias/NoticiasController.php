@@ -41,6 +41,20 @@ class NoticiasController extends Controller
         ->take(5)
         ->get();
     }
+    private function  getLast3Wtags($tags){
+        $noticiasRaw = NoticiasModel::with('fotos')
+        //->select('id', 'titulo', 'tags')
+        ->whereJsonContains('tags', $tags)
+        ->take(3)
+        ->get()
+        ->toArray();
+        //get only field 'fotos', 'tags', 'id' and 'titulo'
+        $noticias = array_map(function($noticia){
+            return array_intersect_key($noticia, array_flip(['fotos', 'tags', 'id', 'titulo']));
+        }, $noticiasRaw);
+        return $noticias;
+
+    }
     public function viewNoticia($id){
         $noticia = NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
         ->where('id', $id)
@@ -51,6 +65,8 @@ class NoticiasController extends Controller
         $noticiaTratada['texto'] = $noticia->corpo;
         $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
         $noticiaTratada['comentarios'] = $noticia->comentarios;
+        $noticiaTratada['sugestoes'] = $this->getLast3Wtags($noticia->tags);
+
         //dd($noticiaTratada);
         return Inertia::render('components/NoticiaUni/Index', [
             'noticia' => $noticiaTratada
@@ -67,6 +83,8 @@ class NoticiasController extends Controller
         $noticiaTratada['id'] = $noticia->id;
         $noticiaTratada['titulo'] = $noticia->titulo;
         $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
+        
+        
         
         return Inertia::render('components/Home/Index', compact('noticiaTratada'));
         /* return Inertia::render('components/Home/Index', [

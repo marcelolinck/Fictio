@@ -1,7 +1,5 @@
 import React from 'react';
 import './styles.scss';
-// @ts-ignore
-import imgTeste from './imgteste.jpg';
 import {Container, Child } from 'teapotcss';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
@@ -30,11 +28,9 @@ function Home({noticiaTratada, ...props}) {
                     <div className='noticiaDestaqueImg'>
                         <img src={noticia.imagem}/>
                     </div>
-                    
                     <div className='noticiaDestaqueTexto'>
                         <h1>{noticia.titulo}</h1>
                     </div>
-                    
                 </a>
             </section>
             <section className='noticiasDestaqueMulti'>
@@ -57,25 +53,6 @@ function Home({noticiaTratada, ...props}) {
                         )}
                     </Container>
             </section>
-            {/* <section className='noticiasDestaqueMulti'>
-                <div className='cabecalhoDestaque'>
-                    <span role="h3">Lorem</span>
-                </div>
-                <div className="decoracaoNoticiasDestaque"></div>
-                    <Container 
-                        columns={'auto'}
-                        gap='10px'
-                        className="conteudoDestaque">
-                        {[...Array(5)].map((item, index) =>
-                            <Child key={index}>
-                                <a className="cardNoticia hoverMargin">
-                                    <img src={imgTeste}></img>
-                                    <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, repellendus.</h3>
-                                </a>
-                            </Child>
-                        )}
-                    </Container>
-            </section> */}
         </section>
     );
 }
