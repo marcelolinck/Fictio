@@ -5,3 +5,5 @@ use Inertia\Inertia;
 
 Route::get('/', 'Noticias\NoticiasController@viewHome');
 Route::get('/noticia/{id}', 'Noticias\NoticiasController@viewNoticia');
+
+Route::get('/sobre', 'Sobre\SobreController@index');
