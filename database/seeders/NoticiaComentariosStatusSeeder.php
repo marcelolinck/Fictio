@@ -18,14 +18,17 @@ class NoticiaComentariosStatusSeeder extends Seeder
         $data = [
             [
                 'descricao' => 'Em análise',
+                'corStatus' => 'bg-light-warning'
 
             ],
             [
                 'descricao' => 'Aprovado',
+                'corStatus' => 'bg-light-success'
 
             ],
             [
                 'descricao' => 'Reprovado',
+                'corStatus' => 'bg-light-danger'
 
             ],
            

@@ -60,6 +60,7 @@ return new class extends Migration
         Schema::create('noticia_comentario_status', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
+            $table->string('corStatus');
         });
 
         //Criacao da tabela de Comentário

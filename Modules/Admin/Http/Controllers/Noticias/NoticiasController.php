@@ -92,7 +92,13 @@ class NoticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (!$tagAtual = $this->repository->find($id))
+            return redirect()->route('tags.index')->with('danger', 'Notícia não encontrada! Tente novamente');
+
+        $data = $request->only('descricao');
+        $data['updated_at'] = now();
+        $tagAtual->update($data);
+        return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');
     }
 
     /**

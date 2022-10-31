@@ -22,11 +22,11 @@ class TagController extends Controller
     {
         $config['title'] = $this->title;
         $config['namePage'] = "Tags Cadastradas";
-        $config['controller'] = 'tags'; 
+        $config['controller'] = 'tags';
         $tags = $this->repository;
 
 
-        return view('admin::tags\index', compact('config','tags'));
+        return view('admin::tags\index', compact('config', 'tags'));
     }
 
     /**
@@ -37,9 +37,9 @@ class TagController extends Controller
     {
         $config['title'] = $this->title;
         $config['namePage'] = "Criar nova Tag";
-        $config['controller'] = 'tags_create'; 
-        
-       
+        $config['controller'] = 'tags_create';
+
+
         return view('admin::tags.create', compact('config'));
     }
 
@@ -52,7 +52,7 @@ class TagController extends Controller
     {
         // $this->validate($request, [
         //     'descricao' => 'required|min:5|max:50',
-            
+
         // ]);
 
         $data = $request->only('descricao');
@@ -63,7 +63,7 @@ class TagController extends Controller
         TagsModel::insert($data);
 
         //Somente faz um redirect para o formulario que lista todos os dados inseridos
-      return redirect()->route('tags.index')->with('success', 'Cadastrado com sucesso');
+        return redirect()->route('tags.index')->with('success', 'Cadastrado com sucesso');
     }
 
     // /**
@@ -86,12 +86,12 @@ class TagController extends Controller
 
         $config['title'] = $this->title;
         $config['namePage'] = "Editar tag";
-        $config['controller'] = 'tags_create'; 
+        $config['controller'] = 'tags_create';
 
-        if(!$tagAtual = $this->repository->find($id))
-            return redirect()-> route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
-   
-        return view('admin::tags.edit', compact('tagAtual','config'));
+        if (!$tagAtual = $this->repository->find($id))
+            return redirect()->route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
+
+        return view('admin::tags.edit', compact('tagAtual', 'config'));
     }
 
     /**
@@ -102,13 +102,13 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!$tagAtual = $this->repository->find($id))
-        return redirect()-> route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
+        if (!$tagAtual = $this->repository->find($id))
+            return redirect()->route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
 
-    $data = $request->only('descricao');
-    $data['updated_at'] = now();
-    $tagAtual->update($data);
-    return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');
+        $data = $request->only('descricao');
+        $data['updated_at'] = now();
+        $tagAtual->update($data);
+        return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');
     }
 
     /**
@@ -119,11 +119,11 @@ class TagController extends Controller
     public function destroy($id)
     {
         $tagAtual = $this->repository->where('id', $id)->first();
-        if(!$tagAtual)
-        return redirect()->route('tags.index')->with('danger
+        if (!$tagAtual)
+            return redirect()->route('tags.index')->with('danger
         ', 'Não excluído! Selecione o registro correto para exclusão');
 
-        $tagAtual-> delete();
+        $tagAtual->delete();
         return redirect()->route('tags.index')->with('success', 'Excluído com sucesso');
     }
 }

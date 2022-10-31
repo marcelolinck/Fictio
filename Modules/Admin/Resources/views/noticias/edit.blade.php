@@ -21,7 +21,7 @@
                     <div class="col-12 col-md-4 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/admin/tags">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('noticias.index') }}">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ $config['namePage'] }}</li>
                             </ol>
                         </nav>
@@ -29,6 +29,19 @@
 
                 </div>
             </div>
+
+            @if (\Session::has('danger'))
+                <div class="alert alert-danger alert-dismissible show fade">
+                    {!! \Session::get('danger') !!}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if (\Session::has('success'))
+                <div class="alert alert-success alert-dismissible show fade">
+                    {!! \Session::get('success') !!}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <section class="section">
                 <div class="row">
                     <div class="col-12">
@@ -39,7 +52,7 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <form class="form form-horizontal" method="post"
-                                        action="{{ route('tags.update', $noticiaAtual->id) }}">
+                                        action="{{ route('noticias.update', $noticiaAtual->id) }}">
                                         @csrf
                                         @method('patch')
                                         <div class="form-body">
@@ -141,12 +154,23 @@
             </section>
             {{-- FIM DAS TAGS ATRELADAS --}}
             {{-- COMENTARIOS ATRELADOS ATRELADAS --}}
-
+            @if (\Session::has('danger_tag'))
+                <div class="alert alert-danger alert-dismissible show fade">
+                    {!! \Session::get('danger_tag') !!}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if (\Session::has('success_tag'))
+                <div class="alert alert-success alert-dismissible show fade">
+                    {!! \Session::get('success_tag') !!}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <section class="section">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" id="comentarios">
                                 <h4 class="card-title">Comentários</h4>
                             </div>
                             <div class="card-body">
@@ -159,6 +183,7 @@
                                                 <th>USUÁRIO</th>
                                                 <th>E-MAIL</th>
                                                 <th>COMENTÁRIO</th>
+                                                <th>DATA DA PUBLICAÇÃO</th>
                                                 <th>STATUS</th>
                                                 <th class="text-center">AÇÕES</th>
 
@@ -171,28 +196,40 @@
                                                     <td>{{ $comentario->user->name }}</td>
                                                     <td>{{ $comentario->user->email }}</td>
                                                     <td>{{ $comentario->descricao }}</td>
-
                                                     <td>{{ $comentario->created_at->format('d/m/Y h:m') }}</td>
+                                                    <td><span
+                                                            class="badge {{ $comentario->status->corStatus }}">{{ $comentario->status->descricao }}</span>
+                                                    </td>
                                                     <td class="text-center">
-                                                        <form action="{{ route('noticias.destroy', $comentario->id) }}"
+                                                        <form
+                                                            action="{{ route('noticiasComentarios.update', $comentario->id) }}"
                                                             method="post">
                                                             @csrf
-                                                            @method('delete')
+                                                            @method('patch')
+                                                            <input type="hidden" id="noticia_id" name="noticia_id" value={{ $noticiaAtual->id }}>
                                                             
+                                                            <input type="hidden" id="id" name="id"value={{ $comentario->id }}>
+                                                            <input type="hidden" id="noticia_comentario_status_id"
+                                                                name="noticia_comentario_status_id"
+                                                                value={{ $comentario->noticia_comentario_status_id }}>
+
                                                             <button data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="Editar" type="submit"
-                                                                class="btn btn-danger btn-sm"><i
-                                                                    class="icon dripicons-trash class"></i>Bloquear</button>
+                                                                @if ($comentario->noticia_comentario_status_id == 1 || $comentario->noticia_comentario_status_id == 3) title="Bloquear" type="submit"
+                                                                    class="btn btn-success btn-sm"><i
+                                                                    class="icon dripicons-trash class"></i>Aprovar
+                                                                @else
+                                                                    title="Bloquear" type="submit"
+                                                                    class="btn btn-danger btn-sm"><i
+                                                                    class="icon dripicons-trash class"></i>Reprovar @endif
+                                                                </button>
                                                         </form>
                                                     </td>
 
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td>--------</td>
-                                                    <td>SEM </td>
-                                                    <td>DADOS</td>
-                                                    <td>--------</td>
+                                                    <td class="text-center" colspan="7">SEM COMENTÁRIOS ATÉ O MOMENTO</td>
+
 
                                                 </tr>
                                             @endforelse

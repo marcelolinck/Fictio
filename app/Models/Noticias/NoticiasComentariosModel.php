@@ -12,7 +12,7 @@ class NoticiasComentariosModel extends Model
     
     protected $table = 'noticia_comentarios';
     
-    protected $fillable = ['noticia_id'];
+    protected $fillable = ['noticia_id','noticia_comentario_status_id'];
 
     public function status(){
         

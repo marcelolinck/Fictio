@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\dashboard\DashController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiasController;
+use Modules\Admin\Http\Controllers\Noticias\NoticiasComentariosController;
 use Modules\Admin\Http\Controllers\Tags\TagController;
 use Modules\Admin\Http\Controllers\UsersController;
 
@@ -22,5 +23,6 @@ Route::prefix('admin')->group(function() {
     Route::resource('dashboard', DashController::class);
     Route::resource('users', UsersController::class);
     Route::resource('tags', TagController::class);
+    Route::resource('noticiasComentarios', NoticiasComentariosController::class);
     Route::resource('noticias', NoticiasController::class);
 });
