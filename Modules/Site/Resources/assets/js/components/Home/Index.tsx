@@ -46,7 +46,7 @@ function Home({noticiaTratada, ...props}) {
                         {data.map((item, index) =>
                             <Child key={index}>
                                 <a className="cardNoticia hoverMargin"  href={`/noticia/${item.id}`}>
-                                    <img src={item.fotos[0].noticia_foto_patch}></img>
+                                    <img src={item.imagem}></img>
                                     <h3>{item.titulo}</h3>
                                 </a>
                             </Child>

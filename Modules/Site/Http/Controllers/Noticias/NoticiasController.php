@@ -80,6 +80,7 @@ class NoticiasController extends Controller
         $noticia = $noticia->with('fotos')
         ->orderby('id', 'desc')
         ->first();
+        /* dd($noticia->toArray()); */
 
         $noticiaTratada['id'] = $noticia->id;
         $noticiaTratada['titulo'] = $noticia->titulo;
