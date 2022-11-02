@@ -26,3 +26,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 });
 
+Route::get('/noticias/destaques', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'destaqueHome']);
+

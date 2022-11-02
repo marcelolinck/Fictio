@@ -51,7 +51,7 @@ return new class extends Migration
 
         Schema::create('noticia_fotos', function (Blueprint $table) {
             $table->id();
-            $table->string('noticia_foto_patch', 2048);
+            $table->string('noticia_foto_patch', 2048)->default('https://via.placeholder.com/1920x1080.png/000044?text=default_photo');
             $table->unsignedBigInteger('noticia_id');
             $table->foreign('noticia_id')->references('id')->on('noticias');
             $table->timestamps();

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Noticias\NoticiasModel;
 use Inertia\Inertia;
+use PhpParser\Builder\Function_;
 
 class NoticiasController extends Controller
 {
@@ -92,6 +93,13 @@ class NoticiasController extends Controller
             'noticia' => $noticiaTratada
         
         ]); */
+    }
+    public function destaqueHome(){
+        $destaque = NoticiasModel::
+        whereJsonContains('tags', ['Futebol', 'Amet'])
+        ->take(10)->get();
+
+        return json_decode($destaque);
     }
     
     
