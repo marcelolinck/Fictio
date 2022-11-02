@@ -61,6 +61,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>DESCRIÇÃO</th>
+                                    <th class="text-center">DESTAQUE NA HOME</th>
                                     <th>CRIADO EM</th>
                                     <th class="text-center">AÇÕES</th>
 
@@ -71,6 +72,11 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->descricao }}</td>
+                                        <td class="text-center">@if ($item->destaque == 1)
+                                            <a href="#" class="badge bg-light-success">Sim</a>
+                                        @else
+                                            <a href="#" class="badge bg-light-danger ">Não</a>
+                                        @endif</td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
                                             <form action="{{ route('tags.destroy', $item->id) }}" method="post">

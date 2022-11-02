@@ -16,7 +16,7 @@ class TagController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = TagsModel::all();
+        $this->repository = TagsModel::orderby('updated_at', 'desc')->get();
     }
     public function index()
     {
@@ -50,12 +50,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'descricao' => 'required|min:5|max:50',
 
-        // ]);
+        $data = $request->only('descricao','destaque');
+        
+        if(!empty($data['destaque'])){
+            $data['destaque'] = 1 ; 
+        } else{
+            $data['destaque'] = 0;
+        }
 
-        $data = $request->only('descricao');
         $data['created_at'] = now();
         $data['updated_at'] = now();
 
@@ -105,7 +108,14 @@ class TagController extends Controller
         if (!$tagAtual = $this->repository->find($id))
             return redirect()->route('tags.index')->with('danger', 'Tag não encontrada! Tente novamente');
 
-        $data = $request->only('descricao');
+        $data = $request->only('descricao','destaque');
+        
+        if(!empty($data['destaque'])){
+            $data['destaque'] = 1 ; 
+        } else{
+            $data['destaque'] = 0;
+        }
+
         $data['updated_at'] = now();
         $tagAtual->update($data);
         return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');

@@ -18,6 +18,7 @@ class TagsModelFactory extends Factory
     {
         return [
             'descricao' => $this->faker->word(50),
+            'destaque' => rand(true,false),
             'created_at' => now(),
             'updated_at' => now(),
         ];
