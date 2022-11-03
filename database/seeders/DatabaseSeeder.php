@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
             NoticiaComentariosStatusSeeder::class,
 
         ]);
-        NoticiasModel::factory(50)->create();
+        NoticiasModel::factory(rand(60, 225))->create();
         TagsModel::factory(50)->create();
         //NoticiasTagsModel::factory(50)->create();
-        NoticiasComentariosModel::factory(50)->create();
+        NoticiasComentariosModel::factory(rand(20, 225))->create();
         NoticiasFotosModel::factory(50)->create();
        
     }

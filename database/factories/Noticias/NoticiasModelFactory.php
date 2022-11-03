@@ -34,13 +34,11 @@ class NoticiasModelFactory extends Factory
             'titulo' => $this->faker->unique()->sentence(),
             'corpo' => $this->faker->paragraph(50),
             'noticia_status_id' => $this->faker->numberBetween(1, 2),
-            //'user_id' => $this->faker->numberBetween(1, 10)
+            'user_id' => $this->faker->numberBetween(1, 10),
             /* 'tags' => $this->faker->randomElement(['Abra', 'Cadabra', 'Funciona', 'Futebol']), */
             'tags' => $this->faker->randomElement($this->gerarArray()),
-            // 'status' => [
-            //     'descricao'=>['Publicado', 'Não Publicado'] [rand(0,1)],
-            // ],
-            'criador' => $this->faker->randomElement(['Fulano', 'Tiririca', 'Pelé']),
+            //'user_id' => $this->faker->randomElement(rand(1,10)),
+            //'criador' => $this->faker->randomElement(['Fulano', 'Tiririca', 'Pelé']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

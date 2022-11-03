@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers\Noticias;
 
 use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
+use App\Models\Noticias\NoticiasStatusModel;
 use App\Models\Noticias\TagsModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class NoticiasController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = NoticiasModel::with('status','comentarios')->get();
+        $this->repository = NoticiasModel::with('status','comentarios')->orderby('created_at','desc')->get();
     }
     public function index()
     {
@@ -42,7 +43,15 @@ class NoticiasController extends Controller
      */
     public function create()
     {
-        return view('admin::create');
+        $config['title'] = $this->title;
+        $config['namePage'] = "Crie sua Notícia aqui";
+        $config['controller'] = 'noticias_create';
+        $config['controller'] = 'noticias_create';
+        $tags = TagsModel::all();
+        $status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
+       
+       
+            return view('admin::noticias.create', compact('config','tags', 'status'));
     }
 
     /**
@@ -52,7 +61,20 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $data = $request->except(["_token","filepond","_method"]);
+        
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
+        $data['tags'] = json_encode($data['tags']);
+        $data['user_id'] = rand(1,10);
+        //dd($request->except("_token"));
+        //Nesse momento recebe os dados do formulário e insere diretamente no banco
+        NoticiasModel::insert($data);
+
+        //Somente faz um redirect para o formulario que lista todos os dados inseridos
+        return redirect()->route('noticias.index')->with('success', 'Cadastrado com sucesso');
     }
 
     /**

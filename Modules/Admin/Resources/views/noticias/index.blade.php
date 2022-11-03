@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class"col-md-2">
-                                <a href="{{route('tags.create')}}" class="btn btn-primary"> Adicionar</a>
+                                <a href="{{route('noticias.create')}}" class="btn btn-primary"> Adicionar</a>
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@
                                     <th>ID</th>
                                     <th>TÍTULO</th>
                                     <th>AUTOR</th>
-                                    <th>STATUS</th>
+                                    <th class="text-center">STATUS</th>
                                     <th>CRIADO EM</th>
                                     <th class="text-center">AÇÕES</th>
 
@@ -73,8 +73,11 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->titulo }}</td>
-                                        <td>{{ $item->criador }}</td>
-                                        <td>{{$item->status->descricao}}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td class="text-center">
+                                            <a href="#" 
+                                            class="@if ($item->noticia_status_id == 1) badge bg-light-success @else badge bg-light-danger @endif">{{$item->status->descricao}}</a>
+                                        </td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
                                             <form action="{{ route('noticias.destroy', $item->id) }}" method="post">

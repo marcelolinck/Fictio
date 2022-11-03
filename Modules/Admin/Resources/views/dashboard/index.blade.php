@@ -60,8 +60,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Following</h6>
-                                            <h6 class="font-extrabold mb-0">80.000</h6>
+                                            <h6 class="text-muted font-semibold">Comentários efetuados</h6>
+                                            <h6 class="font-extrabold mb-0">{{$config['contador_comentarios']}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                            <h6 class="text-muted font-semibold">Saved Post</h6>
-                                            <h6 class="font-extrabold mb-0">112</h6>
+                                            <h6 class="text-muted font-semibold">Noticias Publicadas</h6>
+                                            <h6 class="font-extrabold mb-0">{{$config['contador_noticias']->count()}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -161,15 +161,15 @@
                         <div class="col-12 col-xl-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Latest Comments</h4>
+                                    <h4>Últimos Comentários</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-lg">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Comment</th>
+                                                    <th>Nome</th>
+                                                    <th>Comentário efetuado</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

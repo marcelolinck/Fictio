@@ -2,6 +2,8 @@
 
 namespace Modules\Admin\Http\Controllers\Dashboard;
 
+use App\Models\Noticias\NoticiasComentariosModel;
+use App\Models\Noticias\NoticiasModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,18 +15,18 @@ class DashController extends Controller
      * @return Renderable
      */
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->title = 'Fictio';
-        
     }
     public function index()
     {
-       $config['title'] = $this->title;
-       $config['namePage'] = "Dashboard de Noticias";
-       $config['controller'] ='dash';
+        $config['title'] = $this->title;
+        $config['namePage'] = "Dashboard de Noticias";
+        $config['controller'] = 'dash';
+        $config['contador_noticias'] = NoticiasModel::with('status', 'comentarios')->get();
+        $config['contador_comentarios']  = NoticiasComentariosModel::count();
 
         return view('admin::dashboard\index', compact('config'));
     }
-
-    
 }

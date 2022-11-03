@@ -17,8 +17,12 @@
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
 
     @endif
-    @if ($config['controller'] == 'noticias_edit')
+    @if ($config['controller'] == 'noticias_edit' || $config['controller'] == 'noticias_create')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/filepond/filepond.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/toastify-js/src/toastify.css') }}">
+        <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/filepond.css') }}">
     @endif
 
 
@@ -145,13 +149,17 @@
         <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
     @endif
-    @if ($config['controller'] == 'noticias_edit')
+    @if ($config['controller'] == 'noticias_edit' || $config['controller'] == 'noticias_create')
         <script src="{{ asset('admin/assets/extensions/tinymce/tinymce.min.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/tinymce.js') }}"></script>
     
     {{-- Para o selectbox --}}
         <script src="{{ asset('admin/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/form-element-select.js') }}"></script>
+        <script src="{{ asset('admin/assets/extensions/filepond/filepond.js') }}"></script>
+        <script src="{{ asset('admin/assets/extensions/toastify-js/src/toastify.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/pages/filepond.js') }}"></script>
+
     @endif
     
 </body>
