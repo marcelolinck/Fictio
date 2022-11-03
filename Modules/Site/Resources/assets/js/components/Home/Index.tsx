@@ -3,9 +3,10 @@ import './styles.scss';
 import {Container, Child } from 'teapotcss';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-function Home({noticiaTratada, ...props}) {    
+function Home({noticiaTratada, noticiasTagDestaque, ...props}) {    
     const [data, setData] = useState([]);
     const noticia = noticiaTratada
+
     useEffect(() => {
         axios.get('/api/noticias/tags', 
         {
@@ -33,26 +34,28 @@ function Home({noticiaTratada, ...props}) {
                     </div>
                 </a>
             </section>
-            <section className='noticiasDestaqueMulti'>
-                <div className='cabecalhoDestaque'>
-                    <span role="h3">Lorem</span>
-                </div>
-                <div className="decoracaoNoticiasDestaque"></div>
-                    <Container 
-                        columns={'auto'}
-                        gap='10px'
-                        className="conteudoDestaque"
-                    >
-                        {data.map((item, index) =>
-                            <Child key={index}>
-                                <a className="cardNoticia hoverMargin"  href={`/noticia/${item.id}`}>
-                                    <img src={item.fotos[0].noticia_foto_patch}></img>
-                                    <h3>{item.titulo}</h3>
-                                </a>
-                            </Child>
-                        )}
-                    </Container>
-            </section>
+            {noticiasTagDestaque.map((tag, index)=>
+                <section className='noticiasDestaqueMulti' key={index}>
+                    <div className='cabecalhoDestaque'>
+                        <span role="h3">{tag.tag}</span>
+                    </div>
+                    <div className="decoracaoNoticiasDestaque"></div>
+                        <Container 
+                            columns={'auto'}
+                            gap='10px'
+                            className="conteudoDestaque"
+                        >
+                            {tag.noticias.map((noticia, index) =>
+                                <Child key={index}>
+                                    <a className="cardNoticia hoverMargin"  href={`/noticia/${noticia.id}`}>
+                                        <img src={noticia.imagem}></img>
+                                        <h3>{noticia.titulo}</h3>
+                                    </a>
+                                </Child>
+                            )}
+                        </Container>
+                </section>
+            )}
         </section>
     );
 }
