@@ -14,9 +14,9 @@ export default defineConfig({
     build:{
         rollupOptions: {
             output: {
-                /* entryFileNames: 'assets/main/[name].js',    */
-                /* chunkFileNames: 'assets/chunks/[name].js', */
-                assetFileNames: 'assets/resources/[name].[ext]',
+                entryFileNames: 'assets/main/[name].js',   
+                chunkFileNames: 'assets/chunks/[name].js',
+                assetFileNames: 'assets/resources/[ext]/[name].[ext]',
                 manualChunks(id) {
                     if (id.includes('Index.css')) {
                         return 'indexChunkCSS';
