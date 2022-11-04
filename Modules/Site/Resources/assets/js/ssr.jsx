@@ -6,6 +6,7 @@ import createServer from '@inertiajs/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 /* import route from '../../vendor/tightenco/ziggy/dist/index.m'; */
 import Layout from './components/Layout/Layout';
+import 'vite/modulepreload-polyfill'
 
 const appName = 'Laravel';
 

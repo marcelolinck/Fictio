@@ -109,7 +109,7 @@ function NoticiaUni({noticia, ...props}){
                     <Container columns={'auto'} className="cardsAbaixoResponsivo">
                         {noticia.sugestoes.map((e, i) => 
                             <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
-                                <img src={e.fotos[0].noticia_foto_patch}></img>
+                                <img src={e.fotos[0] && e.fotos[0].noticia_foto_patch}/>
                                 <h3>{e.titulo}</h3>
                             </a>
                         )}
@@ -121,7 +121,7 @@ function NoticiaUni({noticia, ...props}){
                 <div className='sugestoesNoticiaConjunto'>           
                     {noticia.sugestoes.map((e, i) => 
                         <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
-                            <img src={e.fotos[0].noticia_foto_patch}></img>
+                            <img src={e.fotos[0]&&e.fotos[0].noticia_foto_patch}/>
                             <h3>{e.titulo}</h3>
                             
                         </a>

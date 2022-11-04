@@ -7,6 +7,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Layout from './components/Layout/Layout';
 import './globalstyles.scss';
+import 'vite/modulepreload-polyfill'
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 createInertiaApp({
