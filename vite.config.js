@@ -11,6 +11,28 @@ export default defineConfig({
         }),
         react(),
     ],
+    build:{
+        rollupOptions: {
+            output: {
+                /* entryFileNames: 'assets/main/[name].js',    */
+                /* chunkFileNames: 'assets/chunks/[name].js', */
+                assetFileNames: 'assets/resources/[name].[ext]',
+                manualChunks(id) {
+                    if (id.includes('Index.css')) {
+                        return 'indexChunkCSS';
+                    }
+                    if (id.includes('Index.js')) {
+                        return 'indexChunkJS';
+                    }
+                    if (id.includes('Index')) {
+                        return 'indexChunkMisc';
+                    }
+                },
+            }
+
+        },
+        
+    },
     ssr: {
         noExternal: ['@inertiajs/server'],
     },

@@ -32,7 +32,7 @@ class HandleInertiaRequests extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return mixed[]
      */
-    public function share(Request $request)
+    /* public function share(Request $request)
     {
         return array_merge(parent::share($request), [
             'auth' => [
@@ -44,5 +44,5 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
         ]);
-    }
+    } */
 }
