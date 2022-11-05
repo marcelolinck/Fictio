@@ -1,7 +1,7 @@
 $width: clamp(230px, 100%, 800px);
 
 .wrapperNoticiaUni{
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     --gap:10px;
     gap: var(--gap);
@@ -10,15 +10,9 @@ $width: clamp(230px, 100%, 800px);
 
 .wrapperNoticiaUniMain{
     width: $width;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
     .tituloWrapper{
         padding: 20px;
         width: 100%;
-        display: flex;
-        justify-content: center;
         h1{
             width: 100%;
             font-size: 2.4rem;
@@ -33,24 +27,8 @@ $width: clamp(230px, 100%, 800px);
         }
     }
     .conteudoNoticia{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        gap: 40px;
-        .imgWrapper{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            img{
-                width: 100%;
-                height: auto;
-            }
-        }
         .conteudoTexto{
             width: 100%;
-            /* margin-bottom: 50px; */
             font-size: 1rem;
             padding: 0px 5px;
             @media (max-width: 576px){
@@ -64,23 +42,11 @@ $width: clamp(230px, 100%, 800px);
     }
 }
 .sugestoesNoticia{
-    position: relative;
     --margem: calc(var(--tituloTopo) - var(--sugestoesTopo) - 1px);
     margin-top: var(--margem);
-    
-    /* @media(max-width: 768px){
-        position: fixed;
-        --margem:0px;
-        top: 55px;
-        padding: 5px;
-        right: 0px;
-        background-color: rgba(138, 138, 138, 0.45);
-        overflow-y: auto;
-        max-height: calc(100vh - 65px);
-    } */
-    @media(max-width: 576px){
+    /* @media(max-width: 576px){
         display: none;
-    }
+    } */
 
     .sugestoesNoticiaConjunto{
         display: flex;
@@ -112,9 +78,6 @@ $width: clamp(230px, 100%, 800px);
             }
         }
     }
-    
-    
-
     h2{
         font-size: 1.2rem;
         font-weight: 50;
@@ -123,11 +86,10 @@ $width: clamp(230px, 100%, 800px);
     }
 }
 .cardsAbaixoResponsivo{
-    justify-content: center;
     --gap:10px;
     display: none !important;
     padding: 15px 0;
-    @media(max-width: 576px){
+    @media(max-width: 640px){
         display: flex !important;
     }
     .cardNoticiaSugestao{

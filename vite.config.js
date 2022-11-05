@@ -19,16 +19,10 @@ export default defineConfig({
                 chunkFileNames: 'assets/chunks/[name].js',
                 assetFileNames: 'assets/resources/[ext]/[name].[ext]',
                 manualChunks(id) {
-                    if (id.includes('Index.css') && !id.includes("node_modules")) {
-                        return 'indexChunkCSS';
+                    if (id.includes('Index') ) {
+                        return 'indexChunk';
                     }
-                    if (id.includes('Index.js') && !id.includes("node_modules")){
-                        console.log(id)
-                        return 'indexChunkJS';
-                    }
-                    if (id.includes('Index') && !id.includes("node_modules")) {
-                        return 'indexChunkMisc';
-                    }
+                    
                 },
             }
 

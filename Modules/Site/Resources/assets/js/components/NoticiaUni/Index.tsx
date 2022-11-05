@@ -19,6 +19,8 @@ import shadow from './imgsPlaceholder/shadow.png';
 
 
 import './styles.scss';
+import './tailwind.css'
+import st from './classes'
 import {Container, Child} from 'teapotcss';
 import Comentario from './Template/Comentario/Comentario';
 import moment from 'moment';
@@ -57,8 +59,6 @@ function NoticiaUni({noticia, ...props}){
         e.preventDefault();
         const form = e.target;
         const data:any = new FormData(form);
-        //const logar = Object.fromEntries(data);
-        //console.log(logar);
         axios.post('/api/newComentario', data).then((res)=>{
 
         })
@@ -70,14 +70,14 @@ function NoticiaUni({noticia, ...props}){
         <section className='cabecalho'>
             <h1>Noticia</h1>
         </section>
-        <section className="wrapperNoticiaUni">
-            <section className='wrapperNoticiaUniMain'>
-                <section className='tituloWrapper' ref={tituloRef} >
+        <section className="wrapperNoticiaUni flex">
+            <section className='wrapperNoticiaUniMain flex items-center flex-col'>
+                <section className='tituloWrapper flex justify-center' ref={tituloRef} >
                     <h1>{noticia.titulo}</h1>
                 </section>
-                <section className='conteudoNoticia'>
-                    <div className="imgWrapper">
-                        <img src={noticia.imagem}/>
+                <section className={st.conteudoNoticia}>
+                    <div className="imgWrapper flex justify-center">
+                        <img className='w-full h-auto' src={noticia.imagem}/>
                     </div>
                     <div className='conteudoTexto'>
                         <p>{noticia.texto}</p>
@@ -88,7 +88,9 @@ function NoticiaUni({noticia, ...props}){
                         <form className="adicionarComentario" onSubmit={criarComentario}>
                             <h3>Adicionar Comentario</h3>
                             <textarea name='texto'></textarea>
-                            <button>Enviar</button>
+                            <button className={st.botao}>
+                                <span>Enviar</span>
+                            </button>
                         </form>
                         <ul className="listaComentarios">
                             {noticia.comentarios.map((_:any,i:number) => 
@@ -106,7 +108,7 @@ function NoticiaUni({noticia, ...props}){
                     </div>
 
 
-                    <Container columns={'auto'} className="cardsAbaixoResponsivo">
+                    <Container columns={'auto'} className="cardsAbaixoResponsivo justify-center">
                         {noticia.sugestoes.map((e, i) => 
                             <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
                                 <img src={e.fotos[0] && e.fotos[0].noticia_foto_patch}/>
@@ -116,7 +118,7 @@ function NoticiaUni({noticia, ...props}){
                     </Container>
                 </section>
             </section>
-            <section className='sugestoesNoticia' style={styleCards}>
+            <section className='sugestoesNoticia relative -sm:hidden' style={styleCards}>
                 <h2 ref={sugestoesRef}>Sugestões</h2>
                 <div className='sugestoesNoticiaConjunto'>           
                     {noticia.sugestoes.map((e, i) => 
