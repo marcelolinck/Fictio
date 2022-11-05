@@ -1,9 +1,4 @@
 nav.navBar {
-    /* --scroll:2;
-    --tamanho: ${props => minMax(props.scroll, 55, 65)}px;
-    --corFundo: ${props => props.scroll > 55 ? 'rgba(0,0,0,0.9)' : 'black'};
-    --blur: ${props => props.scroll > 55 ? '0px' : '5px'}; */
-
     --tempoAnimacao: 0.2s;
     will-change: backdrop-filter;
     backdrop-filter: blur(var(--blur));
@@ -24,7 +19,7 @@ nav.navBar {
         width: 100%;
         display: flex;
         align-items: center;
-        padding: 10px;
+        /* padding: 10px; */
         .logoTipo{
             color: white;
             font-size: var(--fontSize);
@@ -61,6 +56,8 @@ nav.navBar {
         }
         .wrapperInput{
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             height:100%;
             align-items: center;
             position:absolute;
@@ -87,4 +84,10 @@ nav.navBar {
             animation: slideOut var(--tempoAnimacao) forwards;
         }
     }
+}
+.caixaBuscas{
+    top: 100%;
+    right: 3px;
+    //scrollbar
+    
 }

@@ -131,6 +131,24 @@ class NoticiasController extends Controller
         return json_decode($destaque);
     }
     
-    
+    public function busca(Request $request){
+        $noticias = NoticiasModel::with('fotos')
+        ->where('titulo', 'like', '%'.$request->busca.'%')
+        ->select('id', 'titulo', 'corpo')
+        ->take(5)
+        ->get()
+        ;
+        //get only first 40 letters of field corpo
+        $noticias = $noticias->map(function($noticia){
+            $noticia->corpo = substr($noticia->corpo, 0, 45);
+            return $noticia;
+        });
+        //dd($noticias);
+        return $noticias;
+
+
+
+
+    }
     
 }

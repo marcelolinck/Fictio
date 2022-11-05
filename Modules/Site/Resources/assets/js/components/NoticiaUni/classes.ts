@@ -7,6 +7,8 @@ const classes: classes = {
         hover:bg-slate-800 transition-colors duration-300 rounded
     `,
     conteudoNoticia: "conteudoNoticia w-full gap-[40px] flex flex-col justify-center items-center [&>*]:w-full",
+    listaComentarios: "listaComentarios flex p-0 flex-col gap-[15px] list-none",
+    h2Comentarios: "text-center mb-0 text-2xl text-black font-thin",
 
 
 }

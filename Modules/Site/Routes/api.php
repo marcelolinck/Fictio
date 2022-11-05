@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Site\Http\Controllers\Noticias\NoticiasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::prefix('site')->group(function () {
     
     
 });
-Route::get('/noticias/tags',[Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'searchTags']);
-Route::get('/noticias', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'index']);
-Route::get('/noticias/{id}', [Modules\Site\Http\Controllers\Noticias\NoticiasController::class, 'show']);
+Route::get('/noticias/tags',[NoticiasController::class, 'searchTags']);
+Route::get('/noticias', [NoticiasController::class, 'index']);
+Route::get('/noticias/{id}', [NoticiasController::class, 'show']);
+Route::get('/busca', [NoticiasController::class, 'busca']);

@@ -1,7 +1,4 @@
-$width: clamp(230px, 100%, 800px);
-
 .wrapperNoticiaUni{
-    /* display: flex; */
     justify-content: center;
     --gap:10px;
     gap: var(--gap);
@@ -9,12 +6,10 @@ $width: clamp(230px, 100%, 800px);
 }
 
 .wrapperNoticiaUniMain{
-    width: $width;
+    width: clamp(230px, 100%, 800px);
     .tituloWrapper{
         padding: 20px;
-        width: 100%;
         h1{
-            width: 100%;
             font-size: 2.4rem;
             font-weight: 350;
             color: #000;
@@ -28,9 +23,6 @@ $width: clamp(230px, 100%, 800px);
     }
     .conteudoNoticia{
         .conteudoTexto{
-            width: 100%;
-            font-size: 1rem;
-            padding: 0px 5px;
             @media (max-width: 576px){
                 & :last-child{
                     margin-bottom: 0;
@@ -44,26 +36,17 @@ $width: clamp(230px, 100%, 800px);
 .sugestoesNoticia{
     --margem: calc(var(--tituloTopo) - var(--sugestoesTopo) - 1px);
     margin-top: var(--margem);
-    /* @media(max-width: 576px){
-        display: none;
-    } */
 
     .sugestoesNoticiaConjunto{
-        display: flex;
-        flex-direction: column;
         gap: var(--gap);
-        
-        
     }
     @media(max-width: 992px){
         .sugestoesNoticiaConjunto{
             .cardNoticiaSugestao{
                 width: 200px;
-                height: auto;
                 h3{
                     font-size: 1rem;
                 }
-                
             }
         }
     }
@@ -97,36 +80,13 @@ $width: clamp(230px, 100%, 800px);
     }
 }
 .comentarios{
-    width: 100%;
-    h2{
-        font-size: 1.65rem;
-        font-weight: 50;
-        color: #000;
-        margin-bottom: 0;
-        text-align: center;
-    }
-    .listaComentarios{
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-        gap: 15px;
-        padding: 0;
-    }
-    .adicionarComentario{
-        display: flex;
-        flex-direction: column;
-        h3{
-            margin-bottom: 0;
-        }
-    }
     textarea{
-        width: 100%;
-        height: 150px;
-        border: 1px solid #000;
         border-radius: 5px;
-        padding: 5px;
         font-size: 1rem;
         resize: none;
         margin-bottom: 10px;
+        &:focus{
+            outline: transparent;
+        }
     }
 }

@@ -8,5 +8,6 @@ const classes: classes = {
     botoes: "flex justify-end",
     botao: "bg-none outline-transparent border-none flex gap-[5px] items-center ",
     denuncia: "transition-color duration-[0.2s] hover:text-red-600",
+    
 }
 export default classes;
