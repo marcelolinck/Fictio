@@ -4,6 +4,7 @@ import { SearchOutlined, MenuOutlined} from '@ant-design/icons';
 import { Input } from 'antd';
 import CaixaBuscas from './Template/CaixaBuscas';
 import axios from 'axios'
+import st from './classes'
 import './styles.scss'
 function Navbar({setDrawer}){
     const [scroll, setScroll] = useState(0);
@@ -11,9 +12,7 @@ function Navbar({setDrawer}){
         /* if scroll is  not on top, alert */
         window.onscroll = function() {
             setScroll(window.pageYOffset);
-            /* matarPesquisa(); */
         };
-        /* onclick, check if the click is on wrapperInput, if not, alert */
         
     })
     const [ areaPesquisa, setAreaPesquisa ] = useState(false);
@@ -60,17 +59,17 @@ function Navbar({setDrawer}){
         }
     }
     return(
-            <nav scroll={scroll} className="navBar" style={styles} >
-                <nav>
-                    <button className='btnAbrirGaveta btnUtilidadeNav' onClick={()=>setDrawer(true)}>
+            <nav scroll={scroll} className={st.navBar} style={styles} >
+                <nav className={st.nav}>
+                    <button className={st.btnUtilidades} onClick={()=>setDrawer(true)}>
                         <MenuOutlined />
                     </button>
                     <a href="/" className='logoTipo' aria-label='logo'>Fictio</a>
-                    <button className='btnPesquisar btnUtilidadeNav' onClick={botaoPesquisar}>
+                    <button className={st.btnUtilidades} onClick={botaoPesquisar}>
                         <SearchOutlined id="btnPesquisar"/>
                     </button>
                     {areaPesquisa &&
-                        <div id='wrapperInput' className={`wrapperInput ${animacaoMorrer?'animacaoMorrerInput':''}`}>
+                        <div id='wrapperInput' className={`wrapperInput ${st.wrapperInput} ${animacaoMorrer?'animacaoMorrerInput':''}`}>
                             <Input placeholder='Pesquisar' id='inputPesquisar' value={busca} onChange={handleChange} />
                         </div>
                     }

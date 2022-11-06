@@ -3,9 +3,6 @@ nav.navBar {
     will-change: backdrop-filter;
     backdrop-filter: blur(var(--blur));
     background-color:var(--corFundo);
-    display: flex;
-    align-items: center;
-    width: 100%;
     height: var(--tamanho);
     z-index: 100;
     transition: 
@@ -13,13 +10,8 @@ nav.navBar {
         background-color var(--tempoAnimacao) ease-in-out,
         backdrop-filter var(--tempoAnimacao) ease-in-out;
         ;
-    position: fixed;
     top: 0;
     nav{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         .logoTipo{
             color: white;
             font-size: var(--fontSize);
@@ -28,13 +20,8 @@ nav.navBar {
         .btnUtilidadeNav{
             height:var(--tamanho);
             width:var(--tamanho);
-            cursor: pointer;
             border:none;
             outline:1px solid transparent;
-            padding: 17px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 30px;
             svg{
                 transition: color 0.5s;
@@ -51,18 +38,7 @@ nav.navBar {
             }
 
         }
-        /* .btnAbrirGaveta{
-        } */
-        /* .btnPesquisar{
-            
-        } */
         .wrapperInput{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height:100%;
-            align-items: center;
-            position:absolute;
             right:68px;
             @keyframes slideIn{
                 from{
