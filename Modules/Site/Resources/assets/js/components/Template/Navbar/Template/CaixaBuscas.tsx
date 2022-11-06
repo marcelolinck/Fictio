@@ -9,7 +9,7 @@ function CaixaBuscas({resultados}) {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
     return (
-        <div className="p-2 gap-2 rounded-b-md flex h-60 flex-col w-96 absolute caixaBuscas bg-neutral-900 bg-opacity-90  overflow-y-auto overflow-x-hidden [&>*]:flex-shrink-0">
+        <div className="p-2 gap-2 rounded-b-md flex h-60 flex-col w-96 -xs:w-full -xs:h-96 absolute caixaBuscas bg-neutral-900 bg-opacity-90  overflow-y-auto overflow-x-hidden [&>*]:flex-shrink-0">
             {resultados.length > 0 ?
                 <>
                     {resultados.map((noticia, i) =>

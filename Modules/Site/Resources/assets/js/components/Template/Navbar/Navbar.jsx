@@ -62,11 +62,11 @@ function Navbar({setDrawer}){
     return(
             <nav scroll={scroll} className="navBar" style={styles} >
                 <nav>
-                    <button className='btnAbrirGaveta' onClick={()=>setDrawer(true)}>
+                    <button className='btnAbrirGaveta btnUtilidadeNav' onClick={()=>setDrawer(true)}>
                         <MenuOutlined />
                     </button>
                     <a href="/" className='logoTipo' aria-label='logo'>Fictio</a>
-                    <button className='btnPesquisar' onClick={botaoPesquisar}>
+                    <button className='btnPesquisar btnUtilidadeNav' onClick={botaoPesquisar}>
                         <SearchOutlined id="btnPesquisar"/>
                     </button>
                     {areaPesquisa &&
