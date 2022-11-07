@@ -3,8 +3,7 @@ import {LikeOutlined, WarningOutlined, CalendarOutlined} from '@ant-design/icons
 import moment from 'moment';
 
 import './styles.scss';
-// @ts-ignore
-import styles from './styles.module.scss';
+import st from './classes'
 
 interface props extends React.HTMLAttributes<HTMLLIElement>{
     nome: string,
@@ -16,29 +15,22 @@ interface props extends React.HTMLAttributes<HTMLLIElement>{
 }
 function Comentario({nome, img, texto, likes, cod, data, ...props}:props){
     return(
-        <li className="comentario" {...props}>
-            <div className="esquerda">
+        <li className={"comentario" + st.comentario} {...props}>
+            <div className={"esquerda "+st.esquerda}>
                 <img src={img}/>
             </div>
-            <div className="direita">
-                <h4>{nome}</h4>
-                <p>{texto}</p>
-                <div className="botoes">
-                    <div className="dataCampo">
+            <div className={st.direita}>
+                <h4 className='mb-4'>{nome}</h4>
+                <p className='mb-0'>{texto}</p>
+                <div className={"botoes "+st.botao}>
+                    <div className="mr-auto flex items-center gap-[5px]">
                         <CalendarOutlined />
                         <span>{data}</span>
                     </div>
-                    <button className="btnDenunciar">
+                    <button className={st.botao + st.denuncia}>
                         <WarningOutlined />
                         <span>Denunciar</span>
                     </button>
-                    {
-                        likes && 
-                        <button className="btnLike">
-                            <LikeOutlined />
-                            <span>{likes}</span>
-                        </button>
-                    }
                 </div>
             </div>
         </li>

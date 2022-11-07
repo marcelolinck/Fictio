@@ -1,8 +1,6 @@
 /* import react */
 import React, {useRef, useState, useEffect} from 'react';
 // @ts-ignore
-import imgTeste from './imgsPlaceholder/imgteste.jpg';
-// @ts-ignore
 import mario from './imgsPlaceholder/mario.png';
 // @ts-ignore
 import sonic from './imgsPlaceholder/sonico.png';
@@ -19,6 +17,8 @@ import shadow from './imgsPlaceholder/shadow.png';
 
 
 import './styles.scss';
+/* import './tailwind.css' */
+import st from './classes'
 import {Container, Child} from 'teapotcss';
 import Comentario from './Template/Comentario/Comentario';
 import moment from 'moment';
@@ -41,8 +41,6 @@ function NoticiaUni({noticia, ...props}){
             setTituloHeight(tituloRef.current!.clientHeight);
             setSugestoesHeight(sugestoesRef.current!.clientHeight);
         })
-        /* data is a constant with a random moment() date */
-        
     },[])
    
     const styleCards:CSSvars = {
@@ -57,8 +55,6 @@ function NoticiaUni({noticia, ...props}){
         e.preventDefault();
         const form = e.target;
         const data:any = new FormData(form);
-        //const logar = Object.fromEntries(data);
-        //console.log(logar);
         axios.post('/api/newComentario', data).then((res)=>{
 
         })
@@ -70,27 +66,30 @@ function NoticiaUni({noticia, ...props}){
         <section className='cabecalho'>
             <h1>Noticia</h1>
         </section>
-        <section className="wrapperNoticiaUni">
-            <section className='wrapperNoticiaUniMain'>
-                <section className='tituloWrapper' ref={tituloRef} >
-                    <h1>{noticia.titulo}</h1>
+        <section className="wrapperNoticiaUni flex">
+            <section className='wrapperNoticiaUniMain flex items-center flex-col'>
+                <section className='tituloWrapper flex justify-center w-full' ref={tituloRef} >
+                    <h1 className="2-full">{noticia.titulo}</h1>
                 </section>
-                <section className='conteudoNoticia'>
-                    <div className="imgWrapper">
-                        <img src={noticia.imagem}/>
+                <section className={st.conteudoNoticia}>
+                    <div className="imgWrapper flex justify-center">
+                        <img className='w-full h-auto' src={noticia.imagem}/>
                     </div>
-                    <div className='conteudoTexto'>
+                    <div className='conteudoTexto w-full px-2 text-base'>
                         <p>{noticia.texto}</p>
                     </div>
 
-                    <div className="comentarios">
-                        <h2>Comentários</h2>
-                        <form className="adicionarComentario" onSubmit={criarComentario}>
-                            <h3>Adicionar Comentario</h3>
-                            <textarea name='texto'></textarea>
-                            <button>Enviar</button>
+                    <div className="comentarios w-full">
+                        <h2 className={st.h2Comentarios}>Comentários</h2>
+                        <form className="adicionarComentario flex flex-col" onSubmit={criarComentario}>
+                            <h3 className="mb-0">Adicionar Comentario</h3>
+                            <textarea name='texto' className='w-full border border-black p-2 h-36'>
+                            </textarea>
+                            <button className={st.botao}>
+                                <span>Enviar</span>
+                            </button>
                         </form>
-                        <ul className="listaComentarios">
+                        <ul className={st.listaComentarios}>
                             {noticia.comentarios.map((_:any,i:number) => 
                                 <Comentario
                                     key={i}
@@ -106,9 +105,9 @@ function NoticiaUni({noticia, ...props}){
                     </div>
 
 
-                    <Container columns={'auto'} className="cardsAbaixoResponsivo">
+                    <Container columns={'auto'} className="cardsAbaixoResponsivo justify-center">
                         {noticia.sugestoes.map((e, i) => 
-                            <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
+                            <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
                                 <img src={e.fotos[0] && e.fotos[0].noticia_foto_patch}/>
                                 <h3>{e.titulo}</h3>
                             </a>
@@ -116,11 +115,11 @@ function NoticiaUni({noticia, ...props}){
                     </Container>
                 </section>
             </section>
-            <section className='sugestoesNoticia' style={styleCards}>
+            <section className='sugestoesNoticia relative -sm:hidden' style={styleCards}>
                 <h2 ref={sugestoesRef}>Sugestões</h2>
-                <div className='sugestoesNoticiaConjunto'>           
+                <div className='sugestoesNoticiaConjunto flex flex-col'>
                     {noticia.sugestoes.map((e, i) => 
-                        <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao" href={`/noticia/${e.id}`}>
+                        <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
                             <img src={e.fotos[0]&&e.fotos[0].noticia_foto_patch}/>
                             <h3>{e.titulo}</h3>
                             
