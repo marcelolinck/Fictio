@@ -3,12 +3,14 @@
 namespace Modules\Admin\Http\Controllers\Noticias;
 
 use App\Models\Noticias\NoticiasComentariosModel;
+use App\Models\Noticias\NoticiasFotosModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\Noticias\NoticiasStatusModel;
 use App\Models\Noticias\TagsModel;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiasController extends Controller
 {
@@ -20,6 +22,8 @@ class NoticiasController extends Controller
     {
         $this->title = 'Fictio';
         $this->repository = NoticiasModel::with('status','comentarios')->orderby('created_at','desc')->get();
+        $this->tags = TagsModel::orderby('descricao','asc')->get();
+        $this->status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
     }
     public function index()
     {
@@ -33,6 +37,7 @@ class NoticiasController extends Controller
         $config['namePage'] = "Noticias Cadastradas";
         $config['controller'] = 'noticias';
         $noticias = $this->repository;
+
         // dd($noticias);
 
         return view('admin::noticias.index', compact('config', 'noticias'));
@@ -46,11 +51,10 @@ class NoticiasController extends Controller
         $config['title'] = $this->title;
         $config['namePage'] = "Crie sua Notícia aqui";
         $config['controller'] = 'noticias_create';
-        $config['controller'] = 'noticias_create';
-        $tags = TagsModel::all();
-        $status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
-       
-       
+        $tags = $this->tags;
+        $status = $this->status;
+
+
             return view('admin::noticias.create', compact('config','tags', 'status'));
     }
 
@@ -61,17 +65,41 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
-        
 
-        $data = $request->except(["_token","filepond","_method"]);
-        
-        $data['created_at'] = now();
-        $data['updated_at'] = now();
-        $data['tags'] = json_encode($data['tags']);
-        $data['user_id'] = rand(1,10);
-        //dd($request->except("_token"));
-        //Nesse momento recebe os dados do formulário e insere diretamente no banco
-        NoticiasModel::insert($data);
+        $data = $request->validate([
+            'titulo' => 'required',
+            'noticia_status_id' => 'required',
+            'corpo' => 'required',
+            'tags' => 'required',
+        ]);
+        $fotos = $request->validate([
+            'noticia_foto' => 'required',
+            'noticia_foto.*' => 'mimes:doc,pdf,docx,txt,zip,jpeg,jpg,png,webp'
+        ]);
+
+        $arquivo = $fotos['noticia_foto'];
+
+        $noticia = new NoticiasModel();
+
+
+        $noticia->titulo = $data['titulo'];
+        $noticia->corpo = $data['corpo'];
+        $noticia->created_at = now();
+        $noticia->updated_at = now();
+        $noticia->tags = json_encode($data['tags']);
+        $noticia->user_id = rand(1,10);
+        $noticia->noticia_status_id = $data['noticia_status_id'];
+        $noticia->save();
+
+        for ($i = 0; $i < count($request->allFiles()['noticia_foto']); $i++){
+            $arquivo = $request->allfiles()['noticia_foto'][$i];
+
+            $fotos = new NoticiasFotosModel();
+            $fotos->noticia_id = $noticia->id;
+            $fotos->noticia_foto_path = $arquivo->store('images', 'public');
+            $fotos->save();
+            unset($fotos);
+        }
 
         //Somente faz um redirect para o formulario que lista todos os dados inseridos
         return redirect()->route('noticias.index')->with('success', 'Cadastrado com sucesso');
@@ -97,13 +125,14 @@ class NoticiasController extends Controller
         $config['title'] = $this->title;
         $config['namePage'] = "Edição Notícia";
         $config['controller'] = 'noticias_edit';
-        $tags = TagsModel::all();
+        $tags = $this->tags;
+        $status = $this->status;
 
         if (!$noticiaAtual = $this->repository->find($id))
             return redirect()->route('admin::noticias.index')->with('danger', 'Noticia não encontrada! Tente novamente');
-       
+
        //dd($noticiaAtual->tags);
-            return view('admin::noticias.edit', compact('noticiaAtual','config','tags'));
+            return view('admin::noticias.edit', compact('noticiaAtual','config','tags','status'));
     }
 
     /**
@@ -134,11 +163,10 @@ class NoticiasController extends Controller
         if (!$noticiaAtual)
             return redirect()->route('admin::noticias.index')->with('danger', 'Não excluído! Selecione o registro correto para exclusão');
 
-        $noticiasComentarios = NoticiasComentariosModel::where('noticia_id', $id)->select('id')->get();
-        //dd($noticiasComentarios);
-        dd($noticiasComentarios::delete());
+        $noticiaAtual->fotos()->delete();
+        $noticiaAtual->comentarios()->delete();
         $noticiaAtual->delete();
 
-        return redirect()->route('admin::noticias.index')->with('success', 'Notícia Excluída com sucesso');
+        return redirect()->route('noticias.index')->with('success', 'Notícia Excluída com sucesso');
     }
 }

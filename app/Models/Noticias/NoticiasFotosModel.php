@@ -10,4 +10,7 @@ class NoticiasFotosModel extends Model
     use HasFactory;
 
     protected $table = "noticia_fotos";
+
+    protected $fillable =['noticia_foto_path', 'noticia_id','created_at', 'updated_at'];
+
 }

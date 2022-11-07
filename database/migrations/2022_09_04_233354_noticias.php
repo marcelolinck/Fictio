@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->longText('corpo');
             $table->json('tags');
-            $table->unsignedBigInteger('noticia_status_id');
+            $table->unsignedBigInteger('noticia_status_id')->default('2');
             $table->foreign('noticia_status_id')->references('id')->on('noticia_status');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -52,7 +52,7 @@ return new class extends Migration
 
         Schema::create('noticia_fotos', function (Blueprint $table) {
             $table->id();
-            $table->string('noticia_foto_patch', 2048)->default('https://via.placeholder.com/1920x1080.png/000044?text=default_photo');
+            $table->string('noticia_foto_path', 2048)->default('https://via.placeholder.com/1920x1080.png/000044?text=default_photo');
             $table->unsignedBigInteger('noticia_id');
             $table->foreign('noticia_id')->references('id')->on('noticias');
             $table->timestamps();

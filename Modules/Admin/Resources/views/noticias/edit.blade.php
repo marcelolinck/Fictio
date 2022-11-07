@@ -155,6 +155,47 @@
             </section>
             </form>
             {{-- FIM DAS TAGS ATRELADAS --}}
+            {{-- INICIO DO STATUS --}}
+            <section class="basic-choices">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <h6>Selecione o status da notícia:</h6>
+                                    <p>Importante: A notícia irá aparecer no site somente se estiver com status
+                                        <strong>PUBLICADO</strong></p>
+                                    <fieldset class="form-group">
+                                        <select class="form-select" id="noticia_status_id" name="noticia_status_id">
+                                          @foreach ($status as $item)
+                                            <option value="{{$item->id}}" @if($noticiaAtual->noticia_status_id == $item->id) selected @endif
+                                            >{{$item->descricao}}</option>
+                                          @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+                            </div>
+                             <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Cadastrar</button>
+                                                    <a href="{{ route('noticias.index') }}"
+                                                        class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            {{-- FIM DO STATUS --}}
             {{-- COMENTARIOS ATRELADOS ATRELADAS --}}
             @if (\Session::has('danger_tag'))
                 <div class="alert alert-danger alert-dismissible show fade">

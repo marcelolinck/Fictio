@@ -42,10 +42,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if ($errors->any())
+                <div class="col-md-12 form-group">
+                    <div class="alert alert-warning alert-dismissible fade show"
+                         role="alert">
+                        <strong>
+                            <ul style="list-style: none;">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
 
-            <form class="form form-horizontal" method="post" action="{{ route('noticias.store') }}">
+            <form class="form form-horizontal" enctype="multipart/form-data" method="post" action="{{ route('noticias.store') }}">
                 @csrf
                 @method('post')
+
                 <section class="section">
                     <div class="row">
                         <div class="col-12">
@@ -63,27 +80,12 @@
                                                     <label>Título</label>
                                                 </div>
                                                 <div class="col-md-6 form-group pt-1">
-                                                    <input type="text" id="descricao" class="form-control" value=""
+                                                    <input type="text" id="titulo" class="form-control" value=""
                                                         name="titulo"
                                                         placeholder="Informe o titulo da noticia a ser criada"
                                                         minleght="5" maxleght="50" tabindex="1">
                                                 </div>
-                                                @if ($errors->any())
-                                                    <div class="col-md-4 form-group">
-                                                        <div class="alert alert-warning alert-dismissible fade show"
-                                                            role="alert">
-                                                            <strong>
-                                                                <ul>
-                                                                    @foreach ($errors->all() as $error)
-                                                                        <li>{{ $error }}</li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </strong>.
-                                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                    </div>
-                                                @endif
+
                                             </div>
                                         </div>
 
@@ -107,7 +109,7 @@
                                 </div>
                                 <div class="card-body">
                                     <textarea name="corpo" id="default" cols="30" rows="10" tabindex="2">
-                                
+
                                 </textarea>
                                 </div>
                             </div>
@@ -126,40 +128,8 @@
                                 </div>
                                 {{-- <div class="card-content"> --}}
                                 <div class="card-body">
-
                                     <!-- File uploader with validation -->
-                                    <div class="filepond--root with-validation-filepond filepond--hopper"
-                                        data-style-button-remove-item-position="left"
-                                        data-style-button-process-item-position="right"
-                                        data-style-load-indicator-position="right"
-                                        data-style-progress-indicator-position="right"
-                                        data-style-button-remove-item-align="false" data-hopper-state="drag-drop"
-                                        style="height: 76px;"><input class="filepond--browser" type="file"
-                                            id="filepond--browser-9dejleahq" aria-controls="filepond--assistant-9dejleahq"
-                                            aria-labelledby="filepond--drop-label-9dejleahq" multiple=""
-                                            name="noticia_foto[]" required="">
-                                        <div class="filepond--drop-label"
-                                            style="transform: translate3d(0px, 0px, 0px); opacity: 1;"><label
-                                                for="filepond--browser-9dejleahq" id="filepond--drop-label-9dejleahq"
-                                                aria-hidden="true">Drag &amp; Drop your files or <span
-                                                    class="filepond--label-action" tabindex="0">Browse</span></label>
-                                        </div>
-                                        <div class="filepond--list-scroller"
-                                            style="transform: translate3d(0px, 60px, 0px);">
-                                            <ul class="filepond--list" role="list"></ul>
-                                        </div>
-                                        <div class="filepond--panel filepond--panel-root" data-scalable="true">
-                                            <div class="filepond--panel-top filepond--panel-root"></div>
-                                            <div class="filepond--panel-center filepond--panel-root"
-                                                style="transform: translate3d(0px, 8px, 0px) scale3d(1, 0.6, 1);">
-                                            </div>
-                                            <div class="filepond--panel-bottom filepond--panel-root"
-                                                style="transform: translate3d(0px, 68px, 0px);"></div>
-                                        </div><span class="filepond--assistant" id="filepond--assistant-9dejleahq"
-                                            role="status" aria-live="polite" aria-relevant="additions"></span>
-                                        <fieldset class="filepond--data"></fieldset>
-                                        <div class="filepond--drip"></div>
-                                    </div>
+                                   <input type="file" name="noticia_foto[]" class="form-control" id="noticia_foto" multiple>
                                 </div>
                                 {{-- </div> --}}
                             </div>
