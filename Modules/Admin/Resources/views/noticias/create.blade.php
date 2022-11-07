@@ -79,7 +79,7 @@
                                                 <div class="col-md-2 pt-1">
                                                     <label>Título</label>
                                                 </div>
-                                                <div class="col-md-6 form-group pt-1">
+                                                <div class="col-md-10 form-group pt-1">
                                                     <input type="text" id="titulo" class="form-control" value=""
                                                         name="titulo"
                                                         placeholder="Informe o titulo da noticia a ser criada"

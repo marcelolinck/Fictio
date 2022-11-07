@@ -32,7 +32,7 @@ class NoticiasModel extends Model
     public function fotos()
     {
         return $this->hasMany(NoticiasFotosModel::class, 'noticia_id', 'id')
-        ->select('noticia_id', 'noticia_foto_patch');
+        ->select('noticia_id', 'noticia_foto_path');
     }
 
     public function status()

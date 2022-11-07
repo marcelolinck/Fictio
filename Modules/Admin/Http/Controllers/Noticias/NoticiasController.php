@@ -2,7 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Noticias;
 
-use App\Models\Noticias\NoticiasComentariosModel;
+
 use App\Models\Noticias\NoticiasFotosModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\Noticias\NoticiasStatusModel;
@@ -86,7 +86,7 @@ class NoticiasController extends Controller
         $noticia->corpo = $data['corpo'];
         $noticia->created_at = now();
         $noticia->updated_at = now();
-        $noticia->tags = json_encode($data['tags']);
+        $noticia->tags = $data['tags'];
         $noticia->user_id = rand(1,10);
         $noticia->noticia_status_id = $data['noticia_status_id'];
         $noticia->save();
@@ -143,13 +143,18 @@ class NoticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!$tagAtual = $this->repository->find($id))
-            return redirect()->route('tags.index')->with('danger', 'Notícia não encontrada! Tente novamente');
+       // dd($request->all());
+        if (!$noticiaAtual = $this->repository->find($id))
+            return redirect()->route('noticias.index')->with('danger', 'Notícia não encontrada! Tente novamente');
 
-        $data = $request->only('descricao');
-        $data['updated_at'] = now();
-        $tagAtual->update($data);
-        return redirect()->route('tags.index')->with('success', 'Tag Atualizada com sucesso');
+        $noticiaAtual->titulo = $request->titulo;
+        $noticiaAtual->corpo = $request->corpo;
+        $noticiaAtual->noticia_status_id = $request->noticia_status_id;
+        $noticiaAtual->tags = $request['tags'];
+        
+        $noticiaAtual->update();
+
+        return redirect()->route('noticias.index')->with('success', 'Noticia Atualizada com sucesso');
     }
 
     /**
@@ -163,6 +168,11 @@ class NoticiasController extends Controller
         if (!$noticiaAtual)
             return redirect()->route('admin::noticias.index')->with('danger', 'Não excluído! Selecione o registro correto para exclusão');
 
+        
+        foreach($noticiaAtual->fotos  as $fotos){
+            Storage::delete($fotos->noticia_foto_path);
+        }        
+        
         $noticiaAtual->fotos()->delete();
         $noticiaAtual->comentarios()->delete();
         $noticiaAtual->delete();

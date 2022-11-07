@@ -35,7 +35,7 @@ return new class extends Migration
 
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao', 50);
+            $table->string('descricao', 50)->unique();
             $table->boolean('destaque');
             $table->timestamps();
         });
