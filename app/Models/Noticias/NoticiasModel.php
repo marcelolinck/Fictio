@@ -8,6 +8,7 @@ use PhpParser\Node\Expr\FuncCall;
 use App\Models\Noticias\NoticiasStatusModel;
 use App\Models\User;
 
+
 class NoticiasModel extends Model
 {
     use HasFactory;

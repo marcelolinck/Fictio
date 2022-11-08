@@ -114,6 +114,35 @@
                     </div>
                 </section>
                 {{-- CORPO DA NOTICIA --}}
+                {{-- FOTOS DA NOTICIA --}}
+                <section class="section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Fotos incluidas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
+                                        @foreach ($noticiaAtual->fotos as $foto)
+                                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                                <a href="#">
+                                                    <img class="w-100 active" style="width:500px;height:280px;"
+                                                        src="{{url('storage/'.$foto->noticia_foto_path)}}";
+                                                        data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                {{-- FIM DAS FOTOS NOTICIA --}}
+
                 {{-- TAGS ATRELADAS --}}
                 <section class="multiple-choices">
                     <div class="row">
