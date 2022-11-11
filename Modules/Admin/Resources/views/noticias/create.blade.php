@@ -44,8 +44,7 @@
             @endif
             @if ($errors->any())
                 <div class="col-md-12 form-group">
-                    <div class="alert alert-warning alert-dismissible fade show"
-                         role="alert">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>
                             <ul style="list-style: none;">
                                 @foreach ($errors->all() as $error)
@@ -53,13 +52,13 @@
                                 @endforeach
                             </ul>
                         </strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
             @endif
 
-            <form class="form form-horizontal" enctype="multipart/form-data" method="post" action="{{ route('noticias.store') }}">
+            <form class="form form-horizontal" enctype="multipart/form-data" method="post"
+                action="{{ route('noticias.store') }}">
                 @csrf
                 @method('post')
 
@@ -129,7 +128,8 @@
                                 {{-- <div class="card-content"> --}}
                                 <div class="card-body">
                                     <!-- File uploader with validation -->
-                                   <input type="file" name="noticia_foto[]" class="form-control" id="noticia_foto" multiple>
+                                    <input type="file" name="noticia_foto[]" class="form-control" id="noticia_foto"
+                                        multiple>
                                 </div>
                                 {{-- </div> --}}
                             </div>
@@ -149,12 +149,13 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-4">
                                                 <h6>Tags</h6>
-                                                <p>Clique dentro do campo para selecionar outras tags. Para cadastrar uma nova TAG,<a href="{{ route('tags.index') }}" target="_blank"> clique
+                                                <p>Clique dentro do campo para selecionar outras tags. Para cadastrar uma
+                                                    nova TAG,<a href="{{ route('tags.index') }}" target="_blank"> clique
                                                         aqui.</a>
                                                 </p>
                                                 <div class="form-group">
-                                                    <select class="choices form-select multiple-remove"
-                                                        multiple="multiple" tabindex="3" name="tags[]">
+                                                    <select class="choices form-select multiple-remove" multiple="multiple"
+                                                        tabindex="3" name="tags[]">
                                                         <optgroup label="tags">
                                                             @foreach ($tags as $tag)
                                                                 <option value="{{ $tag->descricao }}">{{ $tag->descricao }}
@@ -168,33 +169,36 @@
 
                                         </div>
 
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
-    <section class="basic-choices">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <h6>Selecione o status da notícia:</h6>
-                                    <p>Importante que irá aparecer ativa somente se estiver com status
-                                        <strong>PUBLICADO</strong></p>
-                                    <fieldset class="form-group">
-                                        <select class="form-select" id="noticia_status_id" name="noticia_status_id">
-                                          @foreach ($status as $item)
-                                            <option value="{{$item->id}}">{{$item->descricao}}</option>
-                                          @endforeach
-                                        </select>
-                                    </fieldset>
+                                    </div>
                                 </div>
                             </div>
-                             <div class="row">
+                        </div>
+                    </div>
+                </section>
+                <section class="basic-choices">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                                <h6>Selecione o status da notícia:</h6>
+                                                <p>Importante que irá aparecer ativa somente se estiver com status
+                                                    <strong>PUBLICADO</strong>
+                                                </p>
+                                                <fieldset class="form-group">
+                                                    <select class="form-select" id="noticia_status_id"
+                                                        name="noticia_status_id">
+                                                        @foreach ($status as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->descricao }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-12 mb-4">
                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                     <button type="submit"
@@ -205,12 +209,12 @@
                                             </div>
 
                                         </div>
-            </form>
-                        </div>
-                    </div>
+                        </form>
+                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
 

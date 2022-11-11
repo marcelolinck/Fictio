@@ -21,7 +21,7 @@ class NoticiasController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = NoticiasModel::with('status','comentarios')->orderby('created_at','desc')->get();
+        $this->repository = NoticiasModel::with('fotos','status','comentarios')->orderby('created_at','desc')->get();
         $this->tags = TagsModel::orderby('descricao','asc')->get();
         $this->status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
     }
@@ -131,7 +131,7 @@ class NoticiasController extends Controller
         if (!$noticiaAtual = $this->repository->find($id))
             return redirect()->route('admin::noticias.index')->with('danger', 'Noticia não encontrada! Tente novamente');
 
-       //dd($noticiaAtual->tags);
+       //dd($noticiaAtual);
             return view('admin::noticias.edit', compact('noticiaAtual','config','tags','status'));
     }
 

@@ -11,6 +11,6 @@ class NoticiasFotosModel extends Model
 
     protected $table = "noticia_fotos";
 
-    protected $fillable =['noticia_foto_path', 'noticia_id','created_at', 'updated_at'];
+    protected $fillable =['id','noticia_foto_path', 'noticia_id','created_at', 'updated_at'];
 
 }

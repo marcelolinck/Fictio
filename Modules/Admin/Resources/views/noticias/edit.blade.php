@@ -120,207 +120,386 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Fotos incluidas</h5>
+                                    <h5 class="card-title">Fotos incluidas - Clique na foto para abrir as opções - <button type="button" class="btn btn-success block"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalAdicionarFoto">
+                                                            Adicionar Foto
+                                                        </button></h5>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
-                                        @foreach ($noticiaAtual->fotos as $foto)
-                                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                                                <a href="#">
-                                                    <img class="w-100 active" style="width:500px;height:280px;"
-                                                        src="{{url('storage/'.$foto->noticia_foto_path)}}";
-                                                        data-bs-target="#Gallerycarousel" data-bs-slide-to="0">
-                                                </a>
+
+                                <div class="row">
+                                    @forelse ($noticiaAtual->fotos as $foto)
+                                        <div class="col-md-4">
+                                            <div class="card-body">
+                                                <div class="card">
+                                                    <div class="card-content">
+                                                        <a href="#opcoesFoto{{ $foto->id }}" data-bs-toggle="collapse"
+                                                            role="button" aria-expanded="true" aria-controls="opcoesFoto">
+                                                            <img class="img-fluid w-100"
+                                                                src="
+                                                            @if (str_contains($foto->noticia_foto_path, 'http')) {{ $foto->noticia_foto_path }}
+                                                             @else
+                                                                {{ url('storage/' . $foto->noticia_foto_path) }} @endif
+                                                            "
+                                                                alt="foto{{ $foto->id }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="card-footer justify-content-center collapse mb-4"
+                                                        id="opcoesFoto{{ $foto->id }}" style="">
+                                                        <button type="button" class="btn btn-primary block"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalEditarFoto{{ $foto->id }}">
+                                                            Editar
+                                                        </button>
+
+                                                        <button type="button" class="btn btn-danger block"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalExclusao{{ $foto->id }}">
+                                                            Excluir
+                                                        </button>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @empty
+                                        Nenhuma foto
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+        </div>
+        </section>
 
+        {{-- FIM DAS FOTOS NOTICIA --}}
 
-                {{-- FIM DAS FOTOS NOTICIA --}}
+        {{-- TAGS ATRELADAS --}}
+        <section class="multiple-choices">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
-                {{-- TAGS ATRELADAS --}}
-                <section class="multiple-choices">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                                <h6>Tags</h6>
-                                                <p>Clique dentro do campo para selecionar outras tags. Para cadastrar uma
-                                                    nova
-                                                    TAG,<a href="{{ route('tags.index') }}" target="_blank"> clique
-                                                        aqui.</a>
-                                                </p>
-                                                <div class="form-group">
-                                                    <select class="choices form-select multiple-remove" name="tags[]"
-                                                        multiple="multiple">
-                                                        <optgroup label="tags">
-                                                            @foreach ($tags as $tag)
-                                                                <option value="{{ $tag->descricao }}"
-                                                                    @foreach ($noticiaAtual->tags as $tagAtual)
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 mb-4">
+                                        <h6>Tags</h6>
+                                        <p>Clique dentro do campo para selecionar outras tags. Para cadastrar uma
+                                            nova
+                                            TAG,<a href="{{ route('tags.index') }}" target="_blank"> clique
+                                                aqui.</a>
+                                        </p>
+                                        <div class="form-group">
+                                            <select class="choices form-select multiple-remove" name="tags[]"
+                                                multiple="multiple">
+                                                <optgroup label="tags">
+                                                    @foreach ($tags as $tag)
+                                                        <option value="{{ $tag->descricao }}"
+                                                            @foreach ($noticiaAtual->tags as $tagAtual)
                                                                     @if ($tag->descricao == $tagAtual)
                                                                         selected
                                                                     @endif @endforeach>
-                                                                    {{ $tag->descricao }}
-                                                            @endforeach
+                                                            {{ $tag->descricao }}
+                                                    @endforeach
 
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-
+                                                </optgroup>
+                                            </select>
                                         </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- FIM DAS TAGS ATRELADAS --}}
+        {{-- INICIO DO STATUS --}}
+        <section class="basic-choices">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 mb-4">
+                                        <h6>Selecione o status da notícia:</h6>
+                                        <p>Importante: A notícia irá aparecer no site somente se estiver com status
+                                            <strong>PUBLICADO</strong>
+                                        </p>
+                                        <fieldset class="form-group">
+                                            <select class="form-select" id="noticia_status_id" name="noticia_status_id">
+                                                @foreach ($status as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        @if ($noticiaAtual->noticia_status_id == $item->id) selected @endif>
+                                                        {{ $item->descricao }}</option>
+                                                @endforeach
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 mb-4">
+                                        <div class="col-sm-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Atualizar</button>
+                                            <a href="{{ route('noticias.index') }}"
+                                                class="btn btn-light-danger me-1 mb-1">Cancelar</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        {{-- FIM DO STATUS --}}
+        <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+
+                        <div class="modal fade" id="modalAdicionarFoto" tabindex="-1"
+                            aria-labelledby="modaltitleAdicionar" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modaltitleAdicionar">
+                                            <h4 class="card-title">Selecione uma foto:</h4>
+                                        </h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <input type="file">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Cancelar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-success ml-1" data-bs-dismiss="modal">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Adicionar</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-
-                {{-- FIM DAS TAGS ATRELADAS --}}
-                {{-- INICIO DO STATUS --}}
-                <section class="basic-choices">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                                <h6>Selecione o status da notícia:</h6>
-                                                <p>Importante: A notícia irá aparecer no site somente se estiver com status
-                                                    <strong>PUBLICADO</strong>
-                                                </p>
-                                                <fieldset class="form-group">
-                                                    <select class="form-select" id="noticia_status_id"
-                                                        name="noticia_status_id">
-                                                        @foreach ($status as $item)
-                                                            <option value="{{ $item->id }}"
-                                                                @if ($noticiaAtual->noticia_status_id == $item->id) selected @endif>
-                                                                {{ $item->descricao }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 mb-4">
-                                                <div class="col-sm-12 d-flex justify-content-end">
-                                                    <button type="submit"
-                                                        class="btn btn-primary me-1 mb-1">Atualizar</button>
-                                                    <a href="{{ route('noticias.index') }}"
-                                                        class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-            </form>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
-    {{-- FIM DO STATUS --}}
-    {{-- COMENTARIOS ATRELADOS ATRELADAS --}}
-    @if (\Session::has('danger_tag'))
-        <div class="alert alert-danger alert-dismissible show fade">
-            {!! \Session::get('danger_tag') !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    @if (\Session::has('success_tag'))
-        <div class="alert alert-success alert-dismissible show fade">
-            {!! \Session::get('success_tag') !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    <section class="section">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header" id="comentarios">
-                        <h4 class="card-title">Comentários</h4>
-                    </div>
+                </div>
+            </div>
+        
+        {{-- MODAL EDITAR FOTO --}}
+        @foreach ($noticiaAtual->fotos as $foto)
+            <div class="card">
+                <div class="card-content">
                     <div class="card-body">
 
+                        <div class="modal fade" id="modalEditarFoto{{ $foto->id }}" tabindex="-1"
+                            aria-labelledby="modaltitleEditar" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modaltitleEditar">
+                                            <h4 class="card-title">Atualizar foto {{ $foto->id }}!</h4>
+                                        </h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <input type="file">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Cancelar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Atualizar Foto</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- FIM MODAL EDITAR FOTO --}}
+
+        {{-- MODAL EXCLUSAO --}}
+        @foreach ($noticiaAtual->fotos as $foto)
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+
+                        <div class="modal fade" id="modalExclusao{{ $foto->id }}" tabindex="-1"
+                            aria-labelledby="modaltitleExclusao" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modaltitleExclusao">
+                                            <h4 class="card-title">Confirmação!</h4>
+                                        </h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x">
+                                                <line x1="18" y1="6" x2="6" y2="18">
+                                                </line>
+                                                <line x1="6" y1="6" x2="18" y2="18">
+                                                </line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5 class="card-title">Deseja excluir a foto {{ $foto->id }}?</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Cancelar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger ml-1" data-bs-dismiss="modal">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Confirmo a exclusão</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{-- FIM MODAL EXCLUSAO --}}
+        {{-- COMENTARIOS ATRELADOS ATRELADAS --}}
+        @if (\Session::has('danger_tag'))
+            <div class="alert alert-danger alert-dismissible show fade">
+                {!! \Session::get('danger_tag') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (\Session::has('success_tag'))
+            <div class="alert alert-success alert-dismissible show fade">
+                {!! \Session::get('success_tag') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <section class="section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header" id="comentarios">
+                            <h4 class="card-title">Comentários</h4>
+                        </div>
                         <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>USUÁRIO</th>
-                                        <th>E-MAIL</th>
-                                        <th>COMENTÁRIO</th>
-                                        <th>DATA DA PUBLICAÇÃO</th>
-                                        <th>STATUS</th>
-                                        <th class="text-center">AÇÕES</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($noticiaAtual->comentarios as $comentario)
+                            <div class="card-body">
+                                <table class="table table-striped" id="table1">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $comentario->id }}</td>
-                                            <td>{{ $comentario->user->name }}</td>
-                                            <td>{{ $comentario->user->email }}</td>
-                                            <td>{{ $comentario->descricao }}</td>
-                                            <td>{{ $comentario->created_at->format('d/m/Y h:m') }}</td>
-                                            <td><span
-                                                    class="badge {{ $comentario->status->corStatus }}">{{ $comentario->status->descricao }}</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <form action="{{ route('noticiasComentarios.update', $comentario->id) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('patch')
-                                                    <input type="hidden" id="noticia_id" name="noticia_id"
-                                                        value={{ $noticiaAtual->id }}>
+                                            <th>ID</th>
+                                            <th>USUÁRIO</th>
+                                            <th>E-MAIL</th>
+                                            <th>COMENTÁRIO</th>
+                                            <th>DATA DA PUBLICAÇÃO</th>
+                                            <th>STATUS</th>
+                                            <th class="text-center">AÇÕES</th>
 
-                                                    <input type="hidden" id="id"
-                                                        name="id"value={{ $comentario->id }}>
-                                                    <input type="hidden" id="noticia_comentario_status_id"
-                                                        name="noticia_comentario_status_id"
-                                                        value={{ $comentario->noticia_comentario_status_id }}>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($noticiaAtual->comentarios as $comentario)
+                                            <tr>
+                                                <td>{{ $comentario->id }}</td>
+                                                <td>{{ $comentario->user->name }}</td>
+                                                <td>{{ $comentario->user->email }}</td>
+                                                <td>{{ $comentario->descricao }}</td>
+                                                <td>{{ $comentario->created_at->format('d/m/Y h:m') }}</td>
+                                                <td><span
+                                                        class="badge {{ $comentario->status->corStatus }}">{{ $comentario->status->descricao }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <form
+                                                        action="{{ route('noticiasComentarios.update', $comentario->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <input type="hidden" id="noticia_id" name="noticia_id"
+                                                            value={{ $noticiaAtual->id }}>
 
-                                                    <button data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        @if ($comentario->noticia_comentario_status_id == 1 || $comentario->noticia_comentario_status_id == 3) title="Bloquear" type="submit"
+                                                        <input type="hidden" id="id"
+                                                            name="id"value={{ $comentario->id }}>
+                                                        <input type="hidden" id="noticia_comentario_status_id"
+                                                            name="noticia_comentario_status_id"
+                                                            value={{ $comentario->noticia_comentario_status_id }}>
+
+                                                        <button data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            @if ($comentario->noticia_comentario_status_id == 1 || $comentario->noticia_comentario_status_id == 3) title="Bloquear" type="submit"
                                                                     class="btn btn-success btn-sm"><i
                                                                     class="icon dripicons-trash class"></i>Aprovar
                                                                 @else
                                                                     title="Bloquear" type="submit"
                                                                     class="btn btn-danger btn-sm"><i
                                                                     class="icon dripicons-trash class"></i>Reprovar @endif
-                                                        </button>
-                                                </form>
-                                            </td>
+                                                            </button>
+                                                    </form>
+                                                </td>
 
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td class="text-center" colspan="7">SEM COMENTÁRIOS ATÉ O MOMENTO</td>
-
-
-                                        </tr>
-                                    @endforelse
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="text-center" colspan="7">SEM COMENTÁRIOS ATÉ O MOMENTO</td>
 
 
-                                </tbody>
-                            </table>
+                                            </tr>
+                                        @endforelse
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 @endsection
