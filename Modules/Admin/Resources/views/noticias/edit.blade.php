@@ -261,151 +261,148 @@
 
 
         {{-- FIM DO STATUS --}}
-        <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
+      {{-- INICIO DO ADICIONAR FOTO --}}
 
-                        <div class="modal fade" id="modalAdicionarFoto" tabindex="-1"
-                            aria-labelledby="modaltitleAdicionar" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
-                                role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modaltitleAdicionar">
-                                            <h4 class="card-title">Selecione uma foto:</h4>
-                                        </h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-x">
-                                                <line x1="18" y1="6" x2="6" y2="18">
-                                                </line>
-                                                <line x1="6" y1="6" x2="18" y2="18">
-                                                </line>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <input type="file">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Cancelar</span>
-                                        </button>
-                                        <button type="button" class="btn btn-success ml-1" data-bs-dismiss="modal">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Adicionar</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal fade" id="modalAdicionarFoto" tabindex="-1"
+                aria-labelledby="modaltitleAdicionar" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                    role="document">
+                    <form action="{{route('fotos.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        
+                        <input type="hidden" name="noticia_id" value="{{$noticiaAtual->id}}">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modaltitleAdicionar">
+                                <h4 class="card-title">Selecione uma foto:</h4>
+                            </h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18">
+                                    </line>
+                                    <line x1="6" y1="6" x2="18" y2="18">
+                                    </line>
+                                </svg>
+                            </button>
                         </div>
-                    </div>
+
+                        <div class="modal-body">
+                            <input class="form-control"type="file" name='noticia_foto' id='noticia_foto' required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cancelar</span>
+                            </button>
+                            <button type="submit" class="btn btn-success ml-1" data-bs-dismiss="modal">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Adicionar</span>
+                            </button>
+                        </div>
+                </form>
                 </div>
             </div>
-        
+        </div>
+        {{-- FIM DO ADICIONAR FOTO --}}
+
         {{-- MODAL EDITAR FOTO --}}
         @foreach ($noticiaAtual->fotos as $foto)
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-
-                        <div class="modal fade" id="modalEditarFoto{{ $foto->id }}" tabindex="-1"
-                            aria-labelledby="modaltitleEditar" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
-                                role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modaltitleEditar">
-                                            <h4 class="card-title">Atualizar foto {{ $foto->id }}!</h4>
-                                        </h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-x">
-                                                <line x1="18" y1="6" x2="6" y2="18">
-                                                </line>
-                                                <line x1="6" y1="6" x2="18" y2="18">
-                                                </line>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <input type="file">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Cancelar</span>
-                                        </button>
-                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Atualizar Foto</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal fade" id="modalEditarFoto{{ $foto->id }}" tabindex="-1"
+                aria-labelledby="modaltitleEditar" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                    role="document">
+                    <form action="{{route('fotos.update', $foto->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('patch')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modaltitleEditar">
+                                <h4 class="card-title">Atualizar foto {{ $foto->id }}!</h4>
+                            </h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18">
+                                    </line>
+                                    <line x1="6" y1="6" x2="18" y2="18">
+                                    </line>
+                                </svg>
+                            </button>
                         </div>
+
+                        <div class="modal-body">
+                            <input type="file" class="form-control" name='fotoAtualizar'required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cancelar</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Atualizar Foto</span>
+                            </button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
         @endforeach
         {{-- FIM MODAL EDITAR FOTO --}}
 
         {{-- MODAL EXCLUSAO --}}
         @foreach ($noticiaAtual->fotos as $foto)
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-
-                        <div class="modal fade" id="modalExclusao{{ $foto->id }}" tabindex="-1"
-                            aria-labelledby="modaltitleExclusao" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
-                                role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modaltitleExclusao">
-                                            <h4 class="card-title">Confirmação!</h4>
-                                        </h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-x">
-                                                <line x1="18" y1="6" x2="6" y2="18">
-                                                </line>
-                                                <line x1="6" y1="6" x2="18" y2="18">
-                                                </line>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h5 class="card-title">Deseja excluir a foto {{ $foto->id }}?</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                                            <i class="bx bx-x d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Cancelar</span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger ml-1" data-bs-dismiss="modal">
-                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                            <span class="d-none d-sm-block">Confirmo a exclusão</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="modal fade" id="modalExclusao{{ $foto->id }}" tabindex="-1"
+                aria-labelledby="modaltitleExclusao" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
+                    role="document">
+                    <form action="{{route('fotos.destroy', $foto->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('delete')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modaltitleExclusao">
+                                <h4 class="card-title">Confirmação!</h4>
+                            </h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18">
+                                    </line>
+                                    <line x1="6" y1="6" x2="18" y2="18">
+                                    </line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="card-title">Deseja excluir a foto {{ $foto->id }}?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                                <i class="bx bx-x d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Cancelar</span>
+                            </button>
+                            <button type="submit" class="btn btn-danger ml-1" data-bs-dismiss="modal">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Confirmo a exclusão</span>
+                            </button>
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
+
         @endforeach
         {{-- FIM MODAL EXCLUSAO --}}
         {{-- COMENTARIOS ATRELADOS ATRELADAS --}}

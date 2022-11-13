@@ -74,7 +74,7 @@ class NoticiasController extends Controller
         ]);
         $fotos = $request->validate([
             'noticia_foto' => 'required',
-            'noticia_foto.*' => 'mimes:doc,pdf,docx,txt,zip,jpeg,jpg,png,webp'
+            'noticia_foto.*' => 'mimes:jpeg,jpg,png,webp'
         ]);
 
         $arquivo = $fotos['noticia_foto'];
@@ -151,7 +151,7 @@ class NoticiasController extends Controller
         $noticiaAtual->corpo = $request->corpo;
         $noticiaAtual->noticia_status_id = $request->noticia_status_id;
         $noticiaAtual->tags = $request['tags'];
-        
+
         $noticiaAtual->update();
 
         return redirect()->route('noticias.index')->with('success', 'Noticia Atualizada com sucesso');
@@ -168,11 +168,11 @@ class NoticiasController extends Controller
         if (!$noticiaAtual)
             return redirect()->route('admin::noticias.index')->with('danger', 'Não excluído! Selecione o registro correto para exclusão');
 
-        
+
         foreach($noticiaAtual->fotos  as $fotos){
             Storage::delete($fotos->noticia_foto_path);
-        }        
-        
+        }
+
         $noticiaAtual->fotos()->delete();
         $noticiaAtual->comentarios()->delete();
         $noticiaAtual->delete();

@@ -1,11 +1,13 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\dashboard\DashController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiasController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiasComentariosController;
 use Modules\Admin\Http\Controllers\Tags\TagController;
 use Modules\Admin\Http\Controllers\UsersController;
+use Modules\Admin\Http\Controllers\Noticias\NoticiaFotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,6 @@ Route::prefix('admin')->group(function() {
     Route::resource('users', UsersController::class);
     Route::resource('tags', TagController::class);
     Route::resource('noticiasComentarios', NoticiasComentariosController::class);
+    Route::resource('fotos', NoticiaFotoController::class);
     Route::resource('noticias', NoticiasController::class);
 });
