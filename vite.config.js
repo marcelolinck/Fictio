@@ -15,15 +15,15 @@ export default defineConfig({
     build:{
         rollupOptions: {
             output: {
-                entryFileNames: 'assets/main/[name].js',   
-                chunkFileNames: 'assets/chunks/[name].js',
-                assetFileNames: 'assets/resources/[ext]/[name].[ext]',
-                manualChunks(id) {
+                /* entryFileNames: 'assets/main/[name].mjs',   
+                chunkFileNames: 'assets/chunks/[name].mjs',
+                assetFileNames: 'assets/resources/[ext]/[name].[ext]', */
+                /* manualChunks(id) {
                     if (id.includes('Index') ) {
                         return 'indexChunk';
                     }
                     
-                },
+                }, */
             }
 
         },

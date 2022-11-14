@@ -1,4 +1,5 @@
-import './globalstyles.scss';
+/* import './globalstyles.scss';
+import './tailwind.css' */
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { createInertiaApp } from '@inertiajs/inertia-react';
@@ -6,7 +7,6 @@ import createServer from '@inertiajs/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 /* import route from '../../vendor/tightenco/ziggy/dist/index.m'; */
 import Layout from './components/Layout/Layout';
-import 'vite/modulepreload-polyfill'
 
 const appName = 'Laravel';
 

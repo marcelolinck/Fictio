@@ -20,9 +20,9 @@ import './styles.scss';
 /* import './tailwind.css' */
 import st from './classes'
 import {Container, Child} from 'teapotcss';
-import Comentario from './Template/Comentario/Comentario';
-import moment from 'moment';
-import axios from 'axios';
+/* import Comentario from './Template/Comentario/Comentario'; */
+/* import moment from 'moment';
+import axios from 'axios'; */
 function NoticiaUni({noticia, ...props}){
     const tituloRef = useRef<HTMLDivElement>(null);
     const sugestoesRef = useRef<HTMLHeadingElement>(null);

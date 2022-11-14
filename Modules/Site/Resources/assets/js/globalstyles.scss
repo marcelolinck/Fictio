@@ -69,3 +69,7 @@ body{
         flex-shrink: 0;
     }
 }
+*, *::before, *::after{
+    width: var(--squareSize, unset);
+    height: var(--squareSize, unset);
+}
