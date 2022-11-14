@@ -15,6 +15,7 @@
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
                         <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
                             para criação/edição de noticias</p>
+                            
                     </div>
 
 

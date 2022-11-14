@@ -143,14 +143,15 @@ class NoticiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-       // dd($request->all());
+
         if (!$noticiaAtual = $this->repository->find($id))
             return redirect()->route('noticias.index')->with('danger', 'Notícia não encontrada! Tente novamente');
 
         $noticiaAtual->titulo = $request->titulo;
         $noticiaAtual->corpo = $request->corpo;
         $noticiaAtual->noticia_status_id = $request->noticia_status_id;
-        $noticiaAtual->tags = $request['tags'];
+        $noticiaAtual->tags = $request->tags;
+        //dd($noticiaAtual);
 
         $noticiaAtual->update();
 
