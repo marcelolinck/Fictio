@@ -58,13 +58,8 @@ body{
         transform: scale(1.07);
     }
 }
-body, html{
-    height: unset;
-    max-width: 100vw;
-    
-}
 #app{
-    min-height: calc(100vh - 65px);
+    min-height: 100vh;
     height: 100%;
     display: flex;
     flex-direction: column;

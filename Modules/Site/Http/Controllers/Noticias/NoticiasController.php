@@ -65,7 +65,7 @@ class NoticiasController extends Controller
         $noticiaTratada['tags'] = $noticia->tags;
         $noticiaTratada['titulo'] = $noticia->titulo;
         $noticiaTratada['texto'] = $noticia->corpo;
-        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
+        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_path;
         $noticiaTratada['comentarios'] = $noticia->comentarios;
         $noticiaTratada['sugestoes'] = $this->getLast3Wtags($noticia->tags);
 
@@ -118,15 +118,6 @@ class NoticiasController extends Controller
         $noticiasTagDestaque = [];
         foreach($tagsDestaque as $tag){            
             $last5WTag = $this->get5NewsWithTag(ucwords($tag['nome']));
-            //noticiaModel wherejsoncontains $tag['nome']
-            $noticia = new NoticiasModel();
-            $noticia = $noticia
-            ->with('fotos')
-            ->whereJsonContains('tags', ucwords($tag['nome']))
-            ->orderby('id', 'desc')
-            ->get()
-            ->toArray();
-            error_log(count($noticia). ' - '. ucwords($tag['nome']));
             if(count($last5WTag) > 0){
                 $noticiasTagDestaque[] = [
                     'tag' => $tag->nome,

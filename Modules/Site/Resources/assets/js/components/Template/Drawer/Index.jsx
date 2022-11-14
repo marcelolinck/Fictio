@@ -10,14 +10,11 @@ import './styles.scss';
 const Gaveta = ({aberto, setDrawer}) => {
   const[tela, setTela] = useState(0);
   useEffect(() => {
-    /* onScreen resize and onload, setTeala as width of screen */
-    window.onload = () => {
-      setTela(window.screen.width);
-    };
+    setTela(window.screen.width);
     window.onresize = () => {
       setTela(window.screen.width);
     };
-  });
+  }, []);
 
 
   const showDrawer = () => {

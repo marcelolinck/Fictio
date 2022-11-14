@@ -15,7 +15,7 @@ function CaixaBuscas({resultados}) {
                     {resultados.map((noticia, i) =>
                         <a href={"/noticia/"+noticia.id} key={randHash()} className="cardBusca rounded-md w-full h-28 bg-neutral-800 flex hover:scale-[1.015] transition-transform duration-50 cursor-pointer">
                             <div className="imgWrapper w-1/3 h-full bg-neutral-600 flex justify-center items-center">
-                                <img className="w-full h-full object-cover" src={noticia.fotos[0]?noticia.fotos[0].noticia_foto_patch:''}/>
+                                <img className="w-full h-full object-cover" src={noticia.fotos[0]?noticia.fotos[0].noticia_foto_path:''}/>
                             </div>
                             <div className="infoWrapper w-2/3 h-full flex flex-col justify-center items-start p-2  [&>*]:text-white">
                                 <h3 className="text-md font-bold">{noticia.titulo}</h3>
