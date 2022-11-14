@@ -18,7 +18,9 @@ class TagsModelFactory extends Factory
     {
         return [
             'descricao' => ucwords($this->faker->unique()->word(10)),
-            'destaque' => rand(true,false),
+            /* 'destaque' => rand(true,false), */
+            //destaque has a 10% chance of being true
+            'destaque' => $this->faker->boolean(10),
             'created_at' => now(),
             'updated_at' => now(),
         ];
