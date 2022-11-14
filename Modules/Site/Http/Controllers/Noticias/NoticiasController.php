@@ -60,7 +60,7 @@ class NoticiasController extends Controller
         $noticiaTratada['tags'] = $noticia->tags;
         $noticiaTratada['titulo'] = $noticia->titulo;
         $noticiaTratada['texto'] = $noticia->corpo;
-        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_path;
+        $noticiaTratada['imagem'] = count($noticia->fotos) > 0 ? $noticia->fotos[0]->url : 'https://via.placeholder.com/150';
         $noticiaTratada['sugestoes'] = $this->getLast3Wtags($noticia->tags);
 
         //dd($noticiaTratada);
