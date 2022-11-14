@@ -128,14 +128,6 @@ class NoticiasController extends Controller
         
         return Inertia::render('components/Home/Index', compact('noticiaTratada', 'noticiasTagDestaque'));
     }
-    public function destaqueHome(){
-        $destaque = NoticiasModel::
-        whereJsonContains('tags', ['Futebol', 'Amet'])
-        ->take(10)->get();
-
-        return json_decode($destaque);
-    }
-    
     public function busca(Request $request){
         $noticias = NoticiasModel::with('fotos')
         ->where('titulo', 'like', '%'.$request->busca.'%')
@@ -145,7 +137,7 @@ class NoticiasController extends Controller
         ;
         //get only first 40 letters of field corpo
         $noticias = $noticias->map(function($noticia){
-            $noticia->corpo = substr($noticia->corpo, 0, 45);
+            $noticia->corpo = substr($noticia->corpo, 0, 60);
             return $noticia;
         });
         //dd($noticias);
