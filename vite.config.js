@@ -13,7 +13,7 @@ export default defineConfig({
         react(),
     ],
     build:{
-        rollupOptions: {
+       /*  rollupOptions: {
             output: {
                 entryFileNames: 'assets/main/[name].js',   
                 chunkFileNames: 'assets/chunks/[name].js',
@@ -26,7 +26,7 @@ export default defineConfig({
                 },
             }
 
-        },
+        }, */
         
     },
     ssr: {

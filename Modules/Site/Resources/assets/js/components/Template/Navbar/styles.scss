@@ -23,6 +23,7 @@ nav.navBar {
             border:none;
             outline:1px solid transparent;
             font-size: 30px;
+            z-index: 2;
             svg{
                 transition: color 0.5s;
                 color: white;
@@ -39,7 +40,8 @@ nav.navBar {
 
         }
         .wrapperInput{
-            right:68px;
+            right:65px;
+            padding: 0px 5px;
             @keyframes slideIn{
                 from{
                     transform: translateX(calc(100% + 50px));
@@ -49,6 +51,25 @@ nav.navBar {
                 }
             }
             animation: slideIn var(--tempoAnimacao) forwards;
+            input{
+                outline: transparent;
+                height: 28px;
+                border-radius: 4px;
+                padding: 5px;
+                /* position: relative; */
+                border: 1px solid black;
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                z-index: -1;
+
+            }
         }
         .animacaoMorrerInput{
             @keyframes slideOut{

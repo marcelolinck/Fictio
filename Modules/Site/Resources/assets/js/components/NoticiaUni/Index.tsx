@@ -42,14 +42,9 @@ function NoticiaUni({noticia, ...props}){
             setSugestoesHeight(sugestoesRef.current!.clientHeight);
         })
     },[])
-   
     const styleCards:CSSvars = {
         "--tituloTopo": tituloHeight + "px",
         "--sugestoesTopo": sugestoesHeight + "px"
-    }
-    const imagens = [mario, sonic, luigi, tails, knuckles, bowser, shadow];
-    function randimg(){
-        return imagens[Math.floor(Math.random() * imagens.length)];
     }
     return(
     <>

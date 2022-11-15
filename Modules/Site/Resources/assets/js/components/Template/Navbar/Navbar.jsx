@@ -70,7 +70,7 @@ function Navbar({setDrawer}){
                     </button>
                     {areaPesquisa &&
                         <div id='wrapperInput' className={`wrapperInput ${st.wrapperInput} ${animacaoMorrer?'animacaoMorrerInput':''}`}>
-                            <Input placeholder='Pesquisar' id='inputPesquisar' value={busca} onChange={handleChange} />
+                            <input placeholder='Pesquisar' id='inputPesquisar' value={busca} onChange={handleChange} />
                         </div>
                     }
                     {(areaPesquisa && busca.length > 0) &&
