@@ -1,35 +1,20 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
-
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'Modules/Site/Resources/assets/js/app.jsx',
-            ssr: 'Modules/Site/Resources/assets/js/ssr.jsx',
+            input: 'resources/js/app.js',
             refresh: true,
         }),
-        react(),
-    ],
-    build:{
-        rollupOptions: {
-            output: {
-                entryFileNames: 'assets/main/[name].js',   
-                chunkFileNames: 'assets/chunks/[name].js',
-                assetFileNames: 'assets/resources/[ext]/[name].[ext]',
-                manualChunks(id) {
-                    if (id.includes('Index') ) {
-                        return 'indexChunk';
-                    }
-                    
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
                 },
-            }
-
-        },
-        
-    },
-    ssr: {
-        noExternal: ['@inertiajs/server'],
-    },
+            },
+        }),
+    ],
 });
