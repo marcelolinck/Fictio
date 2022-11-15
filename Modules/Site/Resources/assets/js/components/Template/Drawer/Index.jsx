@@ -3,21 +3,19 @@ import { ConfigProvider } from 'antd';
 
 import React, { useState, useEffect } from 'react';
 /* import antd css */
-import 'antd/dist/antd.css';
+/* import 'antd/dist/antd.css'; */
 import Botao from './Botao/index.jsx';
 import './styles.scss';
+import './drawer.scss';
 
 const Gaveta = ({aberto, setDrawer}) => {
   const[tela, setTela] = useState(0);
   useEffect(() => {
-    /* onScreen resize and onload, setTeala as width of screen */
-    window.onload = () => {
-      setTela(window.screen.width);
-    };
+    setTela(window.screen.width);
     window.onresize = () => {
       setTela(window.screen.width);
     };
-  });
+  }, []);
 
 
   const showDrawer = () => {

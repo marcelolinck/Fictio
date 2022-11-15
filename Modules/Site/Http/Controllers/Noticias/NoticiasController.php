@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Noticias\NoticiasModel;
 use Inertia\Inertia;
 use App\Models\Noticias\TagsModel;
+use Termwind\Components\Dd;
 
 class NoticiasController extends Controller
 {
@@ -44,28 +45,22 @@ class NoticiasController extends Controller
     }
     private function  getLast3Wtags($tags){
         $noticiasRaw = NoticiasModel::with('fotos')
-        //->select('id', 'titulo', 'tags')
+        ->select('id', 'titulo', 'tags')
         ->whereJsonContains('tags', $tags)
         ->take(3)
-        ->get()
-        ->toArray();
-        //get only field 'fotos', 'tags', 'id' and 'titulo'
-        $noticias = array_map(function($noticia){
-            return array_intersect_key($noticia, array_flip(['fotos', 'tags', 'id', 'titulo']));
-        }, $noticiasRaw);
-        return $noticias;
+        ->get();
+        return $noticiasRaw;
 
     }
     public function viewNoticia($id){
-        $noticia = NoticiasModel::with('fotos','comentarios','comentarios.user','comentarios.status')
-        ->where('id', $id)
-        ->first();
+        $noticia = NoticiasModel::with('fotos')
+        ->find($id);
+
         $noticiaTratada['id'] = $noticia->id;
         $noticiaTratada['tags'] = $noticia->tags;
         $noticiaTratada['titulo'] = $noticia->titulo;
         $noticiaTratada['texto'] = $noticia->corpo;
-        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
-        $noticiaTratada['comentarios'] = $noticia->comentarios;
+        $noticiaTratada['imagem'] = count($noticia->fotos) > 0 ? $noticia->fotos[0]->url : 'https://via.placeholder.com/150';
         $noticiaTratada['sugestoes'] = $this->getLast3Wtags($noticia->tags);
 
         //dd($noticiaTratada);
@@ -84,8 +79,8 @@ class NoticiasController extends Controller
         ->get()
         ->toArray();
         foreach($noticiasRaw as $key => $noticia){
-            if(array_key_exists('fotos', $noticia) && array_key_exists(0, $noticia['fotos']) && array_key_exists('noticia_foto_patch', $noticia['fotos'][0])){
-                $noticiasRaw[$key]['imagem'] = $noticia['fotos'][0]['noticia_foto_patch'];
+            if(count($noticia['fotos']) > 0){
+                $noticiasRaw[$key]['imagem'] = $noticia['fotos'][0]['noticia_foto_path'];
             }
             else{
                 $noticiasRaw[$key]['imagem'] = 'https://via.placeholder.com/150';
@@ -99,18 +94,23 @@ class NoticiasController extends Controller
         $noticia = new NoticiasModel();
         //last register
         $noticia = $noticia
+        ->with('fotos')
         ->orderby('id', 'desc')
         ->first();
+
         $tagsDestaque = TagsModel::where('destaque', 1)
         ->select('id', 'descricao as nome')
         ->get();
 
+        /* dd(NoticiasModel::with('fotos')->orderby('id', 'desc')->get()->toArray()); */
         $noticiaTratada['id'] = $noticia->id;
         $noticiaTratada['titulo'] = $noticia->titulo;
-        $noticiaTratada['imagem'] = $noticia->fotos[0]->noticia_foto_patch;
+
+        $noticiaTratada['imagem'] = count($noticia->fotos) > 0 ? $noticia->fotos[0]->noticia_foto_path : 'https://via.placeholder.com/150';
+        
 
         $noticiasTagDestaque = [];
-        foreach($tagsDestaque as $tag){
+        foreach($tagsDestaque as $tag){            
             $last5WTag = $this->get5NewsWithTag(ucwords($tag['nome']));
             if(count($last5WTag) > 0){
                 $noticiasTagDestaque[] = [
@@ -119,18 +119,9 @@ class NoticiasController extends Controller
                 ];
             }
         }
-        //dd($noticiasTagDestaque);
         
         return Inertia::render('components/Home/Index', compact('noticiaTratada', 'noticiasTagDestaque'));
     }
-    public function destaqueHome(){
-        $destaque = NoticiasModel::
-        whereJsonContains('tags', ['Futebol', 'Amet'])
-        ->take(10)->get();
-
-        return json_decode($destaque);
-    }
-    
     public function busca(Request $request){
         $noticias = NoticiasModel::with('fotos')
         ->where('titulo', 'like', '%'.$request->busca.'%')
@@ -140,7 +131,7 @@ class NoticiasController extends Controller
         ;
         //get only first 40 letters of field corpo
         $noticias = $noticias->map(function($noticia){
-            $noticia->corpo = substr($noticia->corpo, 0, 45);
+            $noticia->corpo = substr($noticia->corpo, 0, 60);
             return $noticia;
         });
         //dd($noticias);

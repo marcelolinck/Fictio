@@ -35,6 +35,7 @@ class NoticiasModel extends Model
         return $this->hasMany(NoticiasFotosModel::class, 'noticia_id', 'id')
         ->select('id','noticia_id', 'noticia_foto_path');
     }
+    
 
     public function status()
     {

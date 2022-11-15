@@ -17,8 +17,10 @@ class TagsModelFactory extends Factory
     public function definition()
     {
         return [
-            'descricao' => $this->faker->unique()->word(10),
-            'destaque' => rand(true,false),
+            'descricao' => ucwords($this->faker->unique()->word(10)),
+            /* 'destaque' => rand(true,false), */
+            //destaque has a 10% chance of being true
+            'destaque' => $this->faker->boolean(10),
             'created_at' => now(),
             'updated_at' => now(),
         ];

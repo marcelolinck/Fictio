@@ -37,11 +37,11 @@
     --margem: calc(var(--tituloTopo) - var(--sugestoesTopo) - 1px);
     margin-top: var(--margem);
 
-    .sugestoesNoticiaConjunto{
+    @at-root .sugestoesNoticiaConjunto{
         gap: var(--gap);
     }
     @media(max-width: 992px){
-        .sugestoesNoticiaConjunto{
+        @at-root .sugestoesNoticiaConjunto{
             .cardNoticiaSugestao{
                 width: 200px;
                 h3{
@@ -51,7 +51,7 @@
         }
     }
     @media(max-width: 768px){
-        .sugestoesNoticiaConjunto{
+        @at-root .sugestoesNoticiaConjunto{
             .cardNoticiaSugestao{
                 width: 150px;
                 h3{
