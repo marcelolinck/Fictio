@@ -27,3 +27,4 @@ Route::get('/noticias/tags',[NoticiasController::class, 'searchTags']);
 Route::get('/noticias', [NoticiasController::class, 'index']);
 Route::get('/noticias/{id}', [NoticiasController::class, 'show']);
 Route::get('/busca', [NoticiasController::class, 'busca']);
+Route::get('/noticias', [NoticiasController::class, 'buscaMaior']);

@@ -137,6 +137,16 @@ class NoticiasController extends Controller
         //dd($noticias);
         return $noticias;
     }
+    public function buscaMaior(Request $request){
+        /*  */
+        $noticias = NoticiasModel::with('fotos')
+        ->where('titulo', 'like', '%'.$request->search.'%')
+        ->select('id', 'titulo')
+        ->paginate($request->perPage)
+        ;
+        //dd($noticias->toArray());
+        return $noticias;
+    }
     public function listNoticias(){
         $noticias = NoticiasModel::with('fotos')
         ->select('id', 'titulo')

@@ -7,4 +7,5 @@ Route::get('/', 'Noticias\NoticiasController@viewHome');
 Route::get('/noticia/{id}', 'Noticias\NoticiasController@viewNoticia');
 Route::get('/noticias', 'Noticias\NoticiasController@listNoticias');
 
+
 Route::get('/sobre', 'Sobre\SobreController@index');

@@ -1,34 +1,73 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import {Container, Child } from 'teapotcss';
+import axios from 'axios'
 import './styles.scss'
 function NoticiasListagem() {
-  return (
-    <section className='noticiasSection'>
-        <section className="cabecalho">
-            <h1>Noticias</h1>
-        </section>
-        <div className="campoPesquisar">
-            <form>
-                <input type="search" name="pesquisa" id="" placeholder='Pesquise Aqui'/>
-            </form>
-            
-        </div>
-        <Container 
-            columns={'auto'}
-            gap='10px'
-            className="conteudoDestaque container items-center justify-center mx-auto"
-        >
-            {Array.from({length:10}).map((noticia, index) =>
-                <Child key={index}>
-                    <a className="cardNoticia hoverMargin"  href={`/noticia/1}`}>
-                        <img src="https://picsum.photos/200/300"></img>
-                        <h3>lorem, ipsum</h3>
-                    </a>
-                </Child>
-            )}
-        </Container>
+    const [data, setData] = useState([]);
+    const [fullData, setFullData] = useState([]);
+    const [busca, setBusca] = useState('');
+    const [perPages, setPerPages] = useState(1);
+    async function chamadoAPI() {
+        axios.get(`/api/noticias`, {
+            params: {
+                perPage: perPages * 10,
+                search: busca
+            }
+        })
+        .then(({data}) => {
+            setFullData(data)
+            setData(data.data)
+        })
+        .catch(console.log)
         
-    </section>
-  )
+    }
+    function avancarPag(){
+        // @ts-ignore
+        if(perPages + 1 <= fullData.last_page){
+            setPerPages(perPages + 1)
+        }
+    }
+    useEffect(() => {
+        chamadoAPI()
+    },[busca, perPages])
+    async function handleSubmit(e){
+        e.preventDefault();
+        await chamadoAPI();
+        return false;
+    }
+    
+    return (
+
+        <section className='noticiasSection'>
+            <section className="cabecalho">
+                <h1>Noticias</h1>
+            </section>
+            <div className="campoPesquisar">
+                <form onSubmit={handleSubmit}>
+                    <input type="search" name="pesquisa" id="" placeholder='Pesquise Aqui' value={busca} onChange={({target})=>{setBusca(target.value)}}/>
+                </form>
+                
+            </div>
+            <Container 
+                columns={'auto'}
+                gap='9px'
+                className="cardsNoticia container items-center justify-center mx-auto"
+            >
+                {data?.map((noticia, index) =>
+                    <Child key={index}>
+                        <a className="cardNoticia"  href={`/noticia/1`}>
+                            <img src={noticia.fotos[0] ? noticia.fotos[0].noticia_foto_path:'https://picsum.photos/200/300'}/>
+                            <h3>{noticia.titulo}</h3>
+                        </a>
+                    </Child>
+                )}
+            </Container>
+            {/* @ts-ignore */}
+            {fullData?.last_page > 1 && fullData?.last_page > perPages && <button onClick={avancarPag}>Carregar Mais</button>}
+            
+
+           
+        </section>
+    )
 }
 export default NoticiasListagem
