@@ -21,7 +21,7 @@ function Home({noticiaTratada, noticiasTagDestaque, ...props}) {
     return (
         <section className="homeSection">
             <section className="cabecalho">
-                <h1>Noticias</h1>
+                <h1>Home</h1>
             </section>
             <section className="noticiaDestaqueWrapper">
                 <div className='decoracaoFundo'></div>

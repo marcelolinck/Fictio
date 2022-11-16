@@ -17,11 +17,6 @@ const Gaveta = ({aberto, setDrawer}) => {
     };
   }, []);
 
-
-  const showDrawer = () => {
-    setDrawer(true);
-  };
-
   const onClose = () => {
     setDrawer(false);
   };
@@ -40,7 +35,7 @@ const Gaveta = ({aberto, setDrawer}) => {
         className='gaveta'
       >
         <Botao nome="Home" link="/" />
-        <Botao nome="Noticias" link="/" />
+        <Botao nome="Noticias" link="/noticias" />
         <Botao nome="Sobre" link="/sobre" />
         {/* <Botao nome="Noticia unica" link="/noticiaUni" /> */}
       </Drawer>

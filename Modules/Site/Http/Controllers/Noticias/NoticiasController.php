@@ -136,10 +136,15 @@ class NoticiasController extends Controller
         });
         //dd($noticias);
         return $noticias;
-
-
-
-
+    }
+    public function listNoticias(){
+        $noticias = NoticiasModel::with('fotos')
+        ->select('id', 'titulo')
+        ->orderby('id', 'desc')
+        ->get()
+        ;
+        
+        return Inertia::render('components/Noticias/NoticiasListagem', compact('noticias'));
     }
     
 }

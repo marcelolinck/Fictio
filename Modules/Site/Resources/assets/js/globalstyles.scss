@@ -1,6 +1,6 @@
-body{
+/* body{
     margin-top: 65px;
-}
+} */
 .cabecalho{
     display: flex;
     width: 100%;
@@ -58,13 +58,17 @@ body{
         transform: scale(1.07);
     }
 }
+body{
+    height: unset;
+}
 #app{
-    min-height: 100vh;
     height: 100%;
     display: flex;
     flex-direction: column;
     max-width: 100vw;
     overflow-x: hidden;
+    min-height: calc(100vh - 65px);
+    margin-top: 65px;
     >*{
         flex-shrink: 0;
     }

@@ -1,0 +1,21 @@
+.campoPesquisar{
+    width: clamp(300px, 50%, 900px);
+    padding: 40px 0px;
+    margin: 0px auto;
+    input{
+        outline: 1px transparent;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        width: 100%;
+        transition: all 0.2s;
+        &:hover{
+            border: 1px solid #aaa;
+        }
+        &:is(:focus, :active){
+            border: 1px solid #aaa;
+            box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
+        }
+
+    }
+}
