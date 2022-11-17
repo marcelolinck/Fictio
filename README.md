@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p> -->
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -11,6 +11,7 @@
 
 Efetue o clone do projeto;
 
+clone a pasta .env.example para .env (cp .env.example .env)
 Entre na pasta do projeto e ajuste as configurações do banco no arquivo .ENV
 
 Execute:
@@ -18,6 +19,7 @@ composer install
 npm install
 php artisan migrate --seed
 php artisan serve
+npm run dev
 
 Rotas disponiveis via api:
 /api/site/noticias -> Lista todas as noticias ordenadas por data
@@ -35,7 +37,7 @@ extension=mbstring  <br>
 extension=openssl <br>
 extension=pdo_mysql <br>
 
-Pacotes utulizados no projeto:
+
 
 
 ## License
