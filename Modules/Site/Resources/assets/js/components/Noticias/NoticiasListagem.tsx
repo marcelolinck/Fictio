@@ -62,8 +62,13 @@ function NoticiasListagem() {
                     </Child>
                 )}
             </Container>
-            {/* @ts-ignore */}
-            {fullData?.last_page > 1 && fullData?.last_page > perPages && <button onClick={avancarPag}>Carregar Mais</button>}
+            <div className="w-full flex items-center p-2">
+                {/* @ts-ignore */}
+                {fullData?.last_page > 1 && fullData?.last_page > perPages && 
+                    <button onClick={avancarPag} className="mx-auto bg-neutral-200 rounded p-2 hover:bg-neutral-300 transition-colors">Carregar Mais</button>
+                }
+
+            </div>
             
 
            

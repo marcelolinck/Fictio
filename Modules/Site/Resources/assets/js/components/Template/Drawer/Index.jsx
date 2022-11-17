@@ -30,13 +30,14 @@ const Gaveta = ({aberto, setDrawer}) => {
         open={aberto}
         key={'left'}
         width={tela>=400?377:tela-20}
-        bodyStyle={{padding:0, backgroundColor:'rgb(25, 25, 25)'}}
+        bodyStyle={{padding:0, backgroundColor:'rgb(25, 25, 25)', display:"flex", flexDirection:"column", overflow:"hidden"}}
         headerStyle={{backgroundColor:'rgb(25, 25, 25)', color:'white'}}
         className='gaveta'
       >
         <Botao nome="Home" link="/" />
         <Botao nome="Noticias" link="/noticias" />
         <Botao nome="Sobre" link="/sobre" />
+        <Botao nome="Github" link="https://github.com/marcelolinck/Fictio" className="mt-auto" target="_blank"/>
         {/* <Botao nome="Noticia unica" link="/noticiaUni" /> */}
       </Drawer>
     </ConfigProvider>

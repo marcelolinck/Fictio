@@ -26,7 +26,7 @@ function CaixaBuscas({resultados}) {
                         </a>
                     )}
                     {resultados.length >= 5 &&
-                        <a href="" className="verMais w-full p-2 text-white bg-black text-center hover:bg-neutral-900">
+                        <a href="/noticias" className="verMais w-full p-2 text-white bg-black text-center hover:bg-neutral-900">
                             Ver mais
                         </a>
                     }
