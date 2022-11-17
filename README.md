@@ -15,11 +15,17 @@ clone a pasta .env.example para .env (cp .env.example .env)
 Entre na pasta do projeto e ajuste as configurações do banco no arquivo .ENV
 
 Execute:
+<br>
 composer install
+<br>
 npm install
+<br>
 php artisan migrate --seed
+<br>
 php artisan serve
+<br>
 npm run dev
+<br>
 
 Rotas disponiveis via api:
 /api/site/noticias -> Lista todas as noticias ordenadas por data
