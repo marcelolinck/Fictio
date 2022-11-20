@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="col-12 col-md-8 order-md-1 order-last">
                     <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                    <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
-                        para criação/edição de noticias</p>
+                    <p class="text-subtitle text-muted">Aqui estão listadas todos os grupos que podem e devem ser usadas
+                        para criação/edição de usuários</p>
 
                 </div>
 
@@ -42,16 +42,13 @@
             </div>
             @endif
 
-
-
-
         </div>
         <section class="section">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class"col-md-2">
-                            <a href="{{route('users.create')}}" class="btn btn-primary"> Adicionar</a>
+                            <a href="{{route('roles.create')}}" class="btn btn-primary"> Adicionar</a>
                         </div>
                     </div>
 
@@ -61,32 +58,24 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>NOME</th>
-                                <th class="text-center">E-MAIL</th>
-                                <th class="text-center">GRUPO DE ACESSO</th>
-
-                                <th>CRIADO EM</th>
+                                <th>NOME DO GRUPO</th>
+                                <th class="text-center">CRIADO EM</th>
                                 <th class="text-center">AÇÕES</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($users as $item)
+                            @forelse ($roles as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td class="text-center">{{ $item->email }}</td>
-                                <td class="text-center">@if ($item->destaque == 1)
-                                    <a href="#" class="badge bg-light-success">Sim</a>
-                                    @else
-                                    <a href="#" class="badge bg-light-danger ">Não</a>
-                                    @endif</td>
-                                <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
+                                
+                                <td class="text-center">{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                 <td class="text-center">
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="post">
+                                    <form action="{{ route('roles.destroy', $item->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <a class="btn btn-secondary btn-sm" href="{{ route('users.edit', $item->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><i class="icon dripicons-document-edit"></i>Editar</a>
+                                        <a class="btn btn-secondary btn-sm" href="{{ route('roles.edit', $item->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><i class="icon dripicons-document-edit"></i>Editar / Ver Permissões</a>
                                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" type="submit" class="btn btn-danger btn-sm"><i class="icon dripicons-trash class"></i>Excluir</button>
                                     </form>
                                 </td>

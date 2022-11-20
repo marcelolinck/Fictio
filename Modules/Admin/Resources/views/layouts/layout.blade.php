@@ -111,7 +111,7 @@
                                     <a href="{{route('users.index')}}">Usuarios Cadastrados</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="layout-vertical-1-column.html">Grupos de acesso</a>
+                                    <a href="{{route('roles.index')}}">Grupos de acesso</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="{{route('permissions.index')}}">Permissões</a>

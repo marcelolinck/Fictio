@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             NoticiaStatusSeeder::class,
             RolesSeeder::class,
             NoticiaComentariosStatusSeeder::class,
+            PermissionsSeeder::class,
 
         ]);
         NoticiasModel::factory(rand(60, 225))->create();

@@ -124,6 +124,31 @@ class PermissionsSeeder extends Seeder
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
+            //PERMISSOES PARA ACESSO AS TAGS
+            [
+                'name' => 'tags_insert',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
+            [
+                'name' => 'tags_view',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
+            [
+                'name' => 'tags_edit',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
+            [
+                'name' => 'tags_delete',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
 
         ];
         PermissionsModel::insert($data);

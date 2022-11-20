@@ -13,8 +13,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8 order-md-1 order-last">
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                        <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
-                            para criação/edição de noticias</p>
+                        <p class="text-subtitle text-muted">Aqui podemos efetuar a edição deste grupo e também atualizar as suas permissões</p>
                     </div>
 
 
@@ -36,70 +35,85 @@
                     <div class="col-md-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Informe o nome da TAG</h4>
+                                <h4 class="card-title">Edição</h4>
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post"
-                                        action="{{ route('tags.update', $tagAtual->id) }}">
+                                    <form class="form form-horizontal" method="post" action="{{ route('roles.update', $roleAtual->id) }}">
                                         @csrf
-                                        @method('patch')
+                                        @csrf @method('patch')
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-2 pt-1">
-                                                    <label>Descrição da TAG</label>
+                                                    <label>Nome do grupo</label>
                                                 </div>
-                                                <div class="col-md-10 form-group pt-1">
-                                                    <input type="text" id="descricao" class="form-control"
-                                                        value="{{ $tagAtual->descricao ?? '' }}" name="descricao"
-                                                        placeholder="Informe o nome da tag ex: Futebol" minleght="5"
-                                                        maxleght="50">
+                                                <div class="col-md-6 form-group pt-1">
+                                                    <input type="text" id="name" class="form-control"
+                                                        value="{{ $roleAtual->name }}" name="name"
+                                                        placeholder="Informe o nome do grupo" minleght="5"
+                                                        maxleght="50" required>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2 pt-1">
-                                                <label>Destaque na Home:</label>
-                                            </div>
-                                            <div class="col-md-10 custom-control custom-checkbox">
-                                                <input type="checkbox" class="form-check-input form-check-success"
-                                                    @if ($tagAtual->destaque == 1) checked="checked" @endif
-                                                    name="destaque" id="customColorCheck3">
-                                                <label class="form-check-label" for="customColorCheck3">Sim, destacar na
-                                                    HOME!</label>
-                                            </div>
-
-                                            @if ($errors->any())
-                                                <div class="col-md-4 form-group">
-                                                    <div class="alert alert-warning alert-dismissible fade show"
-                                                        role="alert">
-                                                        <strong>
-                                                            <ul>
-                                                                @foreach ($errors->all() as $error)
-                                                                    <li>{{ $error }}</li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </strong>.
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
+                                            <div class="row">
+                                                @if ($errors->any())
+                                                    <div class="col-md-4 form-group">
+                                                        <div class="alert alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <strong>
+                                                                <ul>
+                                                                    @foreach ($errors->all() as $error)
+                                                                        <li>{{ $error }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </strong>.
+                                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                                aria-label="Close"></button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endif
-                                            <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Atualizar</button>
-                                                <a href="{{ route('tags.index') }}"
-                                                    class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
+                                                @endif
+                                            
                                             </div>
-
-
                                         </div>
-                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Permissões</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Escolha a permissão a ser dada ao grupo:
+                                </p>
+                                @foreach ($permissions as $permission)
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input form-check-primary"
+                                            @foreach ($rolePermissions as $permissionId)
+                                                @if ($permission->id == $permissionId->permission_id)
+                                                    checked
+                                                @endif 
+                                            @endforeach
+                                            name="permission[]" value="{{ $permission->id }}" />
+                                        <label class="form-check-label"
+                                            for="customColorCheck1">{{ $permission->name }}</label>
+                                    </div>
+                                @endforeach
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">Atualizar</button>
+                                    <a href='{{ route('roles.index') }}' class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
             </section>
             <!-- // Basic Horizontal form layout section end -->
 
