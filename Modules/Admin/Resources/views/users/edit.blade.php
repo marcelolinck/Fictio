@@ -36,65 +36,86 @@
                     <div class="col-md-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Informe o nome da TAG</h4>
+                                <h4 class="card-title">Edição do usuário</h4>
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post"
-                                        action="{{ route('tags.update', $tagAtual->id) }}">
-                                        @csrf
-                                        @method('patch')
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-2 pt-1">
-                                                    <label>Descrição da TAG</label>
-                                                </div>
-                                                <div class="col-md-10 form-group pt-1">
-                                                    <input type="text" id="descricao" class="form-control"
-                                                        value="{{ $tagAtual->descricao ?? '' }}" name="descricao"
-                                                        placeholder="Informe o nome da tag ex: Futebol" minleght="5"
-                                                        maxleght="50">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2 pt-1">
-                                                <label>Destaque na Home:</label>
-                                            </div>
-                                            <div class="col-md-10 custom-control custom-checkbox">
-                                                <input type="checkbox" class="form-check-input form-check-success"
-                                                    @if ($tagAtual->destaque == 1) checked="checked" @endif
-                                                    name="destaque" id="customColorCheck3">
-                                                <label class="form-check-label" for="customColorCheck3">Sim, destacar na
-                                                    HOME!</label>
-                                            </div>
+                                    <form class="form form-horizontal" method='post' action='{{ route('users.update', $userAtual->id)}}'>
+                                    @csrf
+                                    @method('patch')
 
-                                            @if ($errors->any())
-                                                <div class="col-md-4 form-group">
-                                                    <div class="alert alert-warning alert-dismissible fade show"
-                                                        role="alert">
-                                                        <strong>
-                                                            <ul>
-                                                                @foreach ($errors->all() as $error)
-                                                                    <li>{{ $error }}</li>
-                                                                @endforeach
-                                                            </ul>
-                                                        </strong>.
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label>Nome do usuário: </label>
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                <input type="text" id="name" class="form-control" name="name"
+                                                    placeholder="Informe o nome do usuário"
+                                                    value="{{ $userAtual->name }}" required="required">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Email: </label>
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                <input type="email" id="email" class="form-control" name="email"
+                                                    placeholder="Email" value="{{ $userAtual->email }}" required="required">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Grupo de Acesso: </label>
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                <select class="form-select" id="role_id" name="role_id" required="required" >
+                                                    <option value="">Selecione</option>
+                                                   
+                                                    @foreach ($roles as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            @if ($item->id == $userRole) selected @endif>
+                                                            {{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Senha: </label>
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                <input type="password" class="form-control" name="password">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Status: </label>
+                                            </div>
+                                            <div class="col-md-10 form-group">
+                                                <select class="form-select" id="status_id" name="status_id" required>
+                                                    @foreach ($status as $status_selec)
+                                                        <option value="{{ $status_selec->id }}" @if ($status_selec->id ==  $userAtual->status_id) selected @endif>{{ $status_selec->descricao }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                             @if ($errors->any())
+                                            <div class="col-md-12 form-group">
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    <strong>
+                                                        <ul>
+                                                            @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </strong>.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                 </div>
+                                            </div>
                                             @endif
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Atualizar</button>
-                                                <a href="{{ route('tags.index') }}"
-                                                    class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Salvar</button>
+                                                <a href="{{ route('users.index') }}" type="reset"
+                                                    class="btn btn-danger me-1 mb-1" autofocus>Cancelar</a>
                                             </div>
 
-
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+
+
                             </div>
                         </div>
                     </div>

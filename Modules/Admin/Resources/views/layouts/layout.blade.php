@@ -77,14 +77,40 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-
                         <li class="sidebar-item active ">
                             <a href="{{ route('dashboard.index') }}" class='sidebar-link'>
                                 <i class="bi bi-house-door-fill"></i>
                                 <span>Home</span>
                             </a>
                         </li>
+                        
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <span>Bem vindo, {{ Auth::user()->name ?? ''  }}</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item">
+                                    <a class="dropdown-item" href="
+                                    {{-- {{ route('logout') }} --}}
+                                    "
+                                        {{-- onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }} --}}
+                                    </a>
+
+                                    <form id="logout-form" action="
+                                    {{-- {{ route('logout') }} --}}
+                                    " method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-journal-text"></i>
