@@ -1,20 +1,34 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers;
+namespace Modules\Admin\Http\Controllers\Users;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class UsersController extends Controller
 {
+   
+    public function __construct()
+    {
+        $this->title = 'Fictio';
+        $this->repository = User::with('userStatus')->orderby('created_at', 'desc')->get();
+    }
+   
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
-        return "Usuarios Controller";
+        $config['title'] = $this->title;
+        $config['namePage'] = "Usuários  Cadastrados";
+        $config['controller'] = 'users';
+        $users = $this->repository;
+
+
+        return view('admin::users\index', compact('config', 'users'));
     }
 
     /**

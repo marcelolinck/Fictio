@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo/favicon.png" type="image/png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/shared/iconly.css') }}">
 
-    @if ($config['controller'] == 'tags' || $config['controller'] == 'noticias')
+    @if ($config['controller'] == 'tags' || $config['controller'] == 'users' || $config['controller'] == 'roles'|| $config['controller'] == 'permissions'|| $config['controller'] == 'noticias')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
 
@@ -108,13 +108,13 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="layout-default.html">Usuarios Cadastrados</a>
+                                    <a href="{{route('users.index')}}">Usuarios Cadastrados</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="layout-vertical-1-column.html">Grupos de acesso</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="layout-vertical-navbar.html">Permissões</a>
+                                    <a href="{{route('permissions.index')}}">Permissões</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,7 +145,7 @@
     <!-- Need: Apexcharts -->
     <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
-    @if ($config['controller'] == 'tags' || $config['controller'] == 'noticias')
+    @if ($config['controller'] == 'tags' || $config['controller'] == 'users' || $config['controller'] == 'roles'|| $config['controller'] == 'permissions'|| $config['controller'] == 'noticias')
         <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
     @endif

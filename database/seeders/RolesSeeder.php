@@ -18,13 +18,13 @@ class RolesSeeder extends Seeder
         $data = [
             [
                 'name' => 'Administrador',
-                'guard_name' =>'',
+                'guard_name' =>'web',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
             [
                 'name' => 'Convidado',
-                'guard_name' =>'',
+                'guard_name' =>'web',
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],

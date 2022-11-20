@@ -6,8 +6,9 @@ use Modules\Admin\Http\Controllers\dashboard\DashController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiasController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiasComentariosController;
 use Modules\Admin\Http\Controllers\Tags\TagController;
-use Modules\Admin\Http\Controllers\UsersController;
+use Modules\Admin\Http\Controllers\Users\UsersController;
 use Modules\Admin\Http\Controllers\Noticias\NoticiaFotoController;
+use Modules\Admin\Http\Controllers\Permissions\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index');
     Route::resource('dashboard', DashController::class);
     Route::resource('users', UsersController::class);
+    Route::resource('permissions', PermissionsController::class);
     Route::resource('tags', TagController::class);
     Route::resource('noticiasComentarios', NoticiasComentariosController::class);
     Route::resource('fotos', NoticiaFotoController::class);
