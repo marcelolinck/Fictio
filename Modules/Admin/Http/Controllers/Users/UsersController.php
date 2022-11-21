@@ -19,7 +19,8 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = User::with('userStatus')->orderby('created_at', 'desc')->get();
+        $this->repository = User::with('userStatus')->orderby('name', 'asc')->get();
+        
     }
 
     /**
@@ -32,7 +33,6 @@ class UsersController extends Controller
         $config['namePage'] = "Usuários  Cadastrados";
         $config['controller'] = 'users';
         $users = $this->repository;
-
 
         return view('admin::users.index', compact('config', 'users'));
     }

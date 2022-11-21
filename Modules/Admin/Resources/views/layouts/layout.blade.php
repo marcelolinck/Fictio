@@ -12,15 +12,20 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/logo/favicon.png" type="image/png') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/shared/iconly.css') }}">
 
-    @if ($config['controller'] == 'tags' || $config['controller'] == 'users' || $config['controller'] == 'roles'|| $config['controller'] == 'permissions'|| $config['controller'] == 'noticias')
+    @if ($config['controller'] == 'tags' ||
+        $config['controller'] == 'users' ||
+        $config['controller'] == 'roles' ||
+        $config['controller'] == 'permissions' ||
+        $config['controller'] == 'noticias')
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/simple-datatables/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/simple-datatables.css') }}">
-
     @endif
     @if ($config['controller'] == 'noticias_edit' || $config['controller'] == 'noticias_create')
-        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+        <link rel="stylesheet"
+            href="{{ asset('admin/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/filepond/filepond.css') }}">
-        <link rel="stylesheet" href="{{ asset('admin/assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
+        <link rel="stylesheet"
+            href="{{ asset('admin/assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/extensions/toastify-js/src/toastify.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/pages/filepond.css') }}">
     @endif
@@ -83,25 +88,27 @@
                                 <span>Home</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <span>Bem vindo, {{ Auth::user()->name ?? ''  }}</span>
+                                <span>Bem vindo, {{ Auth::user()->name ?? '' }}</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item">
-                                    <a class="dropdown-item" href="
+                                    <a class="dropdown-item"
+                                        href="
                                     {{ route('logout') }} 
                                     "
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="
+                                    <form id="logout-form"
+                                        action="
                                     {{ route('logout') }}
-                                    " method="POST"
-                                        class="d-none">
+                                    "
+                                        method="POST" class="d-none">
                                         @csrf
                                     </form>
 
@@ -110,7 +117,7 @@
                             </ul>
                         </li>
 
-                        
+
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-journal-text"></i>
@@ -118,30 +125,48 @@
                                 <span>Noticias</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="{{ route('noticias.index') }}">Todas noticias</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="{{ route('tags.index') }}">Tags Cadastradas</a>
-                                </li>
+                                @can('noticias_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('noticias.index') }}">Todas noticias</a>
+                                    </li>
+                                @endcan
+                                @can('comment_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('noticias.index') }}">Todos Comentários</a>
+                                    </li>
+                                @endcan
+                                @can('tags_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('tags.index') }}">Tags Cadastradas</a>
+                                    </li>
+                                @endcan
 
                             </ul>
                         </li>
                         <li class="sidebar-item  has-sub">
+                            @can('config_view')
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-gear"></i>
                                 <span>Configurações</span>
                             </a>
+                            @endcan
                             <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="{{route('users.index')}}">Usuarios Cadastrados</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="{{route('roles.index')}}">Grupos de acesso</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="{{route('permissions.index')}}">Permissões</a>
-                                </li>
+                                @can('user_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('users.index') }}">Usuarios Cadastrados</a>
+                                    </li>
+                                @endcan
+                                @can('group_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('roles.index') }}">Grupos de acesso</a>
+                                    </li>
+                                @endcan
+                                @can('permission_view')
+                                    <li class="submenu-item ">
+                                        <a href="{{ route('permissions.index') }}">Permissões</a>
+                                    </li>
+                                @endcan
+
                             </ul>
                         </li>
 
@@ -171,23 +196,26 @@
     <!-- Need: Apexcharts -->
     <script src="{{ asset('admin/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/pages/dashboard.js') }}"></script>
-    @if ($config['controller'] == 'tags' || $config['controller'] == 'users' || $config['controller'] == 'roles'|| $config['controller'] == 'permissions'|| $config['controller'] == 'noticias')
+    @if ($config['controller'] == 'tags' ||
+        $config['controller'] == 'users' ||
+        $config['controller'] == 'roles' ||
+        $config['controller'] == 'permissions' ||
+        $config['controller'] == 'noticias')
         <script src="{{ asset('admin/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/simple-datatables.js') }}"></script>
     @endif
     @if ($config['controller'] == 'noticias_edit' || $config['controller'] == 'noticias_create')
         <script src="{{ asset('admin/assets/extensions/tinymce/tinymce.min.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/tinymce.js') }}"></script>
-    
-    {{-- Para o selectbox --}}
+
+        {{-- Para o selectbox --}}
         <script src="{{ asset('admin/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/form-element-select.js') }}"></script>
         <script src="{{ asset('admin/assets/extensions/filepond/filepond.js') }}"></script>
         <script src="{{ asset('admin/assets/extensions/toastify-js/src/toastify.js') }}"></script>
         <script src="{{ asset('admin/assets/js/pages/filepond.js') }}"></script>
-
     @endif
-    
+
 </body>
 
 </html>

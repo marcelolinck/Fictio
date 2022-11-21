@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Dashboard;
 
+use App\Models\Config\UserRoleModel;
 use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\User;
@@ -21,6 +22,7 @@ class DashController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
+        //$this->middleware('role:Administrador');
         
         
     }
@@ -32,12 +34,17 @@ class DashController extends Controller
             Auth::logout();
             return redirect()->route('login')->with('error', 'Conta suspensa, fale com o Admin');
         }
-        
+        //Este método é somente para forçar a sincronização do usuário
+        $userRole = UserRoleModel::select('role_id')->where('model_id',Auth::id())->first();
+        $user->assignRole($userRole->role_id);
+       
+        //dd($userRole);
         $config['title'] = $this->title;
         $config['namePage'] = "Dashboard de Noticias";
         $config['controller'] = 'dash';
         $config['contador_noticias'] = NoticiasModel::with('status', 'comentarios')->get();
         $config['contador_comentarios']  = NoticiasComentariosModel::count();
+        $config['contador_usuarios']  = User::count();
 
         return view('admin::dashboard\index', compact('config'));
     }

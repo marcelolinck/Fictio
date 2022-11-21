@@ -15,7 +15,6 @@
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
                         <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
                             para criação/edição de noticias</p>
-                            
                     </div>
 
 
@@ -51,7 +50,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class"col-md-2">
-                                <a href="{{route('users.create')}}" class="btn btn-primary"> Adicionar</a>
+                                <a href="{{route('noticias.create')}}" class="btn btn-primary"> Adicionar</a>
                             </div>
                         </div>
 
@@ -61,33 +60,31 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOME</th>
-                                    <th class="text-center">E-MAIL</th>
-                                    <th class="text-center">GRUPO DE ACESSO</th>
-                                    
+                                    <th>TÍTULO</th>
+                                    <th>AUTOR</th>
+                                    <th class="text-center">STATUS</th>
                                     <th>CRIADO EM</th>
                                     <th class="text-center">AÇÕES</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($users as $item)
+                                @forelse ($noticias as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td class="text-center">{{ $item->email }}</td>
-                                        <td class="text-center">@if ($item->destaque == 1)
-                                            <a href="#" class="badge bg-light-success">Sim</a>
-                                        @else
-                                            <a href="#" class="badge bg-light-danger ">Não</a>
-                                        @endif</td>
-                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->titulo }}</td>
+                                        <td>{{ $item->user->name }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', $item->id) }}" method="post">
+                                            <a href="#" 
+                                            class="@if ($item->noticia_status_id == 1) badge bg-light-success @else badge bg-light-danger @endif">{{$item->status->descricao}}</a>
+                                        </td>
+                                        <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
+                                        <td class="text-center">
+                                            <form action="{{ route('noticias.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <a class="btn btn-secondary btn-sm"
-                                                    href="{{ route('users.edit', $item->id) }}" data-bs-toggle="tooltip"
+                                                    href="{{ route('noticias.edit', $item->id) }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Editar"><i
                                                         class="icon dripicons-document-edit"></i>Editar</a>
                                                 <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
@@ -98,8 +95,12 @@
 
                                     </tr>
                                 @empty
-                                   <tr>
-                                        <td class="text-center"colspan='6' >SEM DADOS PARA EXIBIR</td>
+                                    <tr>
+                                        <td>--------</td>
+                                        <td>SEM </td>
+                                        <td>DADOS</td>
+                                        <td>--------</td>
+
                                     </tr>
                                 @endforelse
 
