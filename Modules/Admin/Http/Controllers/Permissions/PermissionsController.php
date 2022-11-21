@@ -14,6 +14,12 @@ class PermissionsController extends Controller
     {
         $this->title = 'Fictio';
         $this->repository = PermissionsModel::orderby('name', 'asc')->get();
+
+        //Controles de acessso
+        $this->middleware('permission:permission_view|permission_insert|permission_edit|permission_delete', ['only' => ['index','show']]);
+        $this->middleware('permission:permission_insert', ['only' => ['create','store']]);
+        $this->middleware('permission:permission_edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:permission_delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

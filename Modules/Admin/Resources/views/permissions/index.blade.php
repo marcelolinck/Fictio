@@ -13,9 +13,10 @@
                 <div class="row">
                     <div class="col-12 col-md-8 order-md-1 order-last">
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                        <p class="text-subtitle text-muted">Aqui estão listadas todas as permissõe que podem e devem ser usadas
+                        <p class="text-subtitle text-muted">Aqui estão listadas todas as permissõe que podem e devem ser
+                            usadas
                             para criação/edição de grupos de acesso.</p>
-                            
+
                     </div>
 
 
@@ -51,7 +52,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class"col-md-2">
-                                <a href="{{route('permissions.create')}}" class="btn btn-primary"> Adicionar</a>
+                                <a href="{{ route('permissions.create') }}" class="btn btn-primary"> Adicionar</a>
                             </div>
                         </div>
 
@@ -74,23 +75,32 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('permissions.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a class="btn btn-secondary btn-sm"
-                                                    href="{{ route('permissions.edit', $item->id) }}" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Editar"><i
-                                                        class="icon dripicons-document-edit"></i>Editar</a>
-                                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
-                                                    type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="icon dripicons-trash class"></i>Excluir</button>
+                                            @can('permission_edit', 'permission_delete')
+                                                <form action="{{ route('permissions.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    @can('permission_edit')
+                                                        <a class="btn btn-secondary btn-sm"
+                                                            href="{{ route('permissions.edit', $item->id) }}"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"><i
+                                                                class="icon dripicons-document-edit"></i>Editar</a>
+                                                    @endcan
+                                                    @can('permission_delete')
+                                                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                                                            type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="icon dripicons-trash class"></i>Excluir</button>
+                                                    @endcan
+                                                    @cannot('group_edit', 'group_delete')
+                                                        <a href="#" class="badge bg-light-info">Sem ações</a>
+                                                    @endcannot
+                                                @endcan
                                             </form>
                                         </td>
 
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center"colspan='6' >SEM DADOS PARA EXIBIR</td>
+                                        <td class="text-center"colspan='6'>SEM DADOS PARA EXIBIR</td>
                                     </tr>
                                 @endforelse
 

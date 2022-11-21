@@ -21,6 +21,12 @@ class RolesController extends Controller
         $this->title = 'Fictio';
         $this->request = $request;
         $this->repository = $roles;
+
+        //Controles de acessso
+        $this->middleware('permission:group_view|group_insert|group_edit|group_delete', ['only' => ['index','show']]);
+        $this->middleware('permission:group_insert', ['only' => ['create','store']]);
+        $this->middleware('permission:group_edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:group_delete', ['only' => ['destroy']]);
     }
     
     

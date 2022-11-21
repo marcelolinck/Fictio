@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class"col-md-2">
-                                <a href="{{route('noticias.create')}}" class="btn btn-primary"> Adicionar</a>
+                                <a href="{{ route('noticias.create') }}" class="btn btn-primary"> Adicionar</a>
                             </div>
                         </div>
 
@@ -75,22 +75,31 @@
                                         <td>{{ $item->titulo }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td class="text-center">
-                                            <a href="#" 
-                                            class="@if ($item->noticia_status_id == 1) badge bg-light-success @else badge bg-light-danger @endif">{{$item->status->descricao}}</a>
+                                            <a href="#"
+                                                class="@if ($item->noticia_status_id == 1) badge bg-light-success @else badge bg-light-danger @endif">{{ $item->status->descricao }}</a>
                                         </td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
+                                            @can('noticias_edit', 'noticias_delete')
                                             <form action="{{ route('noticias.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
+                                                @can('noticias_edit')
                                                 <a class="btn btn-secondary btn-sm"
                                                     href="{{ route('noticias.edit', $item->id) }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" title="Editar"><i
                                                         class="icon dripicons-document-edit"></i>Editar</a>
+                                                @endcan
+                                                @can('noticias_delete')
                                                 <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
                                                     type="submit" class="btn btn-danger btn-sm"><i
                                                         class="icon dripicons-trash class"></i>Excluir</button>
+                                                @endcan
                                             </form>
+                                            @endcan
+                                            @cannot('noticias_edit', 'noticias_delete')
+                                                <a href="#" class="badge bg-light-info">Sem ações</a>
+                                            @endcannot
                                         </td>
 
                                     </tr>

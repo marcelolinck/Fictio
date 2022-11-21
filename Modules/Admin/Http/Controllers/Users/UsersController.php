@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers\Users;
 use App\Models\Config\UserStatusModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -21,6 +22,12 @@ class UsersController extends Controller
         $this->title = 'Fictio';
         $this->repository = User::with('userStatus')->orderby('name', 'asc')->get();
         
+        //Controles de acessso
+        $this->middleware('permission:user_view|user_insert|user_edit|user_delete', ['only' => ['index','show']]);
+        $this->middleware('permission:user_insert', ['only' => ['create','store']]);
+        $this->middleware('permission:user_edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user_delete', ['only' => ['destroy']]);
+        
     }
 
     /**
@@ -29,11 +36,13 @@ class UsersController extends Controller
      */
     public function index()
     {
+        
         $config['title'] = $this->title;
         $config['namePage'] = "Usuários  Cadastrados";
         $config['controller'] = 'users';
         $users = $this->repository;
-
+        $user = User::find(Auth::id());
+        $user->resyncPerm();
         return view('admin::users.index', compact('config', 'users'));
     }
 

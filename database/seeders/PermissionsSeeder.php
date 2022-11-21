@@ -92,13 +92,7 @@ class PermissionsSeeder extends Seeder
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
-            [
-                'name' => 'config_view',
-                'guard_name' => 'web',
-                'created_at'=> now(),
-                'updated_at'=> now(),
-            ],
-
+           
             //PERMISSOES PARA LISTAR TODAS AS PERMISSOES
             [
                 'name' => 'noticias_insert',

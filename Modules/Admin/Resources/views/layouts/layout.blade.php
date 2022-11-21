@@ -144,7 +144,7 @@
                             </ul>
                         </li>
                         <li class="sidebar-item  has-sub">
-                            @can('config_view')
+                            @can('user_view','group_view', 'permission_view')
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-gear"></i>
                                 <span>Configurações</span>

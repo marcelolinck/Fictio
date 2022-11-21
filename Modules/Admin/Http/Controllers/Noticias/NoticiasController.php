@@ -24,6 +24,12 @@ class NoticiasController extends Controller
         $this->repository = NoticiasModel::with('fotos','status','comentarios')->orderby('created_at','desc')->get();
         $this->tags = TagsModel::orderby('descricao','asc')->get();
         $this->status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
+
+        //Controles de acessso
+        $this->middleware('permission:noticias_view|noticias_insert|noticias_edit|noticias_delete', ['only' => ['index','show']]);
+        $this->middleware('permission:noticias_insert', ['only' => ['create','store']]);
+        $this->middleware('permission:noticias_edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:noticias_delete', ['only' => ['destroy']]);
     }
     public function index()
     {

@@ -17,6 +17,12 @@ class TagController extends Controller
     {
         $this->title = 'Fictio';
         $this->repository = TagsModel::orderby('updated_at', 'desc')->get();
+
+        //Controles de acessso
+        $this->middleware('permission:tags_view|tags_insert|tags_edit|tags_delete', ['only' => ['index','show']]);
+        $this->middleware('permission:tags_insert', ['only' => ['create','store']]);
+        $this->middleware('permission:tags_edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:tags_delete', ['only' => ['destroy']]);
     }
     public function index()
     {

@@ -15,7 +15,7 @@
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
                         <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
                             para criação/edição de noticias</p>
-                            
+
                     </div>
 
 
@@ -51,7 +51,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class"col-md-2">
-                                <a href="{{route('users.create')}}" class="btn btn-primary"> Adicionar</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-primary"> Adicionar</a>
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@
                                     <th>NOME</th>
                                     <th class="text-center">E-MAIL</th>
                                     <th class="text-center">GRUPO DE ACESSO</th>
-                                    
+
                                     <th>CRIADO EM</th>
                                     <th class="text-center">AÇÕES</th>
 
@@ -76,30 +76,44 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td class="text-center">{{ $item->email }}</td>
-                                        <td class="text-center">@if ($item->destaque == 1)
-                                            <a href="#" class="badge bg-light-success">Sim</a>
-                                        @else
-                                            <a href="#" class="badge bg-light-danger ">Não</a>
-                                        @endif</td>
-                                        <td>{{ $item->created_at }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('users.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a class="btn btn-secondary btn-sm"
-                                                    href="{{ route('users.edit', $item->id) }}" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Editar"><i
-                                                        class="icon dripicons-document-edit"></i>Editar</a>
-                                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
-                                                    type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="icon dripicons-trash class"></i>Excluir</button>
-                                            </form>
+                                            @if ($item->destaque == 1)
+                                                <a href="#" class="badge bg-light-success">Sim</a>
+                                            @else
+                                                <a href="#" class="badge bg-light-danger ">Não</a>
+                                            @endif
+                                        </td>
+                                        <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
+                                        <td class="text-center">
+
+                                            @can('user_edit', 'user_delete')
+                                                <form action="{{ route('users.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    @can('user_edit')
+                                                        <a class="btn btn-secondary btn-sm"
+                                                            href="{{ route('users.edit', $item->id) }}" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Editar"><i
+                                                                class="icon dripicons-document-edit"></i>Editar
+                                                        </a>
+                                                    @endcan
+                                                    @can('user_delete')
+                                                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                                                            type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="icon dripicons-trash class"></i>Excluir</button>
+                                                    </form>
+                                                @endcan
+                                            @endcan
+                                            @cannot('user_edit', 'user_delete')
+                                                <a href="#" class="badge bg-light-info">Sem ações</a>
+                                            @endcannot
+
                                         </td>
 
                                     </tr>
                                 @empty
-                                   <tr>
-                                        <td class="text-center"colspan='6' >SEM DADOS PARA EXIBIR</td>
+                                    <tr>
+                                        <td class="text-center"colspan='6'>SEM DADOS PARA EXIBIR</td>
                                     </tr>
                                 @endforelse
 

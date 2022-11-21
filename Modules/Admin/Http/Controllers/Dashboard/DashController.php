@@ -2,7 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Dashboard;
 
-use App\Models\Config\UserRoleModel;
+
 use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
 use App\Models\User;
@@ -29,14 +29,7 @@ class DashController extends Controller
     public function index()
     {
         $user = User::find(Auth::id());
-
-        if($user->status_id != 1) {
-            Auth::logout();
-            return redirect()->route('login')->with('error', 'Conta suspensa, fale com o Admin');
-        }
-        //Este método é somente para forçar a sincronização do usuário
-        $userRole = UserRoleModel::select('role_id')->where('model_id',Auth::id())->first();
-        $user->assignRole($userRole->role_id);
+        $user->resyncPerm();
        
         //dd($userRole);
         $config['title'] = $this->title;
