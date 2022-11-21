@@ -23,18 +23,21 @@ class DatabaseSeeder extends Seeder
     {
        $this->call( UserStatusSeeder::class,);
 
-        \App\Models\User::factory(10)->create();
+        
         
         $this->call([
             NoticiaStatusSeeder::class,
             RolesSeeder::class,
             NoticiaComentariosStatusSeeder::class,
             PermissionsSeeder::class,
+            AdminAcessoSeeder::class,
 
         ]);
+
+        \App\Models\User::factory(10)->create();
         NoticiasModel::factory(rand(60, 225))->create();
         TagsModel::factory(50)->create();
-        //NoticiasTagsModel::factory(50)->create();
+        
         NoticiasComentariosModel::factory(rand(20, 225))->create();
         NoticiasFotosModel::factory(50)->create();
        

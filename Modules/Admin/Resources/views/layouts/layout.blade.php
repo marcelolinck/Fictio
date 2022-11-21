@@ -91,15 +91,15 @@
                             <ul class="submenu ">
                                 <li class="submenu-item">
                                     <a class="dropdown-item" href="
-                                    {{-- {{ route('logout') }} --}}
+                                    {{ route('logout') }} 
                                     "
-                                        {{-- onclick="event.preventDefault();
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }} --}}
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="
-                                    {{-- {{ route('logout') }} --}}
+                                    {{ route('logout') }}
                                     " method="POST"
                                         class="d-none">
                                         @csrf
