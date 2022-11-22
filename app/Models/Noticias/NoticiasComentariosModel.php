@@ -23,5 +23,9 @@ class NoticiasComentariosModel extends Model
         return $this->hasOne(User::class, 'id', 'user_id')
             ->select('id', 'name', 'email');
     }
+    public function noticia()
+    {
+        return $this->belongsTo(NoticiasModel::class, 'noticia_id', 'id');
+    }
 
 }

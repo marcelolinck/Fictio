@@ -29,6 +29,10 @@ class DashController extends Controller
     public function index()
     {
         $user = User::find(Auth::id());
+        if($user->status_id != 1) {
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Conta suspensa, fale com o Admin');
+        }
         $user->resyncPerm();
        
         //dd($userRole);

@@ -13,8 +13,8 @@
                 <div class="row">
                     <div class="col-12 col-md-8 order-md-1 order-last">
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                        <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
-                            para criação/edição de noticias</p>
+                        <p class="text-subtitle text-muted">Aqui estão listadas todas as notícias que foram criadas. Ao
+                            editar, permite visualizar, aprovar e reprovar comentários efetuados.</p>
                     </div>
 
 
@@ -49,9 +49,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class"col-md-2">
-                                <a href="{{ route('noticias.create') }}" class="btn btn-primary"> Adicionar</a>
-                            </div>
+                            @can('noticias_insert')
+                                <div class"col-md-2">
+                                    <a href="{{ route('noticias.create') }}" class="btn btn-primary"> Adicionar</a>
+                                </div>
+                            @endcan
+
                         </div>
 
                     </div>
@@ -81,35 +84,31 @@
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">
                                             @can('noticias_edit', 'noticias_delete')
-                                            <form action="{{ route('noticias.destroy', $item->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                @can('noticias_edit')
-                                                <a class="btn btn-secondary btn-sm"
-                                                    href="{{ route('noticias.edit', $item->id) }}" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" title="Editar"><i
-                                                        class="icon dripicons-document-edit"></i>Editar</a>
-                                                @endcan
-                                                @can('noticias_delete')
-                                                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
-                                                    type="submit" class="btn btn-danger btn-sm"><i
-                                                        class="icon dripicons-trash class"></i>Excluir</button>
-                                                @endcan
-                                            </form>
+                                                <form action="{{ route('noticias.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    @can('noticias_edit')
+                                                        <a class="btn btn-secondary btn-sm"
+                                                            href="{{ route('noticias.edit', $item->id) }}" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Editar"><i
+                                                                class="icon dripicons-document-edit"></i>Editar</a>
+                                                    @endcan
+                                                    @can('noticias_delete')
+                                                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                                                            type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="icon dripicons-trash class"></i>Excluir</button>
+                                                    @endcan
+                                                </form>
                                             @endcan
                                             @cannot('noticias_edit', 'noticias_delete')
-                                                <a href="#" class="badge bg-light-info">Sem ações</a>
+                                               <a href="#" class="badge bg-light-secondary">Sem ações</a>
                                             @endcannot
                                         </td>
 
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td>--------</td>
-                                        <td>SEM </td>
-                                        <td>DADOS</td>
-                                        <td>--------</td>
-
+                                        <td colspan="4" class="text-center">SEM DADOS</td>
                                     </tr>
                                 @endforelse
 

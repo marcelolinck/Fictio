@@ -35,10 +35,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory(10)->create();
-        NoticiasModel::factory(rand(60, 225))->create();
+        NoticiasModel::factory(rand(40, 225))->create();
         TagsModel::factory(50)->create();
         
-        NoticiasComentariosModel::factory(rand(20, 225))->create();
+        NoticiasComentariosModel::factory(rand(20, 220))->create();
         NoticiasFotosModel::factory(50)->create();
        
     }

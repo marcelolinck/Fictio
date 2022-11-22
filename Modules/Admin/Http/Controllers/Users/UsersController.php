@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = User::with('userStatus')->orderby('name', 'asc')->get();
+        $this->repository = User::with('userStatus','roles')->orderby('name', 'asc')->get();
         
         //Controles de acessso
         $this->middleware('permission:user_view|user_insert|user_edit|user_delete', ['only' => ['index','show']]);
@@ -41,8 +41,8 @@ class UsersController extends Controller
         $config['namePage'] = "Usuários  Cadastrados";
         $config['controller'] = 'users';
         $users = $this->repository;
-        $user = User::find(Auth::id());
-        $user->resyncPerm();
+        $user = User::find(Auth::id())->resyncPerm();
+      
         return view('admin::users.index', compact('config', 'users'));
     }
 

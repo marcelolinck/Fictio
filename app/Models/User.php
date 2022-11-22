@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Config\RolesModel;
 use App\Models\Config\UserStatusModel;
 use App\Models\Config\UserRoleModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,9 +59,7 @@ class User extends Authenticatable
         $user = User::find(Auth::id());
         $userRole = UserRoleModel::select('role_id')->where('model_id',Auth::id())->first();
         $user->assignRole($userRole->role_id);
-        if($user->status_id != 1) {
-            Auth::logout();
-            return redirect()->route('login')->with('error', 'Conta suspensa, fale com o Admin');
-        }
+        
     }
+   
 }

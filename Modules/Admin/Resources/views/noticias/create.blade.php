@@ -123,13 +123,12 @@
                         <div class="col-12 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">Selecione as fotos para incluir na notícia</h5>
+                                    <h5 class="card-title">Selecione a para incluir na notícia</h5>
                                 </div>
                                 {{-- <div class="card-content"> --}}
                                 <div class="card-body">
                                     <!-- File uploader with validation -->
-                                    <input type="file" name="noticia_foto[]" class="form-control" id="noticia_foto"
-                                        multiple>
+                                    <input type="file" name="noticia_foto[]" class="form-control" id="noticia_foto">
                                 </div>
                                 {{-- </div> --}}
                             </div>

@@ -143,6 +143,19 @@ class PermissionsSeeder extends Seeder
                 'created_at'=> now(),
                 'updated_at'=> now(),
             ],
+//Permissoes de comentarios
+            [
+                'name' => 'comment_view',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
+            [
+                'name' => 'comment_action',
+                'guard_name' => 'web',
+                'created_at'=> now(),
+                'updated_at'=> now(),
+            ],
 
         ];
         PermissionsModel::insert($data);

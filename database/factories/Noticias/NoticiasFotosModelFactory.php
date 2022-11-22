@@ -19,7 +19,7 @@ class NoticiasFotosModelFactory extends Factory
         return [
 
             'noticia_foto_path' => $this->faker->imageUrl(1920, 1080),
-            'noticia_id' => $this->faker->numberBetween(1, 50),
+            'noticia_id' => $this->faker->unique()->numberBetween(1, 50),
             'created_at' => now(),
             'updated_at' => now(),
         ];

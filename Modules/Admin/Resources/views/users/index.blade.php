@@ -77,11 +77,14 @@
                                         <td>{{ $item->name }}</td>
                                         <td class="text-center">{{ $item->email }}</td>
                                         <td class="text-center">
-                                            @if ($item->destaque == 1)
-                                                <a href="#" class="badge bg-light-success">Sim</a>
-                                            @else
-                                                <a href="#" class="badge bg-light-danger ">Não</a>
-                                            @endif
+                                                @if($item->getRoleNames()->first())
+                                                    <a href="#" class="badge bg-light-success">
+                                                        {{$item->getRoleNames()->first()}}
+                                                  @else
+                                                  <a href="#" class="badge bg-light-info">
+                                                    Sem grupo Definido
+                                                  @endif
+                                                </a>
                                         </td>
                                         <td>{{ $item->created_at->format('d/m/Y h:m') }}</td>
                                         <td class="text-center">

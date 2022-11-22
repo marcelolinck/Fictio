@@ -19,12 +19,23 @@ class NoticiasComentariosController extends Controller
     public function __construct()
     {
         $this->repository = NoticiasComentariosModel::all();
+        $this->title = 'Fictio';
+
+         //Controles de acessso
+         $this->middleware('permission:comment_view|comment_action', ['only' => ['index','show']]);
+         $this->middleware('permission:noticias_insert', ['only' => ['create','store']]);
+         $this->middleware('permission:comment_action', ['only' => ['edit','update']]);
+         $this->middleware('permission:noticias_delete', ['only' => ['destroy']]);
     }
     
     
      public function index()
     {
-        return view('admin::index');
+        $config['title'] = $this->title;
+        $config['namePage'] = "Comentários Efetuados";
+        $config['controller'] = 'noticias';
+        $comentarios = $this->repository;
+        return view('admin::comentarios.index', compact('config', 'comentarios'));
     }
 
     /**

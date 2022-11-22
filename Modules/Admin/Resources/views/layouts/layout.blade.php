@@ -132,7 +132,7 @@
                                 @endcan
                                 @can('comment_view')
                                     <li class="submenu-item ">
-                                        <a href="{{ route('noticias.index') }}">Todos Comentários</a>
+                                        <a href="{{ route('noticiasComentarios.index') }}">Todos Comentários</a>
                                     </li>
                                 @endcan
                                 @can('tags_view')
