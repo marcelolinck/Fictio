@@ -130,11 +130,6 @@
                                         <a href="{{ route('noticias.index') }}">Todas noticias</a>
                                     </li>
                                 @endcan
-                                @can('comment_view')
-                                    <li class="submenu-item ">
-                                        <a href="{{ route('noticiasComentarios.index') }}">Todos Comentários</a>
-                                    </li>
-                                @endcan
                                 @can('tags_view')
                                     <li class="submenu-item ">
                                         <a href="{{ route('tags.index') }}">Tags Cadastradas</a>

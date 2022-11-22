@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers\Dashboard;
 
 use App\Models\Noticias\NoticiasComentariosModel;
 use App\Models\Noticias\NoticiasModel;
+use App\Models\Noticias\TagsModel;
 use App\Models\User;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Support\Renderable;
@@ -22,8 +23,6 @@ class DashController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        //$this->middleware('role:Administrador');
-        
         
     }
     public function index()
@@ -39,10 +38,11 @@ class DashController extends Controller
         $config['title'] = $this->title;
         $config['namePage'] = "Dashboard de Noticias";
         $config['controller'] = 'dash';
-        $config['contador_noticias'] = NoticiasModel::with('status', 'comentarios')->get();
-        $config['contador_comentarios']  = NoticiasComentariosModel::count();
+        $config['contador_noticias'] = NoticiasModel::with('status')->get();
         $config['contador_usuarios']  = User::count();
+        $config['contador_tags']  = TagsModel::count();
+        $noticias = NoticiasModel::take(5)->orderby('created_At', 'desc')->get();
 
-        return view('admin::dashboard\index', compact('config'));
+        return view('admin::dashboard\index', compact('config', 'noticias'));
     }
 }

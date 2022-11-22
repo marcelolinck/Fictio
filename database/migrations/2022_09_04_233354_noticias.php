@@ -40,16 +40,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        //  Schema::create('noticias_tags', function (Blueprint $table) {
-        //      $table->unsignedBigInteger('noticia_id');
-        //      $table->foreign('noticia_id')->references('id')->on('noticias');
-        //      $table->unsignedBigInteger('tag_id');
-        //      $table->foreign('tag_id')->references('id')->on('tags');
-
-
-        //  });
-
-
+    
         Schema::create('noticia_fotos', function (Blueprint $table) {
             $table->id();
             $table->string('noticia_foto_path', 2048)->default('https://via.placeholder.com/1920x1080.png/000044?text=default_photo');
@@ -58,25 +49,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        //Criacao do status do cometario
-        Schema::create('noticia_comentario_status', function (Blueprint $table) {
-            $table->id();
-            $table->string('descricao');
-            $table->string('corStatus');
-        });
-
-        //Criacao da tabela de Comentário
-        Schema::create('noticia_comentarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('descricao');
-            $table->unsignedBigInteger('noticia_comentario_status_id');
-            $table->foreign('noticia_comentario_status_id')->references('id')->on('noticia_comentario_status');
-            $table->unsignedBigInteger('noticia_id');
-            $table->foreign('noticia_id')->references('id')->on('noticias');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -86,8 +58,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticia_comentarios');
-        Schema::dropIfExists('noticia_comentario_status');
         Schema::dropIfExists('noticia_fotos');
         // Schema::dropIfExists('noticias_tags');
         Schema::dropIfExists('tags');

@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NoticiaStatusSeeder::class,
             RolesSeeder::class,
-            NoticiaComentariosStatusSeeder::class,
             PermissionsSeeder::class,
             AdminAcessoSeeder::class,
 
@@ -38,7 +37,6 @@ class DatabaseSeeder extends Seeder
         NoticiasModel::factory(rand(40, 225))->create();
         TagsModel::factory(50)->create();
         
-        NoticiasComentariosModel::factory(rand(20, 220))->create();
         NoticiasFotosModel::factory(50)->create();
        
     }

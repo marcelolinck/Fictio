@@ -21,7 +21,7 @@ class NoticiasController extends Controller
     public function __construct()
     {
         $this->title = 'Fictio';
-        $this->repository = NoticiasModel::with('fotos','status','comentarios')->orderby('created_at','desc')->get();
+        $this->repository = NoticiasModel::with('fotos','status')->orderby('created_at','desc')->get();
         $this->tags = TagsModel::orderby('descricao','asc')->get();
         $this->status = NoticiasStatusModel::orderby('descricao', 'asc')->get();
 
@@ -181,7 +181,6 @@ class NoticiasController extends Controller
         }
 
         $noticiaAtual->fotos()->delete();
-        $noticiaAtual->comentarios()->delete();
         $noticiaAtual->delete();
 
         return redirect()->route('noticias.index')->with('success', 'Notícia Excluída com sucesso');
