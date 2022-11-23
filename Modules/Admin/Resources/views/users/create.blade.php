@@ -101,7 +101,7 @@
                                             @endif
                                             <div class="col-sm-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Cadastrar</button>
-                                                <a href="{{ route('tags.index') }}" class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
+                                                <a href="{{ route('users.index') }}" class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
                                             </div>
 
 

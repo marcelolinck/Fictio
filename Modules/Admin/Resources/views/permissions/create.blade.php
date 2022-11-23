@@ -13,8 +13,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8 order-md-1 order-last">
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                        <p class="text-subtitle text-muted">Aqui estão listadas todas as tags que podem e devem ser usadas
-                            para criação/edição de noticias</p>
+                        <p class="text-subtitle text-muted">Aqui você efetuará o cadastramento da permissão que já está na BLADE.</p>
                     </div>
 
 
@@ -74,7 +73,7 @@
                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                     <button type="submit"
                                                         class="btn btn-primary me-1 mb-1">Cadastrar</button>
-                                                    <a href="{{ route('tags.index') }}"
+                                                    <a href="{{ route('permissions.index') }}"
                                                         class="btn btn-light-secondary me-1 mb-1">Cancelar</a>
                                                 </div>
                                             </div>

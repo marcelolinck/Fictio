@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8 order-md-1 order-last">
                         <h3>{{ $config['title'] }} - {{ $config['namePage'] }}</h3>
-                        <p class="text-subtitle text-muted">Aqui estão listadas todos os grupos que podem e devem ser usadas
+                        <p class="text-subtitle text-muted">Aqui estão listados todos os grupos que podem e devem ser usadas
                             para criação/edição de usuários</p>
 
                     </div>

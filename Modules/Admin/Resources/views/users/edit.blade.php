@@ -107,9 +107,9 @@
                                             </div>
                                             @endif
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Salvar</button>
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Atualizar</button>
                                                 <a href="{{ route('users.index') }}" type="reset"
-                                                    class="btn btn-danger me-1 mb-1" autofocus>Cancelar</a>
+                                                    class="btn btn-secondary me-1 mb-1" autofocus>Cancelar</a>
                                             </div>
 
                                         </div>

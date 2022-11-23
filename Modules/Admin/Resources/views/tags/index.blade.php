@@ -87,7 +87,7 @@
 
                                                     @can('tags_edit')
                                                         <a class="btn btn-secondary btn-sm"
-                                                            href="{{ route('users.edit', $item->id) }}" data-bs-toggle="tooltip"
+                                                            href="{{ route('tags.edit', $item->id) }}" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" title="Editar"><i
                                                                 class="icon dripicons-document-edit"></i>Editar
                                                         </a>
