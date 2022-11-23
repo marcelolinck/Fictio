@@ -68,7 +68,7 @@ function NoticiaUni({noticia, ...props}){
                     <Container columns={'auto'} className="cardsAbaixoResponsivo justify-center">
                         {noticia.sugestoes.map((e, i) => 
                             <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
-                                <img src={e.fotos[0] && e.fotos[0].noticia_foto_path}/>
+                                <img src={e.fotos[0] ? e.fotos[0].noticia_foto_path : "https://via.placeholder.com/150"}/>
                                 <h3>{e.titulo}</h3>
                             </a>
                         )}
@@ -80,7 +80,7 @@ function NoticiaUni({noticia, ...props}){
                 <div className='sugestoesNoticiaConjunto flex flex-col'>
                     {noticia.sugestoes.map((e, i) => 
                         <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
-                            <img src={e.fotos[0]&&e.fotos[0].noticia_foto_path}/>
+                            <img src={e.fotos[0] ? e.fotos[0].noticia_foto_path : "https://via.placeholder.com/150"}/>
                             <h3>{e.titulo}</h3>
                         </a>
                     )}
