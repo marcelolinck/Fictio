@@ -49,10 +49,14 @@
         
     }
 }
-.cardNoticia.hoverMargin:hover{
-    @media(min-width: 1200px){
-        margin: 0px 15px;
-        
+.cardNoticia.hoverMargin{
+    transition: all 0.15s;
+    &:hover{
+        @media(min-width: 1200px){
+            margin: 0px 15px;
+            
+        }
+
     }
 }
 .cardNoticia.hoverMenor{

@@ -82,7 +82,6 @@ function NoticiaUni({noticia, ...props}){
                         <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
                             <img src={e.fotos[0]&&e.fotos[0].noticia_foto_path}/>
                             <h3>{e.titulo}</h3>
-                            
                         </a>
                     )}
                 </div>

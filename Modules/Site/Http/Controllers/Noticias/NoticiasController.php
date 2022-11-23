@@ -44,12 +44,17 @@ class NoticiasController extends Controller
         ->get();
     }
     private function  getLast3Wtags($tags){
+        //noticiasModel where json contains any of tags
         $noticiasRaw = NoticiasModel::with('fotos')
         ->select('id', 'titulo', 'tags')
-        ->whereJsonContains('tags', $tags)
-        ->take(3)
         ->get();
-        return $noticiasRaw;
+        $noticias = [];
+        foreach ($noticiasRaw as $noticia) {
+            if(count(array_intersect($tags, $noticia->tags)) > 0){
+                $noticias[] = $noticia->toArray();
+            }
+        }
+        return array_slice($noticias, -3);
 
     }
     public function viewNoticia($id){
