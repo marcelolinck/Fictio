@@ -21,7 +21,9 @@ function CaixaBuscas({resultados}) {
                                 <p className="titulo text-md font-bold">{noticia.titulo.slice(0,50)}{noticia.titulo.length > 50 && "..."}</p>
                                 
 
-                                <p className="text-sm">{noticia.corpo}</p>
+                                <div className="text-sm" dangerouslySetInnerHTML={
+                                    {__html: noticia.corpo}
+                                }></div>
                             </div>
                         </a>
                     )}

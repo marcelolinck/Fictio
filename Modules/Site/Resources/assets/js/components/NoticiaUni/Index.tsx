@@ -61,7 +61,10 @@ function NoticiaUni({noticia, ...props}){
                         <img className='w-full h-auto' src={noticia.imagem}/>
                     </div>
                     <div className='conteudoTexto w-full px-2 text-base mb-5'>
-                        <p>{noticia.texto}</p>
+                        <div dangerouslySetInnerHTML={
+                            {__html: noticia.texto}
+                        }
+                        ></div>
                     </div>
 
 
