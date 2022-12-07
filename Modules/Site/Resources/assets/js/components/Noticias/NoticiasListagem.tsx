@@ -27,6 +27,14 @@ function NoticiasListagem() {
             setPerPages(perPages + 1)
         }
     }
+    function filterURL(url:string):string{
+        if(url.includes('http:') || url.includes('https:')){
+            return url;
+        }else{
+            console.log(url)
+            return '/storage/'+url;
+        }
+    }
     useEffect(() => {
         chamadoAPI()
     },[busca, perPages])
@@ -56,7 +64,7 @@ function NoticiasListagem() {
                 {data?.map((noticia, index) =>
                     <Child key={index}>
                         <a className="cardNoticia"  href={`/noticia/1`}>
-                            <img src={noticia.fotos[0] ? noticia.fotos[0].noticia_foto_path:'https://picsum.photos/200/300'}/>
+                            <img src={noticia.fotos[0] ? filterURL(noticia.fotos[0].noticia_foto_path):'https://picsum.photos/200/300'}/>
                             <h3>{noticia.titulo}</h3>
                         </a>
                     </Child>

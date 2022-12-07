@@ -3,7 +3,15 @@ import './styles.scss';
 import {Container, Child } from 'teapotcss';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-function Home({noticiaTratada, noticiasTagDestaque, ...props}) {    
+function Home({noticiaTratada, noticiasTagDestaque, ...props}) {  
+    function filterURL(url:string):string{
+        if(url.includes('http:') || url.includes('https:')){
+            return url;
+        }else{
+            console.log(url)
+            return '/storage/'+url;
+        }
+    }
     const [data, setData] = useState([]);
     const noticia = noticiaTratada
 
@@ -27,7 +35,8 @@ function Home({noticiaTratada, noticiasTagDestaque, ...props}) {
                 <div className='decoracaoFundo'></div>
                 <a className='noticiaDestaque' href={`noticia/${noticia.id}`}>
                     <div className='noticiaDestaqueImg'>
-                        <img src={noticia.imagem}/>
+                        <img src={filterURL(noticia.imagem)}/>
+                        
                     </div>
                     <div className='noticiaDestaqueTexto'>
                         <h1>{noticia.titulo}</h1>
@@ -48,7 +57,7 @@ function Home({noticiaTratada, noticiasTagDestaque, ...props}) {
                             {tag.noticias.map((noticia, index) =>
                                 <Child key={index}>
                                     <a className="cardNoticia hoverMargin"  href={`/noticia/${noticia.id}`}>
-                                        <img src={noticia.imagem}></img>
+                                        <img src={filterURL(noticia.imagem)}></img>
                                         <h3>{noticia.titulo}</h3>
                                     </a>
                                 </Child>

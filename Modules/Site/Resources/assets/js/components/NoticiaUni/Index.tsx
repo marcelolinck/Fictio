@@ -46,6 +46,14 @@ function NoticiaUni({noticia, ...props}){
         "--tituloTopo": tituloHeight + "px",
         "--sugestoesTopo": sugestoesHeight + "px"
     }
+    function filterURL(url:string):string{
+        if(url.includes('http:') || url.includes('https:')){
+            return url;
+        }else{
+            console.log(url)
+            return '/storage/'+url;
+        }
+    }
     return(
     <>
         <section className='cabecalho'>
@@ -58,7 +66,7 @@ function NoticiaUni({noticia, ...props}){
                 </section>
                 <section className={st.conteudoNoticia}>
                     <div className="imgWrapper flex justify-center">
-                        <img className='w-full h-auto' src={noticia.imagem}/>
+                        <img className='w-full h-auto' src={filterURL(noticia.imagem)}/>
                     </div>
                     <div className='conteudoTexto w-full px-2 text-base mb-5'>
                         <div dangerouslySetInnerHTML={
@@ -71,7 +79,7 @@ function NoticiaUni({noticia, ...props}){
                     <Container columns={'auto'} className="cardsAbaixoResponsivo justify-center">
                         {noticia.sugestoes.map((e, i) => 
                             <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
-                                <img src={e.fotos[0] ? e.fotos[0].noticia_foto_path : "https://via.placeholder.com/150"}/>
+                                <img src={e.fotos[0] ? filterURL(e.fotos[0].noticia_foto_path) : "https://via.placeholder.com/150"}/>
                                 <h3>{e.titulo}</h3>
                             </a>
                         )}
@@ -83,7 +91,7 @@ function NoticiaUni({noticia, ...props}){
                 <div className='sugestoesNoticiaConjunto flex flex-col'>
                     {noticia.sugestoes.map((e, i) => 
                         <a key={i} className="cardNoticia hoverMenor cardNoticiaSugestao h-auto" href={`/noticia/${e.id}`}>
-                            <img src={e.fotos[0] ? e.fotos[0].noticia_foto_path : "https://via.placeholder.com/150"}/>
+                            <img src={e.fotos[0] ? filterURL(e.fotos[0].noticia_foto_path) : "https://via.placeholder.com/150"}/>
                             <h3>{e.titulo}</h3>
                         </a>
                     )}

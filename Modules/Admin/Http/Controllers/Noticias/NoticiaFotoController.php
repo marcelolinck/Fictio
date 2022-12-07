@@ -38,6 +38,9 @@ class NoticiaFotoController extends Controller
      * @param Request $request
      * @return Renderable
      */
+    public function saveIMG($img){
+        
+    }
     public function store(Request $request)
     {
 
